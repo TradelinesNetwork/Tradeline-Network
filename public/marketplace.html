@@ -47,6 +47,34 @@
 @media(max-width:940px){.mk-grid{grid-template-columns:repeat(2,1fr)}.mk-bar{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.mk-grid{grid-template-columns:1fr}.mk-bar{grid-template-columns:1fr}.mk-hero h1,.mk-hero p,.mk-hero span{color:#fff!important}
 .mk-hero h1{font-size:26px}}
+  .gtc-overlay{
+  display:none;
+  position:fixed; inset:0; z-index:999;
+  background:rgba(17,24,39,.55);
+  align-items:center; justify-content:center;
+  padding:20px;
+}
+.gtc-overlay.open{ display:flex; }
+.gtc-card{
+  background:#fff; border-radius:16px; padding:32px 28px;
+  max-width:360px; width:100%; text-align:center;
+  box-shadow:0 20px 60px rgba(17,24,39,.25);
+}
+.gtc-check{
+  width:52px; height:52px; margin:0 auto 16px;
+  border-radius:50%; background:#eafaf0; color:#0a7a4f;
+  display:flex; align-items:center; justify-content:center;
+}
+.gtc-check svg{ width:26px; height:26px; }
+.gtc-title{ font-weight:800; font-size:18px; color:#111827; margin-bottom:6px; }
+.gtc-sub{ font-size:14px; color:#5b6675; margin-bottom:20px; }
+.gtc-actions{ display:flex; gap:10px; justify-content:center; }
+.gtc-go, .gtc-stay{
+  padding:10px 18px; border-radius:9px; font-weight:700; font-size:13.5px;
+  cursor:pointer; border:none;
+}
+.gtc-go{ background:#1B4FD8; color:#fff; text-decoration:none; }
+.gtc-stay{ background:#f0f1f4; color:#374151; }
 </style>
 </head>
 <body class="co-body">
