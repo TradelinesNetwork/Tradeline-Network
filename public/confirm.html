@@ -86,7 +86,7 @@ function renderReview(){
 
 function fail(msg){
   const el = document.getElementById('coErr');
-  el.style.display=''; el.textContent='<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> '+msg;
+  el.style.display=''; el.textContent=''+msg;
   el.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
@@ -118,11 +118,11 @@ document.getElementById('coPlace').addEventListener('click', async () => {
     const text = await res.text();
     try { data = JSON.parse(text); } catch { data = null; }
   } catch {
-    btn.disabled = false; btn.textContent = '<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Place Order';
+    btn.disabled = false; btn.textContent = 'Place Order';
     return fail('Order service unreachable. Your card was not charged and no crypto was claimed — please check your connection and try again.');
   }
       if(!res.ok || !data?.orderId){
-    btn.disabled = false; btn.textContent = '<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Place Order';
+    btn.disabled = false; btn.textContent = 'Place Order';
     return fail(data?.error || `Order could not be placed (status ${res.status}). Nothing was charged — please try again or contact support.`);
   }
 

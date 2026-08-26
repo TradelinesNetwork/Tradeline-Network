@@ -91,7 +91,7 @@ function renderForms(){
 
 function fail(msg){
   const el = document.getElementById('coErr');
-  el.style.display=''; el.textContent = '<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> ' + msg;
+  el.style.display=''; el.textContent = '' + msg;
   el.scrollIntoView({behavior:'smooth',block:'center'});
 }
 

@@ -232,7 +232,7 @@ function setCoin(c) {
 
   const btn = document.getElementById('coCopy');
   btn.classList.remove('copied');
-  btn.textContent = '<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="5.5" y="4" width="13" height="17" rx="2.2"/><path d="M9 4.2h6v2.4H9z"/><path d="M9 11h6M9 15h4"/></svg> Copy Address';
+  btn.textContent = 'Copy Address';
 
   validateHash();
 }
@@ -245,7 +245,7 @@ function copyAddr() {
   const done = () => {
     btn.classList.add('copied');
     btn.textContent = '✓ Copied!';
-    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="5.5" y="4" width="13" height="17" rx="2.2"/><path d="M9 4.2h6v2.4H9z"/><path d="M9 11h6M9 15h4"/></svg> Copy Address'; }, 2000);
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy Address'; }, 2000);
   };
 
   if (navigator.clipboard?.writeText) {
@@ -293,14 +293,14 @@ function validateHash() {
     return true;
   }
   hint.style.color = '#b07500';
-  hint.textContent = `<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> Check that this is the full ${coin} transaction ID for ${nets[coin]}.`;
+  hint.textContent = `Check that this is the full ${coin} transaction ID for ${nets[coin]}.`;
   return false;
 }
 
 function fail(msg) {
   const el = document.getElementById('coErr');
   el.style.display = '';
-  el.textContent = '<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> ' + msg;
+  el.textContent = '' + msg;
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 

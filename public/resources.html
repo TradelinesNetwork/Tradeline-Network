@@ -377,7 +377,7 @@ function submitNonPosting(){
   const e=document.getElementById('npEmail').value.trim();
   const c=document.getElementById('npCard').value.trim();
   if(!n||!e||!c){alert('Please fill in all required fields.');return;}
-  alert('<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2 11 14.7l4.6-4.9"/></svg> Report submitted. Our team will review your case within 1 business day and contact you at '+e);
+  alert('Report submitted. Our team will review your case within 1 business day and contact you at '+e);
 }
 // Handle anchor links for tab switching
 const hash = window.location.hash.replace('#','');

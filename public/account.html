@@ -659,7 +659,7 @@ async function doForgot(){
     redirectTo: window.location.origin + '/reset-password.html',
   });
   if(error){ alert(error.message || 'Could not send reset email.'); return; }
-  alert('<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2 11 14.7l4.6-4.9"/></svg> Password reset link sent to '+e+'. Please check your inbox.');
+  alert('Password reset link sent to '+e+'. Please check your inbox.');
   switchAuth('login');
 }
 window.doForgot = doForgot;
