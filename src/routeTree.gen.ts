@@ -10,33 +10,76 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicOrderStatusRouteImport } from './routes/api/public/order-status'
+import { Route as ApiPublicOrdersRouteImport } from './routes/api/public/orders'
+import { Route as ApiPublicVerifyPaymentRouteImport } from './routes/api/public/verify-payment'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicOrderStatusRoute = ApiPublicOrderStatusRouteImport.update({
+  id: '/api/public/order-status',
+  path: '/api/public/order-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicOrdersRoute = ApiPublicOrdersRouteImport.update({
+  id: '/api/public/orders',
+  path: '/api/public/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicVerifyPaymentRoute = ApiPublicVerifyPaymentRouteImport.update({
+  id: '/api/public/verify-payment',
+  path: '/api/public/verify-payment',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/order-status': typeof ApiPublicOrderStatusRoute
+  '/api/public/orders': typeof ApiPublicOrdersRoute
+  '/api/public/verify-payment': typeof ApiPublicVerifyPaymentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/order-status': typeof ApiPublicOrderStatusRoute
+  '/api/public/orders': typeof ApiPublicOrdersRoute
+  '/api/public/verify-payment': typeof ApiPublicVerifyPaymentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/order-status': typeof ApiPublicOrderStatusRoute
+  '/api/public/orders': typeof ApiPublicOrdersRoute
+  '/api/public/verify-payment': typeof ApiPublicVerifyPaymentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/public/order-status'
+    | '/api/public/orders'
+    | '/api/public/verify-payment'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/public/order-status'
+    | '/api/public/orders'
+    | '/api/public/verify-payment'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/order-status'
+    | '/api/public/orders'
+    | '/api/public/verify-payment'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicOrderStatusRoute: typeof ApiPublicOrderStatusRoute
+  ApiPublicOrdersRoute: typeof ApiPublicOrdersRoute
+  ApiPublicVerifyPaymentRoute: typeof ApiPublicVerifyPaymentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +91,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/order-status': {
+      id: '/api/public/order-status'
+      path: '/api/public/order-status'
+      fullPath: '/api/public/order-status'
+      preLoaderRoute: typeof ApiPublicOrderStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/orders': {
+      id: '/api/public/orders'
+      path: '/api/public/orders'
+      fullPath: '/api/public/orders'
+      preLoaderRoute: typeof ApiPublicOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/verify-payment': {
+      id: '/api/public/verify-payment'
+      path: '/api/public/verify-payment'
+      fullPath: '/api/public/verify-payment'
+      preLoaderRoute: typeof ApiPublicVerifyPaymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicOrderStatusRoute: ApiPublicOrderStatusRoute,
+  ApiPublicOrdersRoute: ApiPublicOrdersRoute,
+  ApiPublicVerifyPaymentRoute: ApiPublicVerifyPaymentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

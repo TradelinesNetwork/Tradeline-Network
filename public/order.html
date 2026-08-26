@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=2">
+<meta name="theme-color" content="#263644">
+<meta name="description" content="Track the status of your Tradelines Network order in real time.">
+<meta name="robots" content="noindex,nofollow">
+<title>Order Details | Tradelines Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#111827;--ink-2:#374151;--ink-3:#5b6675;--line:#dfe4ea;--soft:#f5f7f9;--navy:#263644;--sky:#1B4FD8;--green:#0a7a4f;--amber:#a45c00;--red:#b3261e}
+  body{font-family:'Open Sans','Inter',sans-serif;background:#fff;color:var(--ink-2);min-height:100vh;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  header{padding:16px 24px;background:var(--navy);display:flex;align-items:center;gap:16px}
+  header .logo{font-weight:800;font-size:18px;color:#fff;text-transform:uppercase;letter-spacing:.02em}
+  header .logo span{color:#f3e600}
+  header .back{margin-left:auto;color:rgba(255,255,255,.85);font-size:13.5px;font-weight:600}
+  header .back:hover{color:#f3e600}
+  .wrap{max-width:840px;margin:0 auto;padding:32px 24px 80px}
+  h1{font-size:26px;font-weight:800;color:var(--ink);margin-bottom:6px}
+  .meta{color:var(--ink-3);font-size:13.5px;margin-bottom:24px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 2px 10px rgba(17,24,39,.05)}
+  .card h2{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+  .kv{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .kv:last-child{border:none}
+  .kv .k{color:var(--ink-3);font-weight:600}
+  .kv .v{color:var(--ink);font-weight:600;text-align:right;max-width:62%;word-break:break-all}
+  .badge{display:inline-block;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .b-pending{background:#fff4e0;color:var(--amber)}
+  .b-confirmed{background:#e4f7ee;color:var(--green)}
+  .b-posted{background:#e8effd;color:var(--sky)}
+  .b-rejected{background:#fdeaea;color:var(--red)}
+  .item{padding:12px 0;border-bottom:1px solid var(--line)}
+  .item:last-child{border:none}
+  .item .n{font-weight:700;color:var(--ink);font-size:14.5px}
+  .item .s{font-size:12.5px;color:var(--ink-3);margin-top:3px}
+  .item .p{color:var(--navy);font-weight:800;font-size:14.5px;margin-top:4px}
+  .tx a{color:var(--sky);text-decoration:underline;font-size:13px}
+  .pm{display:flex;gap:11px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:11px;margin-bottom:10px;background:#fff}
+  .pm.active{border-color:#9db4ee;background:#f6f8ff}
+  .pm.off{background:var(--soft);color:var(--ink-3)}
+  .pm .ic{width:26px;height:26px;flex:0 0 26px;display:inline-flex}
+  .pm .ic svg{width:100%;height:100%}
+  .pm .nm{font-weight:700;color:var(--ink);font-size:14px}
+  .pm .st{font-size:12.5px;color:var(--ink-3)}
+  .pm .tag{margin-left:auto;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);white-space:nowrap}
+  .btn{display:inline-block;border:none;cursor:pointer;background:var(--navy);color:#fff;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:9px;font-family:inherit}
+  .btn:hover{background:#1d2b37}
+  .btn[disabled]{opacity:.6;cursor:default}
+  .note{margin-top:12px;font-size:13.5px;color:var(--ink-2);background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:11px 13px}
+  .check{display:flex;gap:11px;align-items:flex-start;padding:9px 0;font-size:14px}
+  .check .dot{width:19px;height:19px;border-radius:50%;flex:0 0 19px;display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:2px}
+  .d-done{background:#d6f2e5;color:var(--green)}
+  .d-active{background:#ffeccc;color:var(--amber)}
+  .d-pending{background:#eceff3;color:#7b8492}
+  .d-failed{background:#fbdcda;color:var(--red)}
+  .check .lb{font-weight:700;color:var(--ink)}
+  .check .lb.mut{font-weight:600;color:var(--ink-3)}
+  .check .dsc{font-size:12.5px;color:var(--ink-3)}
+  .reason{margin-top:14px;padding:11px 13px;background:#fdeaea;border:1px solid #f6cfcd;border-radius:9px;font-size:13.5px;color:var(--red)}
+  .loading,.error{text-align:center;padding:60px 20px;color:var(--ink-2);font-weight:600}
+  .error{color:var(--red)}
+  .error a{color:var(--sky);text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6l-7-3Z"/></svg> Tradelines <span>Network</span></a>
+  <a href="account.html" class="back">← My Account</a>
+</header>
+<div class="wrap" id="root"><div class="loading">Loading order…</div></div>
+
+<script type="module">
+import { supabase, authedFetch, escapeHtml } from './assets/js/tlm-auth.js';
+import { chainIcon, COIN_ICON } from './assets/js/chain-icons.js';
+
+const root = document.getElementById('root');
+const orderId = new URLSearchParams(location.search).get('id');
+
+const EXPLORERS = {
+  BTC:{Bitcoin:'https://www.blockchain.com/btc/tx/','BEP-20':'https://bscscan.com/tx/'},
+  LTC:{Litecoin:'https://blockchair.com/litecoin/transaction/'},
+  USDT:{'TRC-20':'https://tronscan.org/#/transaction/','ERC-20':'https://etherscan.io/tx/','BEP-20':'https://bscscan.com/tx/','Solana':'https://solscan.io/tx/'},
+};
+
+function money(n){ return '$'+Number(n||0).toFixed(2); }
+function fmt(d){ return d ? new Date(d).toLocaleString() : '—'; }
+
+function statusBadge(s, label){
+  const cls = { pending_verification:'b-pending', verified:'b-confirmed', posted:'b-posted',
+    rejected:'b-rejected', cancelled:'b-rejected' }[s] || 'b-pending';
+  return `<span class="badge ${cls}">${escapeHtml(label || s || 'Unknown')}</span>`;
+}
+
+const DOT = { done:['d-done','✓'], active:['d-active','●'], pending:['d-pending','○'], failed:['d-failed','✕'] };
+function checksHtml(checks){
+  return (checks||[]).map(c => {
+    const [cls,gl] = DOT[c.state] || DOT.pending;
+    return `<div class="check"><span class="dot ${cls}">${gl}</span><span>
+      <span class="lb ${c.state==='pending'?'mut':''}">${escapeHtml(c.label)}</span>
+      ${c.detail ? `<div class="dsc">${escapeHtml(c.detail)}</div>` : ''}
+    </span></div>`;
+  }).join('');
+}
+
+const CARD_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="#5b6675" stroke-width="1.7"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg>';
+
+function methodsHtml(st){
+  const crypto = st.method === 'crypto';
+  const icon = crypto ? (chainIcon(st.network, 26) || COIN_ICON[st.asset] || '') : '';
+  return `
+    <div class="pm ${crypto?'active':''}">
+      <span class="ic">${icon}</span>
+      <span><span class="nm">Cryptocurrency${crypto?` · ${escapeHtml(st.asset)} on ${escapeHtml(st.network)}`:''}</span>
+        <div class="st">${crypto ? (st.automated ? 'Verified automatically on-chain' : 'Manual review — no automated verifier for this network') : 'Not used for this order'}</div></span>
+      <span class="tag">${crypto ? escapeHtml(st.label) : 'Unused'}</span>
+    </div>
+    <div class="pm ${!crypto?'active':'off'}">
+      <span class="ic">${CARD_ICON}</span>
+      <span><span class="nm">Card payment</span>
+        <div class="st">${crypto ? 'Temporarily unavailable' : 'Reviewed manually by our team'}</div></span>
+      <span class="tag">${crypto ? 'Disabled' : escapeHtml(st.label)}</span>
+    </div>`;
+}
+
+let order = null, timer = null;
+
+function render(st){
+  const explorer = EXPLORERS[order.crypto]?.[order.network];
+  const txLink = explorer
+    ? `<a href="${explorer}${encodeURIComponent(order.tx_hash)}" target="_blank" rel="noopener">${escapeHtml(order.tx_hash)}</a>`
+    : escapeHtml(order.tx_hash);
+
+  const items = (order.order_items || []).map(i => {
+    const s = i.tradeline_snapshot || {};
+    return `<div class="item"><div class="n">${escapeHtml(s.name || 'Tradelines')}</div>
+      <div class="s">Limit ${money(s.limit)} · Age ${escapeHtml(s.age||'—')} · Qty ${s.qty||1}</div>
+      <div class="p">${money(s.price * (s.qty||1))}</div></div>`;
+  }).join('');
+
+  const pending = st.status === 'pending_verification';
+
+  root.innerHTML = `
+    <h1>Order #${order.id.slice(0,8)}</h1>
+    <div class="meta">Placed ${fmt(order.created_at)} · ${statusBadge(st.status, st.label)}</div>
+
+    <div class="card">
+      <h2>Payment methods</h2>
+      ${methodsHtml(st)}
+      ${pending && st.method === 'crypto' && st.automated
+        ? `<button class="btn" id="checkNow">Check payment now</button>
+           <span style="font-size:12.5px;color:#5b6675;margin-left:10px">Auto-checking every 20s</span>`
+        : ''}
+      ${st.note ? `<div class="note" id="note">${escapeHtml(st.note)}</div>` : ''}
+    </div>
+
+    <div class="card">
+      <h2>Progress</h2>
+      ${checksHtml(st.checks)}
+      ${st.statusReason ? `<div class="reason">${escapeHtml(st.statusReason)}</div>` : ''}
+    </div>
+
+    <div class="card">
+      <h2>Items (${(order.order_items||[]).length})</h2>
+      ${items || '<div style="color:#5b6675">No items.</div>'}
+    </div>
+
+    <div class="card">
+      <h2>Payment details</h2>
+      <div class="kv"><span class="k">Method</span><span class="v">${escapeHtml(order.crypto)} · ${escapeHtml(order.network)}</span></div>
+      <div class="kv tx"><span class="k">Transaction</span><span class="v">${txLink}</span></div>
+      <div class="kv"><span class="k">Subtotal</span><span class="v">${money(order.subtotal)}</span></div>
+      <div class="kv"><span class="k">Network fees</span><span class="v">${money(order.fees)}</span></div>
+      <div class="kv"><span class="k">Total</span><span class="v">${money(order.total)}</span></div>
+    </div>
+  `;
+
+  const btn = document.getElementById('checkNow');
+  if (btn) btn.addEventListener('click', () => runCheck(btn));
+}
+
+async function runCheck(btn){
+  if (btn) { btn.disabled = true; btn.textContent = 'Checking…'; }
+  try {
+    const r = await authedFetch('/api/public/order-status', {
+      method:'POST', body: JSON.stringify({ orderId }),
+    });
+    const data = await r.json().catch(() => null);
+    if (r.ok && data?.order) {
+      order.status = data.order.status;
+      order.status_reason = data.order.statusReason;
+      render(data.order);
+      if (data.order.status !== 'pending_verification' && timer) { clearInterval(timer); timer = null; }
+      return;
+    }
+    if (btn) { btn.disabled = false; btn.textContent = 'Check payment now'; }
+    const note = document.getElementById('note');
+    if (note) note.textContent = data?.error || 'Could not check the payment right now.';
+  } catch {
+    if (btn) { btn.disabled = false; btn.textContent = 'Check payment now'; }
+  }
+}
+
+async function load(){
+  if (!orderId) return (root.innerHTML = '<div class="error">No order ID in URL.</div>');
+  const { data:{ session } } = await supabase.auth.getSession();
+  if (!session) return (root.innerHTML = '<div class="error">Please <a href="account.html">sign in</a> to view this order.</div>');
+
+  const r = await authedFetch('/api/public/orders');
+  if (!r.ok) return (root.innerHTML = '<div class="error">Could not load orders.</div>');
+  const { orders } = await r.json();
+  order = (orders || []).find(o => o.id === orderId);
+  if (!order) return (root.innerHTML = '<div class="error">Order not found or you do not have access.</div>');
+
+  const sr = await authedFetch('/api/public/order-status?id=' + encodeURIComponent(orderId));
+  const sd = await sr.json().catch(() => null);
+  if (!sr.ok || !sd?.order) return (root.innerHTML = '<div class="error">Could not load order status.</div>');
+  render(sd.order);
+
+  if (sd.order.status === 'pending_verification' && sd.order.method === 'crypto' && sd.order.automated) {
+    runCheck(document.getElementById('checkNow'));
+    timer = setInterval(() => runCheck(document.getElementById('checkNow')), 20000);
+  }
+}
+load();
+</script>
+</body>
+</html>

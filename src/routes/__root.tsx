@@ -76,22 +76,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { name: "theme-color", content: "#0D0F1A" },
+      { title: "Tradelines Marketplace | Authorized User Tradelines" },
+      {
+        name: "description",
+        content:
+          "The smartest marketplace for authorized user tradelines. Guaranteed to post. Build credit and shop online in minutes.",
+      },
+      { property: "og:title", content: "Tradelines Marketplace | Authorized User Tradelines" },
+      {
+        property: "og:description",
+        content:
+          "The smartest marketplace for authorized user tradelines. Guaranteed to post. Build credit and shop online in minutes.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Tradelines Marketplace | Authorized User Tradelines" },
+      { name: "twitter:description", content: "The smartest marketplace for authorized user tradelines. Guaranteed to post. Build credit and shop online in minutes." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/abd01a9a-98e3-426c-bf17-5199488c41d9" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/abd01a9a-98e3-426c-bf17-5199488c41d9" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", sizes: "16x16", href: "/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", sizes: "32x32", href: "/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", sizes: "48x48", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/apple-touch-icon.png" },
+      { rel: "manifest", href: "/assets/site.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
