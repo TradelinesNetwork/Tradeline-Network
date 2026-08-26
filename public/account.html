@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=2">
+<link rel="manifest" href="assets/site.webmanifest?v=2">
+<meta name="theme-color" content="#263644">
+<meta name="description" content="Log in to your Tradelines Network account to manage orders, view tradeline history, and access your broker dashboard.">
+<title>My Account | Tradelines Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  .table-responsive{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  img{max-width:100%;height:auto}
+  :root{--ink:#0D0F1A;--ink-light:#3A3D52;--sky:#1B4FD8;--sky-pale:#EEF3FF;--gold:#F0A500;--gold-light:#FFF8E6;--mint:#00C48C;--surface:#F7F8FC;--white:#FFFFFF;--border:#E2E6F0;--radius:12px;--shadow:0 4px 24px rgba(13,15,26,0.08);--shadow-lg:0 12px 48px rgba(13,15,26,0.14)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;color:var(--ink);background:var(--surface);line-height:1.6}
+  h1,h2,h3,h4{font-family:'Playfair Display', serif;line-height:1.2}
+  a{color:inherit;text-decoration:none}
+  .topbar{background:var(--sky);color:var(--white);text-align:center;padding:9px 20px;font-size:13px;font-weight:500}
+  .topbar a{color:var(--gold);text-decoration:underline}
+  header{position:sticky;top:0;z-index:1000;background:var(--ink);border-bottom:1px solid rgba(255,255,255,0.08);box-shadow:0 2px 16px rgba(0,0,0,0.18)}
+  nav{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:68px}
+  .logo{font-family:'Playfair Display', serif;font-weight:800;font-size:22px;color:var(--white);display:flex;align-items:center;gap:8px;margin-right:auto;flex-shrink:0}
+  .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,#1B4FD8 0%,#0D3BA8 100%);border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(27,79,216,0.35)}
+  .logo span{color:var(--gold)}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,0.75);font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:7px;transition:all 0.18s;white-space:nowrap}
+  .nav-links a:hover,.nav-links .active a{color:var(--white);background:rgba(255,255,255,0.08)}
+  .has-dropdown{position:relative}
+  .has-dropdown>a::after{content:' ▾';font-size:10px}
+  .dropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-lg);min-width:220px;padding:8px;z-index:200}
+  .has-dropdown:hover .dropdown{display:block}
+  .dropdown a{display:block;color:var(--ink)!important;background:none!important;padding:9px 14px!important;font-size:13.5px!important;border-radius:7px}
+  .dropdown a:hover{background:var(--sky-pale)!important;color:var(--sky)!important}
+  .nav-cta{background:var(--gold);color:var(--ink)!important;font-weight:600!important;padding:9px 20px!important;border-radius:8px!important;margin-left:10px}
+  .cart-btn{color:rgba(255,255,255,0.75);font-size:13.5px;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:7px;cursor:pointer;transition:all 0.18s}
+  .cart-btn:hover{background:rgba(255,255,255,0.08);color:var(--white)}
+  .cart-count{background:var(--gold);color:var(--ink);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;margin-left:12px}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
+  .mobile-nav{display:none;position:fixed;inset:0;background:var(--ink);z-index:999;flex-direction:column;padding:80px 32px 40px;overflow-y:auto}
+  .mobile-nav.open{display:flex}
+  .mobile-nav-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--white);font-size:28px;cursor:pointer}
+  .mobile-nav a{color:rgba(255,255,255,0.8);font-size:20px;font-family:'Playfair Display', serif;font-weight:600;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);display:block}
+
+  /* AUTH SECTION */
+  .auth-wrap{min-height:calc(100vh - 110px);display:flex;align-items:center;justify-content:center;padding:60px 24px}
+  .auth-card{background:var(--white);border:1px solid var(--border);border-radius:24px;padding:48px 44px;width:100%;max-width:440px;box-shadow:var(--shadow-lg)}
+  .auth-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:32px}
+  .auth-logo-icon{width:44px;height:44px;background:var(--sky);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+  .auth-logo-text{font-family:'Playfair Display', serif;font-weight:800;font-size:24px;color:var(--ink)}
+  .auth-logo-text span{color:var(--gold)}
+  .auth-tabs{display:flex;background:var(--surface);border-radius:10px;padding:4px;margin-bottom:32px;gap:4px}
+  .auth-tab{flex:1;text-align:center;padding:10px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;color:var(--ink-light);transition:all 0.18s}
+  .auth-tab.active{background:var(--white);color:var(--sky);box-shadow:0 1px 6px rgba(0,0,0,0.08)}
+  .form-row{margin-bottom:18px}
+  .form-label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:7px}
+  .form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;outline:none;transition:border-color 0.15s;background:var(--white)}
+  .form-input:focus{border-color:var(--sky)}
+  .password-field{position:relative}
+  .password-field .form-input{padding-right:44px}
+  .pw-toggle{position:absolute;top:50%;right:6px;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#6b7280;padding:7px;line-height:0;border-radius:7px;transition:color 0.15s,background 0.15s}
+  .pw-toggle svg{width:19px;height:19px;display:block}
+  .pw-toggle:hover{color:var(--sky);background:var(--sky-pale)}
+  .pw-hint{font-size:12px;margin-top:6px;color:var(--ink-light)}
+  .pw-hint.bad{color:#b3261e}
+  .pw-hint.good{color:#0a7a4f}
+  .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .forgot-link{font-size:12px;color:var(--sky);cursor:pointer;float:right;margin-top:-4px}
+  .forgot-link:hover{text-decoration:underline}
+  .auth-btn{width:100%;background:var(--sky);color:var(--white);border:none;padding:14px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;font-family:'Playfair Display', serif;transition:all 0.15s;margin-top:4px}
+  .auth-btn:hover{background:#1642B8;transform:translateY(-1px)}
+  .auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--ink-light);font-size:13px}
+  .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+  .auth-note{font-size:12px;color:var(--ink-light);text-align:center;margin-top:20px;line-height:1.6}
+  .auth-note a{color:var(--sky);cursor:pointer}
+  .auth-note a:hover{text-decoration:underline}
+
+  /* ACCOUNT CREATED SUCCESS MODAL */
+  .success-overlay{position:fixed;inset:0;background:rgba(13,15,26,0.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:24px}
+  .success-card{background:var(--white);border-radius:20px;padding:40px 36px;width:100%;max-width:420px;box-shadow:var(--shadow-lg);text-align:center;animation:successIn 0.25s ease}
+  @keyframes successIn{from{opacity:0;transform:translateY(12px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .success-icon{font-size:52px;line-height:1;margin-bottom:16px}
+  .success-title{font-family:'Playfair Display', serif;font-size:24px;font-weight:800;color:var(--ink);margin-bottom:12px}
+  .success-text{font-size:15px;color:var(--ink);line-height:1.6;margin-bottom:6px}
+  .success-sub{font-size:14px;color:var(--ink-light);line-height:1.6;margin-bottom:24px}
+  .success-card .auth-btn{max-width:260px;margin:0 auto}
+
+  /* DASHBOARD */
+  .dashboard{display:none;min-height:calc(100vh - 110px)}
+  .dash-layout{max-width:1200px;margin:0 auto;padding:40px 24px;display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:start}
+  .dash-sidebar{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;position:sticky;top:88px}
+  .dash-user{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+  .dash-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--sky),#0D3BA8);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--white);font-family:'Playfair Display', serif;font-weight:700}
+  .dash-user-name{font-weight:700;font-size:15px;color:var(--ink)}
+  .dash-user-email{font-size:12px;color:var(--ink-light);margin-top:2px}
+  .dash-nav{display:flex;flex-direction:column;gap:4px}
+  .dash-nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink-light);transition:all 0.15s}
+  .dash-nav-item:hover{background:var(--surface);color:var(--ink)}
+  .dash-nav-item.active{background:var(--sky-pale);color:var(--sky);font-weight:600}
+  .dash-nav-item .nav-icon{font-size:16px;width:20px;text-align:center}
+  .dash-main{min-width:0}
+  .dash-panel{display:none}
+  .dash-panel.active{display:block}
+  .dash-panel-title{font-family:'Playfair Display', serif;font-size:22px;font-weight:800;margin-bottom:6px}
+  .dash-panel-sub{font-size:14px;color:var(--ink-light);margin-bottom:28px}
+
+  /* STATS ROW */
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+  .stat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;transition:box-shadow 0.2s}
+  .stat-card:hover{box-shadow:var(--shadow)}
+  .stat-icon{font-size:22px;margin-bottom:10px}
+  .stat-num{font-family:'Playfair Display', serif;font-size:28px;font-weight:800;color:var(--ink);margin-bottom:4px}
+  .stat-label{font-size:12px;color:var(--ink-light)}
+
+  /* ORDERS TABLE */
+ .orders-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+#recentOrdersWrap,#myOrdersWrap{min-width:0}
+.orders-table thead{background:var(--surface)}
+.orders-table th{padding:12px 16px;text-align:left;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-light);border-bottom:1px solid var(--border)}
+.orders-table td{padding:14px 16px;font-size:13.5px;border-bottom:1px solid var(--border)}
+.orders-table tr:last-child td{border-bottom:none}
+.orders-table tbody tr:hover{background:var(--sky-pale)}
+
+/* MOBILE: stacked-card orders table instead of horizontal scroll */
+@media(max-width:640px){
+  .orders-table thead{display:none}
+  .orders-table, .orders-table tbody, .orders-table tr, .orders-table td{display:block;width:100%}
+  .orders-table{border:none;background:none}
+  .orders-table tr{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;padding:4px 0;overflow:hidden}
+  .orders-table td{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border);text-align:right}
+  .orders-table tr:last-child{margin-bottom:0}
+  .orders-table td:last-child{border-bottom:none}
+  .orders-table td::before{content:attr(data-label);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-light);text-align:left}
+}
+
+
+
+  /* PROFILE */
+  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .profile-field{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px}
+  .profile-field-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-light);margin-bottom:6px}
+  .profile-field-value{font-size:15px;font-weight:500;color:var(--ink)}
+  .edit-btn{margin-top:20px;background:var(--surface);border:1px solid var(--border);color:var(--ink);padding:10px 20px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;transition:all 0.15s}
+  .edit-btn:hover{border-color:var(--sky);color:var(--sky)}
+
+  .empty-orders{text-align:center;padding:48px 24px;color:var(--ink-light);background:var(--white);border:1px solid var(--border);border-radius:14px}
+  .empty-orders-icon{font-size:44px;margin-bottom:14px}
+  .empty-orders h3{font-size:18px;color:var(--ink);margin-bottom:8px}
+  .empty-orders a{color:var(--sky);font-weight:600}
+
+  .logout-btn{width:100%;margin-top:16px;background:none;border:1px solid var(--border);color:var(--ink-light);padding:10px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;transition:all 0.15s}
+  .logout-btn:hover{border-color:#C81E1E;color:#C81E1E}
+footer{background:#080A14;color:rgba(255,255,255,0.6);padding:48px 24px 28px}
+  .footer-inner{max-width:1200px;margin:0 auto}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08)}
+  .footer-bottom a{color:rgba(255,255,255,0.45);transition:color 0.15s}
+  .footer-bottom a:hover{color:var(--white)}
+
+  @media(max-width:900px){.dash-layout{grid-template-columns:1fr}.dash-sidebar{position:static}.stats-row{grid-template-columns:repeat(2,1fr)}.profile-grid{grid-template-columns:1fr}}
+  @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.auth-card{padding:32px 24px}.stats-row{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.stats-row{grid-template-columns:1fr}
+
+  /* FLOATING SUPPORT WIDGET */
+  .support-widget{position:fixed;bottom:22px;right:22px;display:flex;flex-direction:column;gap:12px;z-index:5000}
+  .support-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.28);transition:transform 0.15s ease;text-decoration:none;border:2px solid rgba(255,255,255,0.9)}
+  .support-btn:hover{transform:scale(1.08)}
+  .support-btn svg{width:26px;height:26px}
+  .support-btn.whatsapp{background:#25D366}
+  .support-btn.telegram{background:#229ED9}
+  .support-tooltip{position:absolute;right:64px;top:50%;transform:translateY(-50%);background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.15s}
+  .support-btn:hover .support-tooltip{opacity:1}
+  @media(max-width:640px){.support-widget{bottom:16px;right:16px;gap:10px}.support-btn{width:46px;height:46px}.support-btn svg{width:22px;height:22px}.support-tooltip{display:none}}
+</style>
+<link rel="stylesheet" href="assets/enhance.css?v=4">
+<link rel="stylesheet" href="assets/tls-theme.css?v=4">
+</head>
+<body>
+<div class="topbar"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Secure crypto checkout · Authorized user tradelines from top U.S. banks · <a href="marketplace.html">Browse tradelines</a></div>
+<header>
+  <nav>
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 5V10C3 13.87 6.13 17.48 10 18C13.87 17.48 17 13.87 17 10V5L10 2Z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 11.5L9.5 8.5L10 10L12.5 7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12.5" cy="7" r="1" fill="white"/></svg></div>Tradelines <span>Network</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Buy Tradelines</a></li><li><a href="extension.html">Buy Extension</a></li>
+      <li><a href="sell.html">Sell Tradelines</a></li>
+      <li><a href="brokers.html">Brokers</a></li>
+      <li class="has-dropdown"><a href="resources.html">Resources</a>
+        <div class="dropdown">
+          <a href="resources.html#what-is">What Are Tradelines?</a>
+          <a href="resources.html#guide">Buyer's Guide</a>
+          <a href="calculator.html">Tradelines Calculator</a>
+          <a href="resources.html#faq">FAQs</a>
+          <a href="resources.html#guarantees">Our Guarantees</a>
+          <a href="blog.html">Knowledge Center</a>
+        </div>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="active"><a href="account.html">My Account</a></li>
+    </ul>
+    <a href="cart.html" class="cart-btn"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2h11l2-8H6.2"/></svg> <span class="cart-count" id="cartCount">0</span></a>
+    <a href="marketplace.html" class="nav-cta">View Tradelines →</a>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMenu()">✕</button>
+  <a href="index.html">Home</a><a href="marketplace.html">Buy Tradelines</a>
+  <a href="sell.html">Sell Tradelines</a><a href="brokers.html">Brokers</a>
+  <a href="resources.html">Resources</a><a href="about.html">About</a>
+  <a href="contact.html">Contact</a><a href="account.html">My Account</a>
+</div>
+
+<!-- AUTH SCREEN -->
+<div class="auth-wrap" id="authScreen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-icon"><svg width="26" height="26" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 5V10C3 13.87 6.13 17.48 10 18C13.87 17.48 17 13.87 17 10V5L10 2Z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 11.5L9.5 8.5L10 10L12.5 7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12.5" cy="7" r="1" fill="white"/></svg></div>
+      <div class="auth-logo-text">Tradelines <span>Network</span></div>
+    </div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="loginTab" onclick="switchAuth('login')">Sign In</div>
+      <div class="auth-tab" id="registerTab" onclick="switchAuth('register')">Create Account</div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="loginForm">
+      <div class="form-row">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" id="loginEmail" placeholder="your@email.com">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Password <span class="forgot-link" onclick="showForgot()">Forgot password?</span></label>
+        <div class="password-field">
+          <input class="form-input" type="password" id="loginPass" placeholder="••••••••">
+          <button type="button" class="pw-toggle" onclick="togglePw('loginPass',this)" aria-label="Show password" title="Show password"></button>
+        </div>
+      </div>
+      <button class="auth-btn" onclick="doLogin()">Sign In to My Account</button>
+      <div class="auth-divider">or</div>
+      <button class="google-btn" type="button" onclick="signInWithGoogle(this)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4.1h6.6c-.1 1.1-.9 2.8-2.5 3.9l-.02.15 3.6 2.78.25.03c2.3-2.1 3.6-5.2 3.6-8.76Z"/><path fill="#34A853" d="M12 24c3.3 0 6-1.1 8-2.9l-3.8-2.96c-1 .7-2.4 1.2-4.2 1.2a7.3 7.3 0 0 1-6.9-5l-.14.01-3.75 2.9-.05.14C3.2 21.3 7.3 24 12 24Z"/><path fill="#FBBC05" d="M5.1 14.3a7.2 7.2 0 0 1 0-4.6L5.09 9.6 1.3 6.65l-.13.06a12 12 0 0 0 0 10.6l3.93-3.01Z"/><path fill="#EA4335" d="M12 4.7c2.3 0 3.9 1 4.8 1.8l3.5-3.4C18 1.2 15.3 0 12 0 7.3 0 3.2 2.7 1.2 6.7l3.9 3a7.3 7.3 0 0 1 6.9-5Z"/></svg>Continue with Google</button>
+      <div class="auth-divider">or</div>
+      <div style="text-align:center;font-size:13.5px;color:var(--ink-light)">Don't have an account? <span style="color:var(--sky);cursor:pointer;font-weight:600" onclick="switchAuth('register')">Create one free →</span></div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="registerForm" style="display:none">
+      <div style="background:linear-gradient(135deg,rgba(38,54,68,.06),rgba(90,150,200,.08));border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:20px">
+        <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px">Welcome to Tradelines Network</div>
+        <div style="font-size:13.5px;line-height:1.6;color:var(--ink)">Create your free account in under a minute — no identity documents required. You'll get instant access to our live tradelines vault, real-time order tracking and email updates on every posting.</div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-row"><label class="form-label">First Name</label><input class="form-input" type="text" id="regFirst" placeholder="Jane"></div>
+        <div class="form-row"><label class="form-label">Last Name</label><input class="form-input" type="text" id="regLast" placeholder="Smith"></div>
+      </div>
+      <div class="form-row"><label class="form-label">Email Address</label><input class="form-input" type="email" id="regEmail" placeholder="jane@email.com" autocomplete="email"></div>
+      <div class="form-row"><label class="form-label">Password</label><div class="password-field"><input class="form-input" type="password" id="regPass" placeholder="Min 8 characters" autocomplete="new-password"><button type="button" class="pw-toggle" onclick="togglePw('regPass',this)" aria-label="Show password" title="Show password"></button></div></div>
+      <div class="form-row"><label class="form-label">Confirm Password</label><div class="password-field"><input class="form-input" type="password" id="regPass2" placeholder="Re-enter your password" autocomplete="new-password"><button type="button" class="pw-toggle" onclick="togglePw('regPass2',this)" aria-label="Show password" title="Show password"></button></div><div class="pw-hint" id="regPassHint">Both passwords must match.</div></div>
+      <div class="form-row"><label class="form-label">Phone</label><input class="form-input" type="tel" id="regPhone" placeholder="(555) 000-0000" autocomplete="tel"></div>
+
+      <button class="auth-btn" onclick="doRegister()">Create My Account</button>
+      <div class="auth-divider">or</div>
+      <button class="google-btn" type="button" onclick="signInWithGoogle(this)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4.1h6.6c-.1 1.1-.9 2.8-2.5 3.9l-.02.15 3.6 2.78.25.03c2.3-2.1 3.6-5.2 3.6-8.76Z"/><path fill="#34A853" d="M12 24c3.3 0 6-1.1 8-2.9l-3.8-2.96c-1 .7-2.4 1.2-4.2 1.2a7.3 7.3 0 0 1-6.9-5l-.14.01-3.75 2.9-.05.14C3.2 21.3 7.3 24 12 24Z"/><path fill="#FBBC05" d="M5.1 14.3a7.2 7.2 0 0 1 0-4.6L5.09 9.6 1.3 6.65l-.13.06a12 12 0 0 0 0 10.6l3.93-3.01Z"/><path fill="#EA4335" d="M12 4.7c2.3 0 3.9 1 4.8 1.8l3.5-3.4C18 1.2 15.3 0 12 0 7.3 0 3.2 2.7 1.2 6.7l3.9 3a7.3 7.3 0 0 1 6.9-5Z"/></svg>Continue with Google</button>
+      <div class="auth-note">By registering you agree to our <a href="legal.html#terms">Terms & Conditions</a> and <a href="legal.html#privacy">Privacy Policy</a>.</div>
+    </div>
+
+    <!-- FORGOT PASSWORD -->
+    <div id="forgotForm" style="display:none">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:36px;margin-bottom:12px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3.2M15.5 12v2.4"/></svg></div>
+        <div style="font-size:18px;font-weight:700;font-family:'Playfair Display', serif;margin-bottom:6px">Reset your password</div>
+        <div style="font-size:13.5px;color:var(--ink-light)">Enter your email and we'll send a reset link.</div>
+      </div>
+      <div class="form-row"><label class="form-label">Email Address</label><input class="form-input" type="email" id="forgotEmail" placeholder="your@email.com"></div>
+      <button class="auth-btn" onclick="doForgot()">Send Reset Link →</button>
+      <div style="text-align:center;margin-top:14px"><span style="color:var(--sky);cursor:pointer;font-size:13.5px;font-weight:600" onclick="switchAuth('login')">← Back to Sign In</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT CREATED SUCCESS MODAL -->
+<div class="success-overlay" id="successModal" style="display:none">
+  <div class="success-card">
+    <div class="success-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2 11 14.7l4.6-4.9"/></svg></div>
+    <div class="success-title">Account Created Successfully!</div>
+    <div class="success-text">Welcome to Tradeline Network. Your account is ready to use.</div>
+    <div class="success-sub">Log in now to access your dashboard and get started.</div>
+    <button class="auth-btn" onclick="completeLogin()">Click to Login →</button>
+  </div>
+</div>
+
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashScreen">
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="dash-user">
+        <div class="dash-avatar" id="dashAvatarLetter">J</div>
+        <div>
+          <div class="dash-user-name" id="dashUserName">Jane Smith</div>
+          <div class="dash-user-email" id="dashUserEmail">jane@email.com</div>
+        </div>
+      </div>
+      <div class="dash-nav">
+        <div class="dash-nav-item active" onclick="switchPanel('overview',this)"><span class="nav-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>Overview</div>
+        <div class="dash-nav-item" onclick="switchPanel('orders',this)"><span class="nav-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="m12 3 8 4.3v9.4L12 21l-8-4.3V7.3Z"/><path d="m4 7.3 8 4.3 8-4.3M12 21v-9.4"/></svg></span>My Orders</div>
+        <div class="dash-nav-item" onclick="switchPanel('profile',this)"><span class="nav-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg></span>Profile</div>
+        <div class="dash-nav-item" onclick="location.href='marketplace.html'"><span class="nav-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2h11l2-8H6.2"/></svg></span>Buy Tradelines</div>
+        <div class="dash-nav-item" onclick="location.href='resources.html'"><span class="nav-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M4.5 4.5h9a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5h-9.5Z"/><path d="M19.5 4.5v13"/></svg></span>Resources</div>
+        <div class="dash-nav-item" onclick="location.href='contact.html'"><span class="nav-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M20.5 12.2c0 4-3.8 7.2-8.5 7.2a10 10 0 0 1-2.9-.4L4 20.6l1.4-3.6A6.9 6.9 0 0 1 3.5 12.2C3.5 8.2 7.3 5 12 5s8.5 3.2 8.5 7.2Z"/></svg></span>Get Support</div>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+    </aside>
+
+    <!-- Main -->
+    <main class="dash-main">
+
+      <!-- OVERVIEW -->
+      <div class="dash-panel active" id="panel-overview">
+        <div class="dash-panel-title">Welcome back, <span id="dashFirstName">Jane</span> <svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M8 12V6.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5v-6a1.5 1.5 0 0 1 3 0V12"/><path d="M14 11.5V8a1.5 1.5 0 0 1 3 0v6.5A6.5 6.5 0 0 1 5.5 18l-1-2a1.5 1.5 0 0 1 2.4-1.7L8 15.5"/></svg></div>
+        <div class="dash-panel-sub">Here's a summary of your Tradelines Network account.</div>
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="m12 3 8 4.3v9.4L12 21l-8-4.3V7.3Z"/><path d="m4 7.3 8 4.3 8-4.3M12 21v-9.4"/></svg></div><div class="stat-num" id="statOrders">0</div><div class="stat-label">Total Orders</div></div>
+          <div class="stat-card"><div class="stat-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2 11 14.7l4.6-4.9"/></svg></div><div class="stat-num" id="statPosted">0</div><div class="stat-label">Tradelines Posted</div></div>
+          <div class="stat-card"><div class="stat-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></div><div class="stat-num" id="statVerified">Verified</div><div class="stat-label">Account Status</div></div>
+          <div class="stat-card"><div class="stat-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3.2v3.6M16 3.2v3.6"/></svg></div><div class="stat-num" id="statNext">—</div><div class="stat-label">Next Report Date</div></div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px">
+          <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-light);margin-bottom:16px">Recent Orders</div>
+          <div id="recentOrdersWrap"></div>
+        </div>
+
+        <div style="background:var(--sky-pale);border:1px solid rgba(27,79,216,0.2);border-radius:14px;padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+          <div>
+            <div style="font-weight:700;font-size:15px;color:var(--sky);margin-bottom:4px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg> Ready for your next tradeline?</div>
+            <div style="font-size:13.5px;color:var(--ink-light)">Browse fresh, low-limit-first authorized user tradelines from top U.S. banks.</div>
+          </div>
+          <a href="marketplace.html" style="background:var(--sky);color:var(--white);padding:10px 20px;border-radius:9px;font-weight:700;font-size:14px;font-family:'Playfair Display', serif">Shop Tradelines →</a>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="dash-panel" id="panel-orders">
+        <div class="dash-panel-title">My Orders</div>
+        <div class="dash-panel-sub">All tradeline purchases and their current posting status.</div>
+        <div id="myOrdersWrap"></div>
+        <div style="margin-top:20px;font-size:13px;color:var(--ink-light)">
+          If a tradeline hasn't posted 7 days after the reporting window closes, <a href="resources.html#non-posting" style="color:var(--sky);font-weight:600">submit a non-posting report</a>.
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="dash-panel" id="panel-profile">
+        <div class="dash-panel-title">My Profile</div>
+        <div class="dash-panel-sub">Your account information. Contact support to update your email.</div>
+        <div class="profile-grid">
+          <div class="profile-field"><div class="profile-field-label">First Name</div><div class="profile-field-value" id="pfFirst">Jane</div></div>
+          <div class="profile-field"><div class="profile-field-label">Last Name</div><div class="profile-field-value" id="pfLast">Smith</div></div>
+          <div class="profile-field"><div class="profile-field-label">Email Address</div><div class="profile-field-value" id="pfEmail">jane@email.com</div></div>
+          <div class="profile-field"><div class="profile-field-label">Phone</div><div class="profile-field-value" id="pfPhone">(555) 000-0000</div></div>
+          <div class="profile-field"><div class="profile-field-label">Member Since</div><div class="profile-field-value">May 2026</div></div>
+          <div class="profile-field"><div class="profile-field-label">Account Type</div><div class="profile-field-value">Standard</div></div>
+        </div>
+        <button class="edit-btn" onclick="alert('Profile editing would open a form in a full implementation.')">Edit Profile</button>
+        <div style="margin-top:24px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px">
+          <div style="font-weight:700;font-size:14px;margin-bottom:8px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Password & Security</div>
+          <div style="font-size:13.5px;color:var(--ink-light);margin-bottom:14px">Last password change: Never. We recommend using a strong, unique password.</div>
+          <button class="edit-btn" onclick="alert('Password reset email sent!')">Change Password</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <div>©2026 Tradelines Network LLC. All Rights Reserved. We do not sell tradelines in Georgia.</div>
+      <div style="display:flex;gap:20px">
+        <a href="legal.html#privacy">Privacy</a>
+        <a href="legal.html#terms">Terms</a>
+        <a href="legal.html#fraud">Fraud Policy</a>
+        <a href="contact.html">Support</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { supabase, escapeHtml, authedFetch, currentUser } from './assets/js/tlm-auth.js';
+
+function openMenu(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden'}
+function closeMenu(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
+window.openMenu = openMenu; window.closeMenu = closeMenu;
+
+// Cart count (cart holds only tradeline ids + qty — never PII)
+try {
+  const cart = JSON.parse(localStorage.getItem('tlmCart')||'[]');
+  document.getElementById('cartCount').textContent = cart.length;
+} catch { document.getElementById('cartCount').textContent = 0; }
+
+const EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.2 12S5.8 5.5 12 5.5 21.8 12 21.8 12 18.2 18.5 12 18.5 2.2 12 2.2 12Z"/><circle cx="12" cy="12" r="3.2"/></svg>';
+const EYE_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 5.7A9.9 9.9 0 0 1 12 5.5c6.2 0 9.8 6.5 9.8 6.5a18 18 0 0 1-2.7 3.6M6.3 7.4A17.7 17.7 0 0 0 2.2 12S5.8 18.5 12 18.5c1.6 0 3-.4 4.3-1"/><path d="M10 10a2.8 2.8 0 0 0 4 4"/><path d="M3.5 3.5l17 17"/></svg>';
+
+function paintToggle(btn, showing){
+  btn.innerHTML = showing ? EYE_OFF : EYE;
+  btn.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
+  btn.setAttribute('title', showing ? 'Hide password' : 'Show password');
+}
+
+function togglePw(id, btn){
+  const input = document.getElementById(id);
+  const showing = input.type !== 'text';
+  input.type = showing ? 'text' : 'password';
+  paintToggle(btn, showing);
+}
+window.togglePw = togglePw;
+
+async function signInWithGoogle(btn){
+  try {
+    if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin + '/account.html' }
+    });
+    if (error) throw error;
+  } catch (err) {
+    alert('Google sign-in is unavailable right now. Please try again or use your email and password.');
+    if (btn) { btn.disabled = false; btn.style.opacity = ''; }
+  }
+}
+window.signInWithGoogle = signInWithGoogle;
+document.querySelectorAll('.pw-toggle').forEach(b => paintToggle(b, false));
+
+function checkPwMatch(){
+  const hint = document.getElementById('regPassHint');
+  const p = document.getElementById('regPass').value;
+  const p2 = document.getElementById('regPass2').value;
+  hint.className = 'pw-hint';
+  if(!p2){ hint.textContent = 'Both passwords must match.'; return; }
+  if(p === p2){ hint.classList.add('good'); hint.textContent = '✓ Passwords match.'; }
+  else { hint.classList.add('bad'); hint.textContent = '✕ Passwords do not match.'; }
+}
+['regPass','regPass2'].forEach(id => document.getElementById(id).addEventListener('input', checkPwMatch));
+
+let user = null;
+
+async function refreshSession(){
+  user = await currentUser();
+  await showScreen();
+}
+
+async function showScreen(){
+  if(user){
+    document.getElementById('authScreen').style.display='none';
+    document.getElementById('dashScreen').style.display='block';
+    await populateDash();
+  } else {
+    document.getElementById('authScreen').style.display='flex';
+    document.getElementById('dashScreen').style.display='none';
+  }
+}
+
+async function populateDash(){
+  const meta = user.user_metadata || {};
+  let profile = null;
+  try {
+    const { data } = await supabase
+      .from('profiles')
+      .select('full_name, email, phone')
+      .eq('user_id', user.id)
+      .maybeSingle();
+    profile = data || null;
+  } catch (e) { console.error('load profile', e); }
+
+  const fullName = (profile && profile.full_name && profile.full_name.trim())
+    || [meta.first_name, meta.last_name].filter(Boolean).join(' ').trim()
+    || (user.email||'').split('@')[0]
+    || 'User';
+  const parts = fullName.split(/\s+/);
+  const first = parts[0] || 'User';
+  const last = parts.slice(1).join(' ');
+  const email = (profile && profile.email) || user.email || '';
+  const phone = (profile && profile.phone) || meta.phone || '';
+
+  document.getElementById('dashUserName').textContent = fullName;
+  document.getElementById('dashUserEmail').textContent = email;
+  document.getElementById('dashAvatarLetter').textContent = (first.charAt(0)||'U').toUpperCase();
+  document.getElementById('dashFirstName').textContent = first;
+  document.getElementById('pfFirst').textContent = first;
+  document.getElementById('pfLast').textContent = last || '—';
+  document.getElementById('pfEmail').textContent = email;
+  document.getElementById('pfPhone').textContent = phone || 'Not set';
+  await renderOrders();
+}
+
+function statusBadge(status){
+  const s = String(status||'').toLowerCase();
+  if(s==='posted') return '<span class="status-badge status-posted">✓ Posted</span>';
+  if(s==='pending') return '<span class="status-badge status-pending"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></svg> Pending</span>';
+  if(s==='verified' || s==='paid') return '<span class="status-badge status-posted">✓ Payment verified</span>';
+  if(s==='failed' || s==='rejected') return '<span class="status-badge status-pending" style="background:rgba(200,50,50,.12);color:#a12b2b"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> Rejected</span>';
+  return '<span class="status-badge status-pending"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></svg> Payment verifying</span>';
+}
+
+async function renderOrders(){
+  const recentWrap = document.getElementById('recentOrdersWrap');
+  const myWrap = document.getElementById('myOrdersWrap');
+  const emptyState = (msg) => `
+    <div style="text-align:center;padding:40px 20px;color:var(--ink-light)">
+      <div style="font-size:36px;margin-bottom:10px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="m12 3 8 4.3v9.4L12 21l-8-4.3V7.3Z"/><path d="m4 7.3 8 4.3 8-4.3M12 21v-9.4"/></svg></div>
+      <p style="margin-bottom:16px">${escapeHtml(msg)}</p>
+      <a href="marketplace.html" style="background:var(--sky);color:var(--white);padding:10px 20px;border-radius:9px;font-weight:700;font-size:13.5px;font-family:'Playfair Display', serif">Browse Tradelines →</a>
+    </div>`;
+
+  recentWrap.textContent = 'Loading…';
+  myWrap.textContent = 'Loading…';
+
+  let orders = [];
+  try {
+    const res = await authedFetch('/api/public/orders', { method: 'GET' });
+    if(res.ok){ const body = await res.json(); orders = body.orders || []; }
+  } catch (e) { console.error('load orders', e); }
+
+  const totalTradelines = orders.reduce((s,o)=>s+(o.order_items?.length||0),0);
+  const postedCount = orders.filter(o=>String(o.status).toLowerCase()==='posted').length;
+  document.getElementById('statOrders').textContent = orders.length;
+  document.getElementById('statPosted').textContent = postedCount;
+  document.getElementById('statNext').textContent = orders.length ? 'Pending' : '—';
+
+  if(!orders.length){
+    recentWrap.innerHTML = emptyState("You haven't placed any orders yet.");
+    myWrap.innerHTML = emptyState("You haven't placed any orders yet. Once you complete a crypto payment at checkout, your order will show up here.");
+    return;
+  }
+
+  const shortId = (id) => escapeHtml(String(id).slice(0,8));
+  const money = (n) => '$' + Number(n||0).toLocaleString();
+
+      recentWrap.innerHTML = `<div class="table-responsive"><table class="orders-table">
+    <thead><tr><th>Order #</th><th>Tradelines</th><th>Total</th><th>Payment Status</th><th></th></tr></thead>
+    <tbody>${orders.slice(0,3).map(o=>`<tr>
+      <td data-label="Order #" style="font-size:12px;color:var(--ink-light)">#${shortId(o.id)}</td>
+      <td data-label="Tradelines">${(o.order_items||[]).map(i=>escapeHtml((i.tradeline_snapshot&&i.tradeline_snapshot.name)||i.tradeline_id)).join(', ')}</td>
+      <td data-label="Total">${money(o.total)}</td>
+      <td data-label="Posting Status">${statusBadge(o.status)}</td>
+      <td data-label=""><a href="order.html?id=${encodeURIComponent(o.id)}" style="color:var(--sky);font-weight:600;font-size:12.5px;white-space:nowrap">Track →</a></td>
+    </tr>`).join('')}</tbody></table></div>`;
+
+  const payBadge = (s) => {
+    const v = String(s||'unpaid').toLowerCase();
+    if(v==='paid') return '<span class="status-badge status-posted">✓ Paid</span>';
+    if(v==='refunded'||v==='failed') return '<span class="status-badge status-pending" style="background:rgba(200,50,50,.12);color:#a12b2b"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> '+escapeHtml(v)+'</span>';
+    return '<span class="status-badge status-pending"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></svg> Unpaid</span>';
+  };
+
+      myWrap.innerHTML = `<div class="table-responsive"><table class="orders-table">
+    <thead><tr><th>Order #</th><th>Tradelines</th><th>Total</th><th>Crypto</th><th>Date</th><th>Payment</th><th>Payment Status</th><th></th></tr></thead>
+    <tbody>${orders.flatMap(o=>(o.order_items||[]).map(i=>`<tr>
+      <td data-label="Order #" style="font-size:12px;color:var(--ink-light)">#${shortId(o.id)}</td>
+      <td data-label="Tradeline">${escapeHtml((i.tradeline_snapshot&&i.tradeline_snapshot.name)||i.tradeline_id)}</td>
+      <td data-label="Total">${money(o.total)}</td>
+      <td data-label="Crypto">${escapeHtml(o.crypto)} / ${escapeHtml(o.network)}</td>
+      <td data-label="Date">${new Date(o.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td>
+      <td data-label="Payment">${payBadge(o.payment_status)}</td>
+      <td data-label="Posting Status">${statusBadge(o.status)}</td>
+      <td data-label=""><a href="order.html?id=${encodeURIComponent(o.id)}" style="color:var(--sky);font-weight:600;font-size:12.5px;white-space:nowrap">Track →</a></td>
+    </tr>`)).join('')}</tbody></table></div>`;
+}
+
+function switchAuth(tab){
+  document.getElementById('loginForm').style.display = tab==='login'?'block':'none';
+  document.getElementById('registerForm').style.display = tab==='register'?'block':'none';
+  document.getElementById('forgotForm').style.display = 'none';
+  document.getElementById('loginTab').classList.toggle('active', tab==='login');
+  document.getElementById('registerTab').classList.toggle('active', tab==='register');
+}
+window.switchAuth = switchAuth;
+
+function showForgot(){
+  document.getElementById('loginForm').style.display='none';
+  document.getElementById('forgotForm').style.display='block';
+}
+window.showForgot = showForgot;
+
+function postAuthRedirect(){
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('redirect')==='cart'){
+    window.location.href = 'cart.html?checkout=1';
+    return true;
+  }
+  return false;
+}
+
+async function doLogin(){
+  const e = document.getElementById('loginEmail').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if(!e||!p){alert('Please enter your email and password.');return;}
+  const { error } = await supabase.auth.signInWithPassword({ email: e, password: p });
+  if(error){ alert(error.message || 'Sign in failed.'); return; }
+  if(postAuthRedirect()) return;
+  await refreshSession();
+}
+window.doLogin = doLogin;
+
+async function doRegister(){
+  const f=document.getElementById('regFirst').value.trim();
+  const l=document.getElementById('regLast').value.trim();
+  const e=document.getElementById('regEmail').value.trim();
+  const p=document.getElementById('regPass').value;
+  const p2=document.getElementById('regPass2').value;
+  const ph=document.getElementById('regPhone').value.trim();
+  if(!f||!l||!e||!p){alert('Please fill in all required fields.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){alert('Please enter a valid email address.');return;}
+  if(p.length<8){alert('Password must be at least 8 characters.');return;}
+  if(p!==p2){alert('The passwords do not match. Please re-enter to confirm.');return;}
+  const { data, error } = await supabase.auth.signUp({
+    email: e,
+    password: p,
+    options: {
+      emailRedirectTo: window.location.origin + '/account.html',
+      data: { first_name: f, last_name: l, full_name: (f+' '+l).trim(), phone: ph },
+    },
+  });
+  if(error){ alert(error.message || 'Sign up failed.'); return; }
+  window.__pendingLogin = { email: e, password: p };
+  document.getElementById('successModal').style.display = 'flex';
+}
+
+window.doRegister = doRegister;
+
+async function completeLogin(){
+  document.getElementById('successModal').style.display = 'none';
+  const creds = window.__pendingLogin || null;
+  window.__pendingLogin = null;
+  if(creds){
+    const { error } = await supabase.auth.signInWithPassword({ email: creds.email, password: creds.password });
+    if(error){ switchAuth('login'); return; }
+  }
+  if(postAuthRedirect()) return;
+  await refreshSession();
+}
+window.completeLogin = completeLogin;
+
+
+
+async function doForgot(){
+  const e=document.getElementById('forgotEmail').value.trim();
+  if(!e||!e.includes('@')){alert('Please enter a valid email address.');return;}
+  const { error } = await supabase.auth.resetPasswordForEmail(e, {
+    redirectTo: window.location.origin + '/reset-password.html',
+  });
+  if(error){ alert(error.message || 'Could not send reset email.'); return; }
+  alert('<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2 11 14.7l4.6-4.9"/></svg> Password reset link sent to '+e+'. Please check your inbox.');
+  switchAuth('login');
+}
+window.doForgot = doForgot;
+
+async function doLogout(){
+  await supabase.auth.signOut();
+  user = null;
+  await showScreen();
+}
+window.doLogout = doLogout;
+
+function switchPanel(id, el){
+  document.querySelectorAll('.dash-nav-item').forEach(i=>i.classList.remove('active'));
+  document.querySelectorAll('.dash-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+window.switchPanel = switchPanel;
+
+supabase.auth.onAuthStateChange(() => { refreshSession(); });
+
+(async () => {
+  await refreshSession();
+  if(user && postAuthRedirect()) return;
+})();
+</script>
+
+
+<!-- FLOATING SUPPORT WIDGET -->
+<div class="support-widget">
+  <a href="https://Wa.me/12625837916" target="_blank" rel="noopener" class="support-btn whatsapp" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.14h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2m0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.11.78.83-3.03-.2-.31a8.16 8.16 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.23-8.2 2.2 0 4.26.86 5.82 2.41a8.15 8.15 0 0 1 2.41 5.8c0 4.53-3.69 8.23-8.23 8.23m4.51-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.24-.87.85-.87 2.08s.89 2.41 1.02 2.58c.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28"/></svg>
+  </a>
+  <a href="https://t.me/TradeIQ_Plug1" target="_blank" rel="noopener" class="support-btn telegram" aria-label="Chat with us on Telegram">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M21.94 4.6 18.6 20.36c-.25 1.13-.9 1.4-1.83.87l-5.06-3.73-2.44 2.35c-.27.27-.5.5-1.02.5l.36-5.15L18 6.3c.42-.37-.09-.58-.65-.2L7.5 12.6l-5.02-1.57c-1.09-.34-1.11-1.09.23-1.61L20.6 3.13c.91-.33 1.7.22 1.34 1.47"/></svg>
+  </a>
+</div>
+<script src="assets/js/social-icons.js" defer></script>
+<script src="assets/js/site-assets.js" defer></script>
+</body>
+</html>

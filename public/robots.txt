@@ -1,14 +1,8 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+Disallow: /reset-password.html
+Disallow: /account.html
+Disallow: /admin.html
+Disallow: /order.html
+
+Sitemap: https://tradelinesmarketplace.com/sitemap.xml

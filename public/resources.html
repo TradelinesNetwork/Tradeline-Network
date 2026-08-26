@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=2">
+<link rel="manifest" href="assets/site.webmanifest?v=2">
+<meta name="theme-color" content="#263644">
+<meta name="description" content="Everything you need to know about tradelines — what they are, how they work, buyer's guide, guarantees, and how to place an order.">
+<title>Resources & Knowledge Center | Tradelines Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  img{max-width:100%;height:auto}
+  :root{--ink:#0D0F1A;--ink-light:#3A3D52;--sky:#1B4FD8;--sky-pale:#EEF3FF;--gold:#F0A500;--gold-light:#FFF8E6;--mint:#00C48C;--surface:#F7F8FC;--white:#FFFFFF;--border:#E2E6F0;--radius:12px;--shadow:0 4px 24px rgba(13,15,26,0.08);--shadow-lg:0 12px 48px rgba(13,15,26,0.14)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+  h1,h2,h3,h4{font-family:'Playfair Display', serif;line-height:1.2}
+  a{color:inherit;text-decoration:none}
+  .topbar{background:var(--sky);color:var(--white);text-align:center;padding:9px 20px;font-size:13px;font-weight:500}
+  .topbar a{color:var(--gold);text-decoration:underline}
+  header{position:sticky;top:0;z-index:1000;background:var(--ink);border-bottom:1px solid rgba(255,255,255,0.08);box-shadow:0 2px 16px rgba(0,0,0,0.18)}
+  nav{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:68px}
+  .logo{font-family:'Playfair Display', serif;font-weight:800;font-size:22px;color:var(--white);display:flex;align-items:center;gap:8px;margin-right:auto;flex-shrink:0}
+  .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,#1B4FD8 0%,#0D3BA8 100%);border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(27,79,216,0.35)}
+  .logo span{color:var(--gold)}
+  .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,0.75);font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:7px;transition:all 0.18s;white-space:nowrap}
+  .nav-links a:hover,.nav-links .active a{color:var(--white);background:rgba(255,255,255,0.08)}
+  .has-dropdown{position:relative}
+  .has-dropdown>a::after{content:' ▾';font-size:10px}
+  .dropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-lg);min-width:220px;padding:8px;z-index:200}
+  .has-dropdown:hover .dropdown{display:block}
+  .dropdown a{display:block;color:var(--ink)!important;background:none!important;padding:9px 14px!important;font-size:13.5px!important;border-radius:7px}
+  .dropdown a:hover{background:var(--sky-pale)!important;color:var(--sky)!important}
+  .nav-cta{background:var(--gold);color:var(--ink)!important;font-weight:600!important;padding:9px 20px!important;border-radius:8px!important;margin-left:10px}
+  .cart-btn{color:rgba(255,255,255,0.75);font-size:13.5px;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:7px;cursor:pointer;transition:all 0.18s}
+  .cart-btn:hover{background:rgba(255,255,255,0.08);color:var(--white)}
+  .cart-count{background:var(--gold);color:var(--ink);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;margin-left:12px}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
+  .mobile-nav{display:none;position:fixed;inset:0;background:var(--ink);z-index:999;flex-direction:column;padding:80px 32px 40px;overflow-y:auto}
+  .mobile-nav.open{display:flex}
+  .mobile-nav-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--white);font-size:28px;cursor:pointer}
+  .mobile-nav a{color:rgba(255,255,255,0.8);font-size:20px;font-family:'Playfair Display', serif;font-weight:600;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);display:block}
+
+  .page-hero{background:var(--ink);padding:56px 24px 48px;position:relative;overflow:hidden}
+  .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(27,79,216,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(27,79,216,0.1) 1px,transparent 1px);background-size:50px 50px}
+  .page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+  .page-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.24;z-index:0}
+  .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,15,26,0.55),rgba(13,15,26,0.93));z-index:1}
+
+  .breadcrumb{font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:16px}
+  .breadcrumb a{color:rgba(255,255,255,0.4)}
+  .breadcrumb span{margin:0 8px}
+  .page-hero h1{font-size:clamp(28px,4vw,48px);color:var(--white);font-weight:800;margin-bottom:12px;letter-spacing:-0.02em}
+  .page-hero p{color:rgba(255,255,255,0.55);font-size:16px;max-width:560px}
+
+  /* RESOURCE TABS */
+  .res-tabs{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;gap:4px;border-bottom:1px solid var(--border);background:var(--white);position:sticky;top:68px;z-index:99}
+  .res-tab{padding:16px 20px;font-size:13.5px;font-weight:600;color:var(--ink-light);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap}
+  .res-tab:hover{color:var(--ink)}
+  .res-tab.active{color:var(--sky);border-bottom-color:var(--sky)}
+
+  /* CONTENT */
+  .res-content{max-width:1200px;margin:0 auto;padding:60px 24px 100px}
+  .res-panel{display:none}
+  .res-panel.active{display:block}
+
+  /* TEXT BLOCKS */
+  .prose{max-width:760px}
+  .prose h2{font-size:28px;font-weight:800;margin-bottom:16px;margin-top:40px;color:var(--ink);letter-spacing:-0.01em}
+  .prose h2:first-child{margin-top:0}
+  .prose h3{font-size:20px;font-weight:700;margin-bottom:12px;margin-top:28px;color:var(--ink)}
+  .prose p{font-size:15px;color:var(--ink-light);line-height:1.8;margin-bottom:16px}
+  .prose ul{margin:16px 0 20px 20px;display:flex;flex-direction:column;gap:10px}
+  .prose ul li{font-size:15px;color:var(--ink-light);line-height:1.7}
+  .prose strong{color:var(--ink)}
+  .info-box{background:var(--sky-pale);border:1px solid rgba(27,79,216,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0}
+  .info-box-title{font-weight:700;color:var(--sky);font-size:14px;margin-bottom:8px}
+  .info-box p{font-size:14px;color:var(--ink-light);margin:0}
+  .warning-box{background:var(--gold-light);border:1px solid rgba(240,165,0,0.3);border-radius:var(--radius);padding:20px 24px;margin:24px 0}
+  .warning-box-title{font-weight:700;color:#B87800;font-size:14px;margin-bottom:8px}
+
+  /* GUARANTEES */
+  .guarantees-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:32px}
+  .guarantee-card{border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:box-shadow 0.2s}
+  .guarantee-card:hover{box-shadow:var(--shadow)}
+  .guarantee-icon{font-size:36px;margin-bottom:14px}
+  .guarantee-title{font-weight:700;font-size:17px;margin-bottom:10px}
+  .guarantee-desc{font-size:14px;color:var(--ink-light);line-height:1.7}
+
+  /* ORDER STEPS */
+  .order-steps{display:flex;flex-direction:column;gap:24px;margin-top:32px}
+  .order-step{display:flex;gap:24px;padding:24px;border:1px solid var(--border);border-radius:var(--radius);align-items:flex-start}
+  .order-step-num{width:48px;height:48px;background:var(--sky);color:var(--white);font-family:'Playfair Display', serif;font-weight:800;font-size:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .order-step-title{font-weight:700;font-size:16px;margin-bottom:6px}
+  .order-step-desc{font-size:14px;color:var(--ink-light);line-height:1.65}
+
+  /* NON-POSTING FORM */
+  .np-form{max-width:600px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px}
+  .form-row{margin-bottom:18px}
+  .form-label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:7px}
+  .form-input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;outline:none;transition:border-color 0.15s;background:var(--white)}
+  .form-input:focus{border-color:var(--sky)}
+  .form-textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;outline:none;resize:vertical;min-height:100px;transition:border-color 0.15s}
+  .form-textarea:focus{border-color:var(--sky)}
+  .submit-btn{background:var(--sky);color:var(--white);border:none;padding:13px 28px;border-radius:9px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Playfair Display', serif}
+  .submit-btn:hover{background:#1642B8}
+
+  /* STORE CREDIT */
+
+
+  .faq-list{display:flex;flex-direction:column;gap:12px}
+  .faq-item{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .faq-q{padding:18px 24px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--white);transition:background 0.15s;user-select:none}
+  .faq-q:hover{background:var(--surface)}
+  .faq-q.open{background:var(--sky-pale);color:var(--sky)}
+  .faq-arrow{font-size:18px;transition:transform 0.2s;flex-shrink:0}
+  .faq-q.open .faq-arrow{transform:rotate(180deg)}
+  .faq-a{display:none;padding:16px 24px 20px;font-size:14px;color:var(--ink-light);line-height:1.7;border-top:1px solid var(--border)}
+  .faq-a.open{display:block}
+footer{background:#080A14;color:rgba(255,255,255,0.6);padding:70px 24px 32px}
+  .footer-inner{max-width:1200px;margin:0 auto}
+  .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px}
+  .footer-brand p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.45);margin-top:14px}
+  .footer-contact{margin-top:20px;font-size:13.5px}
+  .footer-contact div{margin-bottom:6px;color:rgba(255,255,255,0.5)}
+  .footer-contact strong{color:rgba(255,255,255,0.8)}
+  .footer-col h4{font-family:'Playfair Display', serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:18px}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .footer-col ul li a{font-size:13.5px;color:rgba(255,255,255,0.45);transition:color 0.15s}
+  .footer-col ul li a:hover{color:var(--white)}
+  .footer-socials{display:flex;gap:12px;margin-top:20px}
+  .social-btn{width:36px;height:36px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all 0.15s}.social-btn{color:#fff;text-decoration:none}
+  .social-btn:hover{background:var(--sky)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px}
+  .footer-bottom a{color:rgba(255,255,255,0.45)}
+  .footer-bottom a:hover{color:var(--white)}
+
+  @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.res-tabs{overflow-x:auto}.guarantees-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:28px}}
+
+  /* FLOATING SUPPORT WIDGET */
+  .support-widget{position:fixed;bottom:22px;right:22px;display:flex;flex-direction:column;gap:12px;z-index:5000}
+  .support-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.28);transition:transform 0.15s ease;text-decoration:none;border:2px solid rgba(255,255,255,0.9)}
+  .support-btn:hover{transform:scale(1.08)}
+  .support-btn svg{width:26px;height:26px}
+  .support-btn.whatsapp{background:#25D366}
+  .support-btn.telegram{background:#229ED9}
+  .support-tooltip{position:absolute;right:64px;top:50%;transform:translateY(-50%);background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.15s}
+  .support-btn:hover .support-tooltip{opacity:1}
+  @media(max-width:640px){.support-widget{bottom:16px;right:16px;gap:10px}.support-btn{width:46px;height:46px}.support-btn svg{width:22px;height:22px}.support-tooltip{display:none}}
+  @media(max-width:480px){.footer-links{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="assets/enhance.css?v=4">
+<link rel="stylesheet" href="assets/tls-theme.css?v=4">
+</head>
+<body>
+<div class="topbar"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Secure crypto checkout · Authorized user tradelines from top U.S. banks · <a href="marketplace.html">Browse tradelines</a></div>
+<header>
+  <nav>
+    <a href="index.html" class="logo"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 5V10C3 13.87 6.13 17.48 10 18C13.87 17.48 17 13.87 17 10V5L10 2Z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 11.5L9.5 8.5L10 10L12.5 7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12.5" cy="7" r="1" fill="white"/></svg></div>Tradelines <span>Network</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="marketplace.html">Buy Tradelines</a></li><li><a href="extension.html">Buy Extension</a></li>
+      <li><a href="sell.html">Sell Tradelines</a></li>
+      <li><a href="brokers.html">Brokers</a></li>
+      <li class="has-dropdown active"><a href="resources.html">Resources</a>
+        <div class="dropdown">
+          <a href="resources.html#what-is">What Are Tradelines?</a>
+          <a href="resources.html#guide">Buyer's Guide</a>
+          <a href="calculator.html">Tradelines Calculator</a>
+          <a href="resources.html#faq">FAQs</a>
+          <a href="resources.html#guarantees">Our Guarantees</a>
+          <a href="blog.html">Knowledge Center</a>
+        </div>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="account.html">My Account</a></li>
+    </ul>
+    <a href="marketplace.html" class="cart-btn"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2h11l2-8H6.2"/></svg> <span class="cart-count" id="cartCount">0</span></a>
+    <a href="marketplace.html" class="nav-cta">View Tradelines →</a>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMenu()">✕</button>
+  <a href="index.html">Home</a><a href="marketplace.html">Buy Tradelines</a>
+  <a href="sell.html">Sell Tradelines</a><a href="brokers.html">Brokers</a>
+  <a href="blog.html">Knowledge Center</a><a href="resources.html#faq">FAQs</a>
+  <a href="about.html">About</a><a href="contact.html">Contact</a>
+</div>
+
+<section class="page-hero">
+  <img class="page-hero-bg" src="assets/images/cart-analytics.jpg" alt="" aria-hidden="true">
+      <div class="page-hero-overlay"></div>
+<div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>›</span>Resources</div>
+    <h1>Knowledge Center</h1>
+    <p>Everything you need to understand tradelines, make informed decisions, and get the most out of your purchase.</p>
+  </div>
+</section>
+
+<!-- TABS NAV -->
+<div class="res-tabs" id="resTabs">
+  <div class="res-tab active" onclick="switchTab('what-is',this)">What Are Tradelines?</div>
+  <div class="res-tab" onclick="switchTab('guide',this)">Buyer's Guide</div>
+  <div class="res-tab" onclick="switchTab('how-to-order',this)">How to Order</div>
+  <div class="res-tab" onclick="switchTab('guarantees',this)">Our Guarantees</div>
+  <div class="res-tab" onclick="switchTab('non-posting',this)">Report Non-Posting</div>
+  <div class="res-tab" onclick="switchTab('faq',this)">FAQs</div>
+</div>
+
+<div class="res-content">
+
+  <!-- WHAT IS A TRADELINE -->
+  <div class="res-panel active" id="panel-what-is">
+    <div class="prose">
+      <h2>What Are Tradelines?</h2>
+      <p>A <strong>tradeline</strong> is any account that appears on your credit report. Every credit card, mortgage, auto loan, and personal line of credit is a tradeline. Together, they tell the story of your relationship with credit.</p>
+      <p>Credit bureaus — Equifax, Experian, and TransUnion — collect and store information about these tradelines, including payment history, credit limit, age of the account, and current balance. This data feeds directly into your FICO score.</p>
+      <h2>What Is an Authorized User Tradelines?</h2>
+      <p>When a credit card holder adds someone as an <strong>authorized user</strong> on their account, that account's history appears on the authorized user's credit report. This is a fully legal and widely used credit-building strategy.</p>
+    </div>
+  </div>
+
+  <!-- BUYER'S GUIDE -->
+  <div class="res-panel" id="panel-guide">
+    <div class="prose">
+      <h2>Buyer's Guide</h2>
+      <p>Choosing the right tradeline comes down to three factors: <strong>credit limit</strong>, <strong>account age</strong>, and <strong>utilization</strong>. Here's how to pick the tradeline that best fits your credit goals.</p>
+      <h3>1. Credit Limit</h3>
+      <p>A higher limit relative to your other balances can improve your overall credit utilization ratio, which is one of the biggest factors in your FICO score. If you're carrying balances elsewhere, prioritize higher-limit tradelines.</p>
+      <h3>2. Account Age</h3>
+      <p>Older accounts add positively to your average age of credit, another scoring factor. If your credit file is thin or new, an older tradeline can have an outsized impact.</p>
+      <h3>3. Utilization</h3>
+      <p>Look for tradelines with low reported balances relative to their limit. A low-utilization, high-limit tradeline is generally the strongest combination for score impact.</p>
+      <p>Use our free <a href="calculator.html" style="color:var(--sky);font-weight:600">Tradelines Calculator</a> to estimate the potential impact of any listing before you buy.</p>
+    </div>
+  </div>
+
+  <!-- HOW TO ORDER -->
+  <div class="res-panel" id="panel-how-to-order">
+    <div class="prose">
+      <h2>How to Order</h2>
+      <ol style="padding-left:20px;display:flex;flex-direction:column;gap:12px">
+        <li><strong>Browse the marketplace.</strong> Filter by bank, limit, age, or price to find a tradeline that matches your goals.</li>
+        <li><strong>Add to cart.</strong> Enter the authorized user's information — name, date of birth, last 4 of SSN, and mailing address.</li>
+        <li><strong>Create an account or sign in.</strong> This is required to proceed to checkout and track your order.</li>
+        <li><strong>Pay with crypto.</strong> Send USDT, BTC, or LTC to the wallet address shown, then paste your transaction hash to confirm.</li>
+        <li><strong>Wait for posting.</strong> Your tradeline will report to the bureaus during the stated reporting window shown on the listing.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- GUARANTEES -->
+  <div class="res-panel" id="panel-guarantees">
+    <div class="prose" style="max-width:100%">
+      <h2>Our Guarantees</h2>
+      <p>We stand behind every tradeline we sell. Here's exactly what you can expect — and what happens if we fall short.</p>
+    </div>
+    <div class="guarantees-grid">
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6l-7-3Z"/></svg></div>
+        <div class="guarantee-title">Posting Guarantee</div>
+        <p class="guarantee-desc">Every tradeline is guaranteed to post to at least 2 of the 3 major credit bureaus (Equifax, Experian, TransUnion) within the stated reporting period. If it doesn't, we'll issue a full credit to your account — no questions asked.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3.2v3.6M16 3.2v3.6"/></svg></div>
+        <div class="guarantee-title">Reporting Window Guarantee</div>
+        <p class="guarantee-desc">The reporting period shown on each tradeline listing is guaranteed. Your authorized user status will be active during the stated window. If the card issuer closes the account before the window ends, you'll receive a full refund.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg></div>
+        <div class="guarantee-title">Card History Guarantee</div>
+        <p class="guarantee-desc">All tradelines listed as having a specific age, limit, and payment history are verified before listing. If the actual history differs materially from what was listed, we'll replace the tradeline or issue a credit.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></div>
+        <div class="guarantee-title">Data Security Guarantee</div>
+        <p class="guarantee-desc">Your personal information and the Authorized User's documents are stored with 256-bit AES encryption. We never sell, rent, or share your personal data with any third party outside of the card issuer required for AU processing.</p>
+      </div>
+    </div>
+    <div class="warning-box" style="margin-top:32px;max-width:760px">
+      <div class="warning-box-title"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> What Is NOT Guaranteed</div>
+      <p>We do not guarantee any specific increase in your credit score. Credit score changes are determined by FICO's proprietary algorithms and your overall credit profile. We also do not guarantee tradeline approval in states where restrictions apply (currently: Georgia).</p>
+    </div>
+  </div>
+
+  <!-- NON-POSTING -->
+  <div class="res-panel" id="panel-non-posting">
+    <div class="prose">
+      <h2>Report a Non-Posting Tradelines</h2>
+      <p>If a tradeline you purchased hasn't appeared on your credit report within 7 days after the end of the stated reporting period, submit the form below and we'll investigate immediately.</p>
+      <div class="info-box">
+        <div class="info-box-title"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></svg> Before You Submit</div>
+        <p>Check that the reporting window has fully passed. Tradelines may post anywhere from the first day to the last day of the reporting window shown on your order. If you're still within the window, please wait until it ends before reporting.</p>
+      </div>
+    </div>
+    <div class="np-form" style="margin-top:28px">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:20px">Non-Posting Report Form</h3>
+      <div class="form-row"><label class="form-label">Your Full Name *</label><input class="form-input" type="text" id="npName" placeholder="Jane Smith"></div>
+      <div class="form-row"><label class="form-label">Order Email *</label><input class="form-input" type="email" id="npEmail" placeholder="jane@email.com"></div>
+      <div class="form-row"><label class="form-label">Card ID / Tradelines # *</label><input class="form-input" type="text" id="npCard" placeholder="e.g. #30672"></div>
+      <div class="form-row"><label class="form-label">Reporting Period End Date *</label><input class="form-input" type="date" id="npDate"></div>
+      <div class="form-row">
+        <label class="form-label">Bureau(s) It Did Not Post To *</label>
+        <div style="display:flex;gap:16px;margin-top:4px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px"><input type="checkbox" id="npEq" style="accent-color:var(--sky)"> Equifax</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px"><input type="checkbox" id="npEx" style="accent-color:var(--sky)"> Experian</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px"><input type="checkbox" id="npTu" style="accent-color:var(--sky)"> TransUnion</label>
+        </div>
+      </div>
+      <div class="form-row"><label class="form-label">Additional Notes</label><textarea class="form-textarea" id="npNotes" placeholder="Any additional details about the issue..."></textarea></div>
+      <button class="submit-btn" onclick="submitNonPosting()">Submit Report →</button>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="res-panel" id="panel-faq">
+    <div class="prose" style="max-width:100%">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list" style="max-width:760px;margin-top:28px">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does it take for a tradeline to post? <span class="faq-arrow">▾</span></div><div class="faq-a">Tradelines post during the reporting period shown on the listing — this is the window when the card issuer sends updated information to the credit bureaus. Most tradelines post within 30–45 days of purchase. You'll see the tradeline appear on your credit report 1–3 days after the reporting date.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I get access to the actual credit card? <span class="faq-arrow">▾</span></div><div class="faq-a">No. As an authorized user, you appear on the account — but you don't receive a physical card, and you have no ability to make charges on it. This is by design. The only purpose of the arrangement is to have the account history appear on your credit report.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <span class="faq-arrow">▾</span></div><div class="faq-a">We accept cryptocurrency only — USDT, Bitcoin (BTC), and Litecoin (LTC). We do not accept credit cards, ACH checks, PayPal, or Venmo. Crypto payments keep fees low and require no identity documents.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is there a minimum order? <span class="faq-arrow">▾</span></div><div class="faq-a">No minimum order. You can purchase a single tradeline if that's all you need.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I purchase tradelines for someone else? <span class="faq-arrow">▾</span></div><div class="faq-a">Yes. During the checkout process you'll enter the Authorized User's personal details (name, DOB, SSN last 4, address). The tradeline posts to that person's credit report. Brokers and credit consultants regularly purchase tradelines on behalf of their clients.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you sell tradelines in all states? <span class="faq-arrow">▾</span></div><div class="faq-a">We sell tradelines in all U.S. states except Georgia. If your billing address or the AU's address is in Georgia, we're unable to process your order.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does the authorized user stay on the account? <span class="faq-arrow">▾</span></div><div class="faq-a">The AU remains active for the reporting period shown on the listing (typically 2–3 months). After the period ends, the card holder removes the AU from the account. Once removed, the tradeline may or may not stay on your credit report — this depends on the bureau and the card issuer.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can using tradelines hurt my credit? <span class="faq-arrow">▾</span></div><div class="faq-a">It's extremely unlikely. Adding a positive, aged tradeline with low utilization and perfect payment history should only help your profile. However, if the card holder on the tradeline you purchased later misses a payment or has the card closed, it could affect the tradeline — which is why we guarantee our tradeline holders meet quality standards.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color:var(--white)"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 5V10C3 13.87 6.13 17.48 10 18C13.87 17.48 17 13.87 17 10V5L10 2Z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 11.5L9.5 8.5L10 10L12.5 7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12.5" cy="7" r="1" fill="white"/></svg></div>Tradelines <span>Network</span></a>
+        <p>Tradelines Network is a fintech platform dedicated to equal credit access. Licensed · Compliant · Transparent.</p>
+        <div class="footer-contact">
+          <div><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg> <strong>1800 Vine St, Suite 220, Los Angeles, CA 90028</strong></div>
+          <div><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="2.8" y="5" width="18.4" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg> <strong>marketplacetradeline@gmail.com</strong></div>
+        </div>
+        <div class="footer-socials"></div>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="marketplace.html">Buy Tradelines</a></li><li><a href="extension.html">Buy Extension</a></li><li><a href="sell.html">Sell Tradelines</a></li><li><a href="brokers.html">Broker Program</a></li></ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul><li><a href="resources.html">What Are Tradelines?</a></li><li><a href="resources.html#faq">FAQs</a></li><li><a href="blog.html">Knowledge Center</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="legal.html#privacy">Privacy Policy</a></li><li><a href="legal.html#terms">Terms & Conditions</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>©2026 Tradelines Network LLC. All Rights Reserved. We do not sell tradelines in Georgia.</div>
+      <div style="display:flex;gap:20px"><a href="legal.html#privacy">Privacy</a><a href="legal.html#terms">Terms</a><a href="legal.html#fraud">Fraud</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function openMenu(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden'}
+function closeMenu(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
+function toggleFaq(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open')}
+function switchTab(id, el){
+  document.querySelectorAll('.res-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.res-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+  window.scrollTo({top:200,behavior:'smooth'});
+}
+function submitNonPosting(){
+  const n=document.getElementById('npName').value.trim();
+  const e=document.getElementById('npEmail').value.trim();
+  const c=document.getElementById('npCard').value.trim();
+  if(!n||!e||!c){alert('Please fill in all required fields.');return;}
+  alert('<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2 11 14.7l4.6-4.9"/></svg> Report submitted. Our team will review your case within 1 business day and contact you at '+e);
+}
+// Handle anchor links for tab switching
+const hash = window.location.hash.replace('#','');
+if(hash){
+  const tab = document.querySelector(`[onclick*="'${hash}'"]`);
+  if(tab) tab.click();
+}
+const cart=JSON.parse(localStorage.getItem('tlmCart')||'[]');
+document.getElementById('cartCount').textContent=cart.length;
+</script>
+
+<!-- FLOATING SUPPORT WIDGET -->
+<div class="support-widget">
+  <a href="https://Wa.me/12625837916" target="_blank" rel="noopener" class="support-btn whatsapp" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.14h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2m0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.11.78.83-3.03-.2-.31a8.16 8.16 0 0 1-1.26-4.36c0-4.52 3.68-8.2 8.23-8.2 2.2 0 4.26.86 5.82 2.41a8.15 8.15 0 0 1 2.41 5.8c0 4.53-3.69 8.23-8.23 8.23m4.51-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.24-.87.85-.87 2.08s.89 2.41 1.02 2.58c.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28"/></svg>
+  </a>
+  <a href="https://t.me/TradeIQ_Plug1" target="_blank" rel="noopener" class="support-btn telegram" aria-label="Chat with us on Telegram">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M21.94 4.6 18.6 20.36c-.25 1.13-.9 1.4-1.83.87l-5.06-3.73-2.44 2.35c-.27.27-.5.5-1.02.5l.36-5.15L18 6.3c.42-.37-.09-.58-.65-.2L7.5 12.6l-5.02-1.57c-1.09-.34-1.11-1.09.23-1.61L20.6 3.13c.91-.33 1.7.22 1.34 1.47"/></svg>
+  </a>
+</div>
+<script src="assets/js/social-icons.js" defer></script>
+<script src="assets/js/site-assets.js" defer></script>
+</body>
+</html>
