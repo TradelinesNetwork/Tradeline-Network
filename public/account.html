@@ -546,7 +546,7 @@ async function renderOrders(){
   const money = (n) => '$' + Number(n||0).toLocaleString();
 
       recentWrap.innerHTML = `<div class="table-responsive"><table class="orders-table">
-    <thead><tr><th>Order #</th><th>Tradelines</th><th>Total</th><th>Payment Status</th><th></th></tr></thead>
+    <thead><tr><th>Order #</th><th>Tradelines</th><th>Total</th><th>Posting Status</th><th></th></tr></thead>
     <tbody>${orders.slice(0,3).map(o=>`<tr>
       <td data-label="Order #" style="font-size:12px;color:var(--ink-light)">#${shortId(o.id)}</td>
       <td data-label="Tradelines">${(o.order_items||[]).map(i=>escapeHtml((i.tradeline_snapshot&&i.tradeline_snapshot.name)||i.tradeline_id)).join(', ')}</td>
@@ -563,7 +563,7 @@ async function renderOrders(){
   };
 
       myWrap.innerHTML = `<div class="table-responsive"><table class="orders-table">
-    <thead><tr><th>Order #</th><th>Tradelines</th><th>Total</th><th>Crypto</th><th>Date</th><th>Payment</th><th>Payment Status</th><th></th></tr></thead>
+    <thead><tr><th>Order #</th><th>Tradelines</th><th>Total</th><th>Crypto</th><th>Date</th><th>Payment</th><th>Posting Status</th><th></th></tr></thead>
     <tbody>${orders.flatMap(o=>(o.order_items||[]).map(i=>`<tr>
       <td data-label="Order #" style="font-size:12px;color:var(--ink-light)">#${shortId(o.id)}</td>
       <td data-label="Tradeline">${escapeHtml((i.tradeline_snapshot&&i.tradeline_snapshot.name)||i.tradeline_id)}</td>
