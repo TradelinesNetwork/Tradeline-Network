@@ -41,6 +41,7 @@
 
 <script type="module">
 import { renderChrome, renderSummary, guardStep, requireAuth, getCart, cartUnits, getCheckout, saveCheckout, cartSignature, escapeHtml, bankEmoji, US_STATES } from "./assets/js/checkout-core.js";
+import { bankLogo } from "./assets/js/bank-logos.js";
 
 renderChrome(2);
 if(guardStep(2)){
@@ -61,7 +62,7 @@ function renderForms(){
   const v = (i,k)=> escapeHtml(prev[i]?.[k] ?? '');
   document.getElementById('coAuForms').innerHTML = units.map((item,idx)=>`
     <div class="co-au" data-au="${idx}">
-      <div class="co-au-head"><span>${escapeHtml(bankEmoji(item.bank))}</span><span>${escapeHtml(item.bank)} #${escapeHtml(String(item.id))}</span><span class="co-au-price">$${Number(item.price||0).toLocaleString()}</span></div>
+      <div class="co-au-head"><span class="co-au-logo">${bankLogo(item.bank, 26)}</span><span>${escapeHtml(item.bank)} #${escapeHtml(String(item.id))}</span><span class="co-au-price">$${Number(item.price||0).toLocaleString()}</span></div>
       <div class="co-note">Authorized user ${idx+1} of ${units.length}</div>
       <div class="co-row co-row-2">
         <div class="co-field"><label>First Name *</label><input data-f="first" value="${v(idx,'first')}" autocomplete="off" placeholder="As it appears on ID"></div>

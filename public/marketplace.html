@@ -127,9 +127,27 @@
 
 <script type="module">
 import { renderChrome, getCart, saveCart, cartSubtotal, escapeHtml, bankEmoji } from "./assets/js/checkout-core.js";
+import { bankLogo } from "./assets/js/bank-logos.js";
 
 /* Live vault inventory. Each row is one tradeline; qty = AU spots purchased. */
 const TRADELINES = [
+
+  /* ── August 27 drop ───────────────────────────────── */
+  { id: 'AX-2601', bank: 'American Express', limit: 25000, age: 25, reports: 'All 3 bureaus', deadline: 'Aug 28', price: 170, stock: 4, note: 'Opened 2001 · fast posting' },
+  { id: 'BR-2601', bank: 'Barclays', limit: 5000, age: 18, reports: 'All 3 bureaus', deadline: 'Aug 28', price: 75, stock: 4, note: 'Opened 2008' },
+  { id: 'CH-2601', bank: 'Chase', limit: 23000, age: 11, util: 2, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 200, stock: 4 },
+  { id: 'CH-2602', bank: 'Chase', limit: 25000, age: 10, util: 1, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 230, stock: 3 },
+  { id: 'CH-2603', bank: 'Chase', limit: 15600, age: 7,  util: 3, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 130, stock: 3 },
+  { id: 'AX-2602', bank: 'American Express', limit: 19800, age: 11, util: 2, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 160, stock: 3 },
+  { id: 'AX-2603', bank: 'American Express', limit: 23000, age: 13, util: 1, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 200, stock: 3 },
+  { id: 'CH-2604', bank: 'Chase', limit: 11000, age: 6, util: 1, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 110, stock: 3 },
+  { id: 'CH-2605', bank: 'Chase', limit: 15000, age: 5, util: 0, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 160, stock: 3 },
+  { id: 'CH-2606', bank: 'Chase', limit: 14000, age: 6, util: 0, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 150, stock: 3 },
+  { id: 'CH-2607', bank: 'Chase', limit: 15000, age: 7, util: 2, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 140, stock: 3 },
+  { id: 'DS-2601', bank: 'Discover', limit: 18000, age: 6,  reports: 'All 3 bureaus', deadline: 'Aug 29', price: 160, stock: 3 },
+  { id: 'DS-2602', bank: 'Discover', limit: 30000, age: 10, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 260, stock: 3 },
+  { id: 'DS-2603', bank: 'Discover', limit: 45000, age: 14, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 300, stock: 2 },
+  { id: 'DS-2604', bank: 'Discover', limit: 60000, age: 18, reports: 'All 3 bureaus', deadline: 'Aug 29', price: 380, stock: 2 },
   { id: 'CH-8842', bank: 'Chase',            limit: 32000, age: 14, reports: 'All 3 bureaus',  deadline: 'Aug 20', price: 300, stock: 3 },
   { id: 'AX-3310', bank: 'American Express', limit: 45000, age: 18, reports: 'All 3 bureaus',  deadline: 'Aug 21', price: 400, stock: 2 },
   { id: 'DS-7712', bank: 'Discover',         limit: 12500, age: 9,  reports: 'All 3 bureaus',  deadline: 'Aug 21', price: 220,  stock: 5 },
@@ -385,7 +403,7 @@ function render() {
     return `
     <div class="mk-card">
       <div class="mk-card-top">
-        <div class="mk-ico">${escapeHtml(bankEmoji(t.bank))}</div>
+        <div class="mk-ico">${bankLogo(t.bank, 40)}</div>
         <div>
           <div class="mk-bank">${escapeHtml(t.bank)}</div>
           <div class="mk-id">${t.pkg ? 'Package' : 'Tradelines'} #${escapeHtml(t.id)}</div>
