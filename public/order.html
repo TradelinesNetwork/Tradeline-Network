@@ -113,15 +113,15 @@ function methodsHtml(st){
   return `
     <div class="pm ${crypto?'active':''}">
       <span class="ic">${icon}</span>
-      <span><span class="nm">${crypto ? `Cryptocurrency · ${escapeHtml(st.asset)} on ${escapeHtml(st.network)}` : 'Unused'}</span>
-        <div class="st">${crypto ? 'Reviewed automatically by system'}</div></span>
+      <span><span class="nm">Cryptocurrency${crypto?` · ${escapeHtml(st.asset)} on ${escapeHtml(st.network)}`:''}</span>
+        <div class="st">${crypto ? (st.automated ? 'Verified automatically on-chain' : 'Automatic review — automated verifier for this network') :''}</div></span>
       <span class="tag">${crypto ? escapeHtml(st.label) : 'USED'}</span>
     </div>
     <div class="pm ${!crypto?'active':'off'}">
       <span class="ic">${CARD_ICON}</span>
-      <span><span class="nm">${!crypto ? 'Card payment' : 'Unused'}</span>
-        <div class="st">${crypto ? 'Not used for this order' : 'Reviewed autom by our system'}</div></span>
-      <span class="tag">${crypto ? 'UNUSED' : escapeHtml(st.label)}</span>
+      <span><span class="nm">Card payment</span>
+        <div class="st">${crypto ? 'Temporarily unavailable' : 'Reviewed manually by our team'}</div></span>
+      <span class="tag">${crypto ? 'Disabled' : escapeHtml(st.label)}</span>
     </div>`;
 }
 
