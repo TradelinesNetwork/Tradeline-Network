@@ -42,6 +42,7 @@
 
 <script type="module">
 import { renderChrome, renderSummary, getCart, saveCart, cartTotal, escapeHtml, bankEmoji } from "./assets/js/checkout-core.js";
+import { bankLogo } from "./assets/js/bank-logos.js";
 
 renderChrome(1);
 
@@ -57,7 +58,7 @@ function render(){
   document.getElementById('coWrap').style.display='';
   document.getElementById('coItems').innerHTML = cart.map(item=>`
     <div class="co-item">
-      <div class="co-item-ico">${escapeHtml(bankEmoji(item.bank))}</div>
+      <div class="co-item-ico">${bankLogo(item.bank, 40)}</div>
       <div class="co-item-info">
         <div class="co-item-title">${escapeHtml(item.bank)} #${escapeHtml(String(item.id))}</div>
         <div class="co-item-meta">

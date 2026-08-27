@@ -46,6 +46,7 @@
 
 <script type="module">
 import { renderChrome, renderSummary, guardStep, requireAuth, getCart, cartUnits, cartTotal, cartFees, cartSubtotal, getCheckout, clearCheckout, saveCart, escapeHtml, bankEmoji } from "./assets/js/checkout-core.js";
+import { bankLogo } from "./assets/js/bank-logos.js";
 import { authedFetch } from "./assets/js/tlm-auth.js";
 
 renderChrome(4);
@@ -68,7 +69,7 @@ function renderReview(){
   document.getElementById('coReview').innerHTML = `
     <div class="co-review-block">
       <h3>Tradelines (${units.length} AU spot${units.length>1?'s':''})</h3>
-      ${units.map((u,i)=>`<div class="co-kv"><span>${escapeHtml(bankEmoji(u.bank))} ${escapeHtml(u.bank)} #${escapeHtml(String(u.id))} — AU: ${escapeHtml((au[i]?.first||'')+' '+(au[i]?.last||''))}</span><strong>$${Number(u.price||0).toLocaleString()}</strong></div>`).join('')}
+      ${units.map((u,i)=>`<div class="co-kv"><span>${bankLogo(u.bank, 22)} ${escapeHtml(u.bank)} #${escapeHtml(String(u.id))} — AU: ${escapeHtml((au[i]?.first||'')+' '+(au[i]?.last||''))}</span><strong>$${Number(u.price||0).toLocaleString()}</strong></div>`).join('')}
     </div>
     <div class="co-review-block">
       <h3>Authorized users</h3>
