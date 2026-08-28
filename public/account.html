@@ -390,22 +390,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- PROFILE -->
       <div class="dash-panel" id="panel-profile">
-        <div class="dash-panel-title">My Profile</div>
-        <div class="dash-panel-sub">Your account information. Contact support to update your email.</div>
-        <div class="profile-grid">
-          <div class="profile-field"><div class="profile-field-label">First Name</div><div class="profile-field-value" id="pfFirst">Jane</div></div>
-          <div class="profile-field"><div class="profile-field-label">Last Name</div><div class="profile-field-value" id="pfLast">Smith</div></div>
-          <div class="profile-field"><div class="profile-field-label">Email Address</div><div class="profile-field-value" id="pfEmail">jane@email.com</div></div>
-          <div class="profile-field"><div class="profile-field-label">Phone</div><div class="profile-field-value" id="pfPhone">(555) 000-0000</div></div>
-          <div class="profile-field"><div class="profile-field-label">Member Since</div><div class="profile-field-value">May 2026</div></div>
-          <div class="profile-field"><div class="profile-field-label">Account Type</div><div class="profile-field-value">Standard</div></div>
+        <div class="dash-panel-title">Account Profile</div>
+        <div class="dash-panel-sub">Verified account record held with Tradelines Network. Contact support to amend your registered email address.</div>
+
+        <div class="pf-head">
+          <div class="pf-mark" id="pfInitials">JS</div>
+          <div>
+            <div class="pf-head-name" id="pfName">Jane Smith</div>
+            <div class="pf-head-meta">Client reference <span id="pfRef">—</span></div>
+          </div>
+          <span class="pf-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px"><path d="M12 3.2 19 6v5.4c0 4.2-2.9 7.7-7 9.2-4.1-1.5-7-5-7-9.2V6Z"/><path d="m8.8 12.1 2.2 2.2 4.2-4.4"/></svg> Verified</span>
         </div>
-        <button class="edit-btn" onclick="alert('Profile editing would open a form in a full implementation.')">Edit Profile</button>
-        <div style="margin-top:24px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px">
-          <div style="font-weight:700;font-size:14px;margin-bottom:8px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Password & Security</div>
-          <div style="font-size:13.5px;color:var(--ink-light);margin-bottom:14px">Last password change: Never. We recommend using a strong, unique password.</div>
-          <button class="edit-btn" onclick="alert('Password reset email sent!')">Change Password</button>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Account holder</div>
+          <dl>
+            <div class="pf-row"><dt>Legal first name</dt><dd id="pfFirst">Jane</dd></div>
+            <div class="pf-row"><dt>Legal last name</dt><dd id="pfLast">Smith</dd></div>
+          </dl>
         </div>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Contact details</div>
+          <dl>
+            <div class="pf-row"><dt>Registered email</dt><dd id="pfEmail">jane@email.com</dd></div>
+            <div class="pf-row"><dt>Telephone</dt><dd id="pfPhone">Not on file</dd></div>
+          </dl>
+          <div class="pf-note">Order confirmations and posting notifications are sent to the registered email address only.</div>
+        </div>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Account standing</div>
+          <dl>
+            <div class="pf-row"><dt>Member since</dt><dd id="pfSince">—</dd></div>
+            <div class="pf-row"><dt>Account type</dt><dd>Standard client</dd></div>
+            <div class="pf-row"><dt>Identity verification</dt><dd>Complete</dd></div>
+            <div class="pf-row"><dt>Orders on record</dt><dd id="pfOrderCount">0</dd></div>
+          </dl>
+        </div>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Security</div>
+          <dl>
+            <div class="pf-row"><dt>Password last changed</dt><dd id="pfPwChanged">Not recorded</dd></div>
+            <div class="pf-row"><dt>Sign-in method</dt><dd id="pfProvider">Email and password</dd></div>
+          </dl>
+          <div class="pf-note">Use a unique password of at least 12 characters. We will never ask for it by email or telephone.</div>
+        </div>
+
+        <div class="pf-actions">
+          <button class="edit-btn" onclick="location.href='contact.html'">Request a detail change</button>
+          <button class="edit-btn" onclick="requestPasswordReset()">Send password reset link</button>
+        </div>
+
       </div>
 
     </main>
