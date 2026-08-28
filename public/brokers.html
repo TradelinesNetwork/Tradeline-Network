@@ -599,7 +599,7 @@ async function submitBroker(){
   }catch(err){
     console.error(err);
     alert('Could not submit application: '+(err.message||'unknown error'));
-    btn.disabled=false; btn.textContent='Submit Application →';
+    btn.disabled=false; btn.textContent='Submit Application';
   }
 }
 const cart=JSON.parse(localStorage.getItem('tlmCart')||'[]');

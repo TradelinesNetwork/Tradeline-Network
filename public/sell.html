@@ -601,7 +601,7 @@ async function submitSell(){
   }catch(err){
     console.error(err);
     alert('Could not submit application: '+(err.message||'unknown error'));
-    if(btn){btn.disabled=false; btn.textContent='Submit Application →';}
+    if(btn){btn.disabled=false; btn.textContent='Submit Application';}
   }
 }
 
