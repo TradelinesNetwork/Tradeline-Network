@@ -81,7 +81,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.90) 0%, rgba(255,255,255,0.94) 100%);
+  background: rgba(255,255,255,0.94);
   pointer-events: none;
   z-index: 0;
 }
@@ -148,7 +148,7 @@ button, .btn, .btn-primary, .btn-secondary, .btn-ghost,
 .lead-form button, .shop-btn, .nav-cta,
 .hero-btns a, .hero-btns button,
 [class*="cta-btn"], [class*="cta-"] {
-  background: linear-gradient(180deg, var(--navy-600), var(--navy-700)) !important;
+  background: var(--navy-600) !important;
   color: #FFFFFF !important;
   border: 1px solid #eef2f5 !important;
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
@@ -160,7 +160,7 @@ button:hover, .btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-ghost:h
 .lead-form button:hover, .shop-btn:hover, .nav-cta:hover,
 .hero-btns a:hover, .hero-btns button:hover,
 [class*="cta-btn"]:hover, [class*="cta-"]:hover {
-  background: linear-gradient(180deg, var(--navy-500), var(--navy-600)) !important;
+  background: var(--navy-500) !important;
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(11, 24, 74, 0.45);
 }
@@ -168,7 +168,7 @@ button:hover, .btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-ghost:h
 /* Amber CTA: reserved for the highest-intent actions */
 .atc-btn, .cart-checkout-btn, .place-order-btn,
 .toast-cart-btn, [data-primary-cta] {
-  background: linear-gradient(180deg, var(--amber-strong), var(--amber)) !important;
+  background: var(--amber-strong) !important;
   color: #1A1200 !important;
   border: 1px solid rgba(0,0,0,0.10) !important;
   font-weight: 700 !important;
