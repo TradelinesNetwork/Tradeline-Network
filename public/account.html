@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   header{position:sticky;top:0;z-index:1000;background:var(--ink);border-bottom:1px solid rgba(255,255,255,0.08);box-shadow:0 2px 16px rgba(0,0,0,0.18)}
   nav{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:68px}
   .logo{font-family:'Playfair Display', serif;font-weight:800;font-size:22px;color:var(--white);display:flex;align-items:center;gap:8px;margin-right:auto;flex-shrink:0}
-  .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,#1B4FD8 0%,#0D3BA8 100%);border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(27,79,216,0.35)}
+  .logo-icon{width:34px;height:34px;background:#1B4FD8;border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(27,79,216,0.35)}
   .logo span{color:var(--gold)}
   .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
   .nav-links a{color:rgba(255,255,255,0.75);font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:7px;transition:all 0.18s;white-space:nowrap}
@@ -111,7 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .dash-layout{max-width:1200px;margin:0 auto;padding:40px 24px;display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:start}
   .dash-sidebar{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;position:sticky;top:88px}
   .dash-user{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)}
-  .dash-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--sky),#0D3BA8);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--white);font-family:'Playfair Display', serif;font-weight:700}
+  .dash-avatar{width:48px;height:48px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--white);font-family:'Playfair Display', serif;font-weight:700}
   .dash-user-name{font-weight:700;font-size:15px;color:var(--ink)}
   .dash-user-email{font-size:12px;color:var(--ink-light);margin-top:2px}
   .dash-nav{display:flex;flex-direction:column;gap:4px}
@@ -156,13 +156,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-  /* PROFILE */
-  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .profile-field{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px}
-  .profile-field-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-light);margin-bottom:6px}
-  .profile-field-value{font-size:15px;font-weight:500;color:var(--ink)}
-  .edit-btn{margin-top:20px;background:var(--surface);border:1px solid var(--border);color:var(--ink);padding:10px 20px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;transition:all 0.15s}
-  .edit-btn:hover{border-color:var(--sky);color:var(--sky)}
+  /* PROFILE — account record */
+  .pf-head{display:flex;align-items:center;gap:18px;background:var(--white);border:1px solid var(--border);border-radius:4px;padding:22px 24px;margin-bottom:18px;flex-wrap:wrap}
+  .pf-mark{width:56px;height:56px;border-radius:4px;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;letter-spacing:0.04em}
+  .pf-head-name{font-size:19px;font-weight:700;color:var(--ink)}
+  .pf-head-meta{font-size:13px;color:var(--ink-light);margin-top:3px}
+  .pf-verified{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#166534;background:rgba(22,101,52,0.08);border:1px solid rgba(22,101,52,0.22);border-radius:3px;padding:6px 12px}
+  .pf-section{background:var(--white);border:1px solid var(--border);border-radius:4px;margin-bottom:18px;overflow:hidden}
+  .pf-section-head{padding:13px 20px;border-bottom:1px solid var(--border);background:var(--surface);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--ink-light)}
+  .pf-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 20px;border-bottom:1px solid var(--border)}
+  .pf-row:last-child{border-bottom:none}
+  .pf-row dt{font-size:13px;color:var(--ink-light);flex:0 0 auto}
+  .pf-row dd{font-size:14px;font-weight:600;color:var(--ink);text-align:right;word-break:break-word}
+  .pf-note{font-size:12.5px;color:var(--ink-light);padding:12px 20px;border-top:1px solid var(--border);background:#F5F7FA !important}
+  .pf-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .edit-btn{background:var(--white);border:1px solid var(--border);color:var(--ink);padding:10px 18px;border-radius:4px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:'Inter', 'Roboto', 'Open Sans', sans-serif;transition:border-color 0.15s,color 0.15s}
+  .edit-btn:hover{border-color:var(--ink);color:var(--ink)}
+  @media(max-width:560px){.pf-row{flex-direction:column;align-items:flex-start;gap:4px}.pf-row dd{text-align:left}.pf-verified{margin-left:0}}
+
 
   .empty-orders{text-align:center;padding:48px 24px;color:var(--ink-light);background:var(--white);border:1px solid var(--border);border-radius:14px}
   .empty-orders-icon{font-size:44px;margin-bottom:14px}
@@ -224,7 +235,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li class="active"><a href="account.html">My Account</a></li>
     </ul>
     <a href="cart.html" class="cart-btn"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2h11l2-8H6.2"/></svg> <span class="cart-count" id="cartCount">0</span></a>
-    <a href="marketplace.html" class="nav-cta">View Tradelines →</a>
+    <a href="marketplace.html" class="nav-cta">View Tradelines</a>
     <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
   </nav>
   <script defer src="https://shown.io/metrics/eK3DDly63n" type="text/javascript"></script>
@@ -266,12 +277,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="auth-divider">or</div>
       <button class="google-btn" type="button" disabled aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4.1h6.6c-.1 1.1-.9 2.8-2.5 3.9l-.02.15 3.6 2.78.25.03c2.3-2.1 3.6-5.2 3.6-8.76Z"/><path fill="#34A853" d="M12 24c3.3 0 6-1.1 8-2.9l-3.8-2.96c-1 .7-2.4 1.2-4.2 1.2a7.3 7.3 0 0 1-6.9-5l-.14.01-3.75 2.9-.05.14C3.2 21.3 7.3 24 12 24Z"/><path fill="#FBBC05" d="M5.1 14.3a7.2 7.2 0 0 1 0-4.6L5.09 9.6 1.3 6.65l-.13.06a12 12 0 0 0 0 10.6l3.93-3.01Z"/><path fill="#EA4335" d="M12 4.7c2.3 0 3.9 1 4.8 1.8l3.5-3.4C18 1.2 15.3 0 12 0 7.3 0 3.2 2.7 1.2 6.7l3.9 3a7.3 7.3 0 0 1 6.9-5Z"/></svg>Continue with Google</button>
       <div class="auth-divider">or</div>
-      <div style="text-align:center;font-size:13.5px;color:var(--ink-light)">Don't have an account? <span style="color:var(--sky);cursor:pointer;font-weight:600" onclick="switchAuth('register')">Create one free →</span></div>
+      <div style="text-align:center;font-size:13.5px;color:var(--ink-light)">Don't have an account? <span style="color:var(--sky);cursor:pointer;font-weight:600" onclick="switchAuth('register')">Create one free</span></div>
     </div>
 
     <!-- REGISTER FORM -->
     <div id="registerForm" style="display:none">
-      <div style="background:linear-gradient(135deg,rgba(38,54,68,.06),rgba(90,150,200,.08));border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:20px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:20px">
         <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px">Welcome to Tradelines Network</div>
         <div style="font-size:13.5px;line-height:1.6;color:var(--ink)">Create your free account in under a minute — no identity documents required. You'll get instant access to our live tradelines vault, real-time order tracking and email updates on every posting.</div>
       </div>
@@ -298,8 +309,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div style="font-size:13.5px;color:var(--ink-light)">Enter your email and we'll send a reset link.</div>
       </div>
       <div class="form-row"><label class="form-label">Email Address</label><input class="form-input" type="email" id="forgotEmail" placeholder="your@email.com"></div>
-      <button class="auth-btn" onclick="doForgot()">Send Reset Link →</button>
-      <div style="text-align:center;margin-top:14px"><span style="color:var(--sky);cursor:pointer;font-size:13.5px;font-weight:600" onclick="switchAuth('login')">← Back to Sign In</span></div>
+      <button class="auth-btn" onclick="doForgot()">Send Reset Link</button>
+      <div style="text-align:center;margin-top:14px"><span style="color:var(--sky);cursor:pointer;font-size:13.5px;font-weight:600" onclick="switchAuth('login')">Back to Sign In</span></div>
     </div>
   </div>
 </div>
@@ -311,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="success-title">Account Created Successfully!</div>
     <div class="success-text">Welcome to Tradeline Network. Your account is ready to use.</div>
     <div class="success-sub">Log in now to access your dashboard and get started.</div>
-    <button class="auth-btn" onclick="completeLogin()">Click to Login →</button>
+    <button class="auth-btn" onclick="completeLogin()">Click to Login</button>
   </div>
 </div>
 
@@ -363,7 +374,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="font-weight:700;font-size:15px;color:var(--sky);margin-bottom:4px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg> Ready for your next tradeline?</div>
             <div style="font-size:13.5px;color:var(--ink-light)">Browse fresh, low-limit-first authorized user tradelines from top U.S. banks.</div>
           </div>
-          <a href="marketplace.html" style="background:var(--sky);color:var(--white);padding:10px 20px;border-radius:9px;font-weight:700;font-size:14px;font-family:'Playfair Display', serif">Shop Tradelines →</a>
+          <a href="marketplace.html" style="background:var(--sky);color:var(--white);padding:10px 20px;border-radius:9px;font-weight:700;font-size:14px;font-family:'Playfair Display', serif">Shop Tradelines</a>
         </div>
       </div>
 
@@ -379,22 +390,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- PROFILE -->
       <div class="dash-panel" id="panel-profile">
-        <div class="dash-panel-title">My Profile</div>
-        <div class="dash-panel-sub">Your account information. Contact support to update your email.</div>
-        <div class="profile-grid">
-          <div class="profile-field"><div class="profile-field-label">First Name</div><div class="profile-field-value" id="pfFirst">Jane</div></div>
-          <div class="profile-field"><div class="profile-field-label">Last Name</div><div class="profile-field-value" id="pfLast">Smith</div></div>
-          <div class="profile-field"><div class="profile-field-label">Email Address</div><div class="profile-field-value" id="pfEmail">jane@email.com</div></div>
-          <div class="profile-field"><div class="profile-field-label">Phone</div><div class="profile-field-value" id="pfPhone">(555) 000-0000</div></div>
-          <div class="profile-field"><div class="profile-field-label">Member Since</div><div class="profile-field-value">May 2026</div></div>
-          <div class="profile-field"><div class="profile-field-label">Account Type</div><div class="profile-field-value">Standard</div></div>
+        <div class="dash-panel-title">Account Profile</div>
+        <div class="dash-panel-sub">Verified account record held with Tradelines Network. Contact support to amend your registered email address.</div>
+
+        <div class="pf-head">
+          <div class="pf-mark" id="pfInitials">JS</div>
+          <div>
+            <div class="pf-head-name" id="pfName">Jane Smith</div>
+            <div class="pf-head-meta">Client reference <span id="pfRef">—</span></div>
+          </div>
+          <span class="pf-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px"><path d="M12 3.2 19 6v5.4c0 4.2-2.9 7.7-7 9.2-4.1-1.5-7-5-7-9.2V6Z"/><path d="m8.8 12.1 2.2 2.2 4.2-4.4"/></svg> Verified</span>
         </div>
-        <button class="edit-btn" onclick="alert('Profile editing would open a form in a full implementation.')">Edit Profile</button>
-        <div style="margin-top:24px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px">
-          <div style="font-weight:700;font-size:14px;margin-bottom:8px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Password & Security</div>
-          <div style="font-size:13.5px;color:var(--ink-light);margin-bottom:14px">Last password change: Never. We recommend using a strong, unique password.</div>
-          <button class="edit-btn" onclick="alert('Password reset email sent!')">Change Password</button>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Account holder</div>
+          <dl>
+            <div class="pf-row"><dt>Legal first name</dt><dd id="pfFirst">Jane</dd></div>
+            <div class="pf-row"><dt>Legal last name</dt><dd id="pfLast">Smith</dd></div>
+          </dl>
         </div>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Contact details</div>
+          <dl>
+            <div class="pf-row"><dt>Registered email</dt><dd id="pfEmail">jane@email.com</dd></div>
+            <div class="pf-row"><dt>Telephone</dt><dd id="pfPhone">Not on file</dd></div>
+          </dl>
+          <div class="pf-note">Order confirmations and posting notifications are sent to the registered email address only.</div>
+        </div>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Account standing</div>
+          <dl>
+            <div class="pf-row"><dt>Member since</dt><dd id="pfSince">—</dd></div>
+            <div class="pf-row"><dt>Account type</dt><dd>Standard client</dd></div>
+            <div class="pf-row"><dt>Identity verification</dt><dd>Complete</dd></div>
+            <div class="pf-row"><dt>Orders on record</dt><dd id="pfOrderCount">0</dd></div>
+          </dl>
+        </div>
+
+        <div class="pf-section">
+          <div class="pf-section-head">Security</div>
+          <dl>
+            <div class="pf-row"><dt>Password last changed</dt><dd id="pfPwChanged">Not recorded</dd></div>
+            <div class="pf-row"><dt>Sign-in method</dt><dd id="pfProvider">Email and password</dd></div>
+          </dl>
+          <div class="pf-note">Use a unique password of at least 12 characters. We will never ask for it by email or telephone.</div>
+        </div>
+
+        <div class="pf-actions">
+          <button class="edit-btn" onclick="location.href='contact.html'">Request a detail change</button>
+          <button class="edit-btn" onclick="requestPasswordReset()">Send password reset link</button>
+        </div>
+
       </div>
 
     </main>
@@ -519,9 +567,28 @@ async function populateDash(){
   document.getElementById('pfFirst').textContent = first;
   document.getElementById('pfLast').textContent = last || '—';
   document.getElementById('pfEmail').textContent = email;
-  document.getElementById('pfPhone').textContent = phone || 'Not set';
+  document.getElementById('pfPhone').textContent = phone || 'Not on file';
+  document.getElementById('pfName').textContent = fullName;
+  document.getElementById('pfInitials').textContent = ((first.charAt(0)||'U') + (last.charAt(0)||'')).toUpperCase();
+  document.getElementById('pfRef').textContent = 'TLN-' + String(user.id||'').replace(/-/g,'').slice(0,8).toUpperCase();
+  const created = user.created_at ? new Date(user.created_at) : null;
+  document.getElementById('pfSince').textContent = created
+    ? created.toLocaleDateString('en-US', { month:'long', year:'numeric' }) : '—';
+  const provider = (user.app_metadata && user.app_metadata.provider) || 'email';
+  document.getElementById('pfProvider').textContent = provider === 'google' ? 'Google account' : 'Email and password';
   await renderOrders();
+  const count = document.getElementById('statOrders');
+  if (count) document.getElementById('pfOrderCount').textContent = count.textContent || '0';
 }
+
+async function requestPasswordReset(){
+  const email = (user && user.email) || '';
+  if(!email) return;
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + '/reset-password.html' });
+  alert(error ? ('Could not send reset link: ' + error.message) : ('A password reset link has been sent to ' + email + '.'));
+}
+window.requestPasswordReset = requestPasswordReset;
+
 
 function statusBadge(status){
   const s = String(status||'').toLowerCase();
@@ -539,7 +606,7 @@ async function renderOrders(){
     <div style="text-align:center;padding:40px 20px;color:var(--ink-light)">
       <div style="font-size:36px;margin-bottom:10px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="m12 3 8 4.3v9.4L12 21l-8-4.3V7.3Z"/><path d="m4 7.3 8 4.3 8-4.3M12 21v-9.4"/></svg></div>
       <p style="margin-bottom:16px">${escapeHtml(msg)}</p>
-      <a href="marketplace.html" style="background:var(--sky);color:var(--white);padding:10px 20px;border-radius:9px;font-weight:700;font-size:13.5px;font-family:'Playfair Display', serif">Browse Tradelines →</a>
+      <a href="marketplace.html" style="background:var(--sky);color:var(--white);padding:10px 20px;border-radius:9px;font-weight:700;font-size:13.5px;font-family:'Playfair Display', serif">Browse Tradelines</a>
     </div>`;
 
   recentWrap.textContent = 'Loading…';
@@ -573,7 +640,7 @@ async function renderOrders(){
       <td data-label="Tradelines">${(o.order_items||[]).map(i=>escapeHtml((i.tradeline_snapshot&&i.tradeline_snapshot.name)||i.tradeline_id)).join(', ')}</td>
       <td data-label="Total">${money(o.total)}</td>
       <td data-label="Posting Status">${statusBadge(o.status)}</td>
-      <td data-label=""><a href="order.html?id=${encodeURIComponent(o.id)}" style="color:var(--sky);font-weight:600;font-size:12.5px;white-space:nowrap">Track →</a></td>
+      <td data-label=""><a href="order.html?id=${encodeURIComponent(o.id)}" style="color:var(--sky);font-weight:600;font-size:12.5px;white-space:nowrap">Track</a></td>
     </tr>`).join('')}</tbody></table></div>`;
 
   const payBadge = (s) => {
@@ -593,7 +660,7 @@ async function renderOrders(){
       <td data-label="Date">${new Date(o.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td>
       <td data-label="Payment">${payBadge(o.payment_status)}</td>
       <td data-label="Posting Status">${statusBadge(o.status)}</td>
-      <td data-label=""><a href="order.html?id=${encodeURIComponent(o.id)}" style="color:var(--sky);font-weight:600;font-size:12.5px;white-space:nowrap">Track →</a></td>
+      <td data-label=""><a href="order.html?id=${encodeURIComponent(o.id)}" style="color:var(--sky);font-weight:600;font-size:12.5px;white-space:nowrap">Track</a></td>
     </tr>`)).join('')}</tbody></table></div>`;
 }
 

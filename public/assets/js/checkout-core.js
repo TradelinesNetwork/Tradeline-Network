@@ -131,7 +131,7 @@ export function renderChrome(activeStep) {
             Tradelines <span>Network</span>
           </a>
           <ul class="nav-links">${NAV_LINKS.map(([h, l]) => `<li><a href="${h}">${l}</a></li>`).join("")}</ul>
-          <a href="marketplace.html" class="nav-cta">Continue Shopping →</a>
+          <a href="marketplace.html" class="nav-cta">Continue Shopping</a>
           <div class="hamburger" id="coBurger"><span></span><span></span><span></span></div>
         </nav>
       </header>
@@ -194,7 +194,7 @@ export function renderSummary(extraNote = "") {
       </div>
       ${extraNote ? `<div class="co-guarantee">${extraNote}</div>` : ""}
     </div>
-    <div style="text-align:center;margin-top:12px"><a href="marketplace.html" style="font-size:13px;color:#5a6672">← Continue shopping</a></div>`;
+    <div style="text-align:center;margin-top:12px"><a href="marketplace.html" style="font-size:13px;color:#5a6672">Continue shopping</a></div>`;
 }
 
 /** Redirects to the earliest incomplete step. Returns true when this page may render. */
