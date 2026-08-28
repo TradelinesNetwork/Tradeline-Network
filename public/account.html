@@ -567,9 +567,28 @@ async function populateDash(){
   document.getElementById('pfFirst').textContent = first;
   document.getElementById('pfLast').textContent = last || '—';
   document.getElementById('pfEmail').textContent = email;
-  document.getElementById('pfPhone').textContent = phone || 'Not set';
+  document.getElementById('pfPhone').textContent = phone || 'Not on file';
+  document.getElementById('pfName').textContent = fullName;
+  document.getElementById('pfInitials').textContent = ((first.charAt(0)||'U') + (last.charAt(0)||'')).toUpperCase();
+  document.getElementById('pfRef').textContent = 'TLN-' + String(user.id||'').replace(/-/g,'').slice(0,8).toUpperCase();
+  const created = user.created_at ? new Date(user.created_at) : null;
+  document.getElementById('pfSince').textContent = created
+    ? created.toLocaleDateString('en-US', { month:'long', year:'numeric' }) : '—';
+  const provider = (user.app_metadata && user.app_metadata.provider) || 'email';
+  document.getElementById('pfProvider').textContent = provider === 'google' ? 'Google account' : 'Email and password';
   await renderOrders();
+  const count = document.getElementById('statOrders');
+  if (count) document.getElementById('pfOrderCount').textContent = count.textContent || '0';
 }
+
+async function requestPasswordReset(){
+  const email = (user && user.email) || '';
+  if(!email) return;
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + '/reset-password.html' });
+  alert(error ? ('Could not send reset link: ' + error.message) : ('A password reset link has been sent to ' + email + '.'));
+}
+window.requestPasswordReset = requestPasswordReset;
+
 
 function statusBadge(status){
   const s = String(status||'').toLowerCase();
