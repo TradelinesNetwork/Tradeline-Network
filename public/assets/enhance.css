@@ -848,7 +848,8 @@ body.step-payment #placeOrderBtn { display: flex !important; }
     line-height: 1.15 !important;
   }
   .dash-nav-item .nav-icon { font-size: 18px !important; width: auto !important; }
-  .dash-nav-item.active { background: transparent !important; }
+  .dash-nav-item.active { color: var(--primary, #1e3a5f) !important; }
+  .dash-nav-item.active .nav-icon { color: inherit !important; }
   /* Keep user card + sign out at top; content clears the fixed bar */
   .dash-sidebar { order: -1 !important; }
   .dash-main { padding-bottom: 76px !important; }
