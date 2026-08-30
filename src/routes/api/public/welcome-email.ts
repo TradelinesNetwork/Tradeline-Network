@@ -1,6 +1,6 @@
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
-const FROM_EMAIL = "Your Website <welcome@yourwebsite.com>";
+const FROM_EMAIL = "Tradelines Network <tradelinesnetwork.trade>";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -55,7 +55,7 @@ Deno.serve(async (req) => {
         body: JSON.stringify({
           from: FROM_EMAIL,
           to: [email],
-          subject: "🎉 Welcome to Your Website!",
+          subject: "🎉 Welcome to Tradelines Network!",
           html: `
 <!DOCTYPE html>
 <html>
