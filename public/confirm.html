@@ -126,25 +126,21 @@ document.getElementById('coPlace').addEventListener('click', async () => {
     btn.disabled = false; btn.textContent = 'Place Order';
     return fail(data?.error || `Order could not be placed (status ${res.status}). Nothing was charged — please try again or contact support.`);
   }
-  if (error) {
-    // Order was NOT created
-    showError(error.message);
-    return;
-}
-
-// At this point the order exists.
-const order = data;
-
-await supabase.functions.invoke(
-    "send-order-email",
-    {
-        body: {
-            email: user.email,
-            name: user.user_metadata?.full_name || "",
-            orderId: order.id,
-            total: order.total
+  // Order was successfully created.
+  // Send the order confirmation email.
+  try {
+    await authedFetch('/api/public/order-email', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        orderId: String(data.orderId)
+      }),
+    });
+  } catch (emailError) {
+    // The order was already created successfully.
+    // Do not prevent the success screen if the email fails.
+    console.error('Order confirmation email failed:', emailError);
   }
-
   saveCart([]); clearCheckout();
   document.getElementById('coMain').style.display='none';
   document.getElementById('coSummary').style.display='none';
