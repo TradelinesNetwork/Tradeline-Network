@@ -531,12 +531,15 @@ async function showScreen(){
   if(user){
     document.getElementById('authScreen').style.display='none';
     document.getElementById('dashScreen').style.display='block';
+    // Covers Google sign-ups too; the server only ever sends this once.
+    if(typeof sendWelcomeEmail === 'function') sendWelcomeEmail();
     await populateDash();
   } else {
     document.getElementById('authScreen').style.display='flex';
     document.getElementById('dashScreen').style.display='none';
   }
 }
+
 
 async function populateDash(){
   const meta = user.user_metadata || {};
@@ -725,6 +728,12 @@ async function doRegister(){
 
 window.doRegister = doRegister;
 
+async function sendWelcomeEmail(){
+  // One-time welcome email. Server-side guard makes repeat calls harmless.
+  try { await authedFetch('/api/public/welcome-email', { method:'POST' }); }
+  catch(err){ console.warn('welcome email failed', err); }
+}
+
 async function completeLogin(){
   document.getElementById('successModal').style.display = 'none';
   const creds = window.__pendingLogin || null;
@@ -732,10 +741,12 @@ async function completeLogin(){
   if(creds){
     const { error } = await supabase.auth.signInWithPassword({ email: creds.email, password: creds.password });
     if(error){ switchAuth('login'); return; }
+    await sendWelcomeEmail();
   }
   if(postAuthRedirect()) return;
   await refreshSession();
 }
+
 window.completeLogin = completeLogin;
 
 

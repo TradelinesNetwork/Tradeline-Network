@@ -105,6 +105,7 @@ export type Database = {
           account_age_years: number | null
           au_quantity: number | null
           bureau_reporting: string | null
+          confirmation_email_sent_at: string | null
           created_at: string
           credit_limit: number | null
           crypto: string
@@ -130,6 +131,7 @@ export type Database = {
           account_age_years?: number | null
           au_quantity?: number | null
           bureau_reporting?: string | null
+          confirmation_email_sent_at?: string | null
           created_at?: string
           credit_limit?: number | null
           crypto: string
@@ -155,6 +157,7 @@ export type Database = {
           account_age_years?: number | null
           au_quantity?: number | null
           bureau_reporting?: string | null
+          confirmation_email_sent_at?: string | null
           created_at?: string
           credit_limit?: number | null
           crypto?: string
@@ -187,6 +190,7 @@ export type Database = {
           phone: string | null
           updated_at: string
           user_id: string
+          welcome_email_sent_at: string | null
         }
         Insert: {
           created_at?: string
@@ -196,6 +200,7 @@ export type Database = {
           phone?: string | null
           updated_at?: string
           user_id: string
+          welcome_email_sent_at?: string | null
         }
         Update: {
           created_at?: string
@@ -205,6 +210,7 @@ export type Database = {
           phone?: string | null
           updated_at?: string
           user_id?: string
+          welcome_email_sent_at?: string | null
         }
         Relationships: []
       }

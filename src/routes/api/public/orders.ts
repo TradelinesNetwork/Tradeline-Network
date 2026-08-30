@@ -336,13 +336,50 @@ export const Route = createFileRoute("/api/public/orders")({
           );
         }
 
+        // Order confirmation email (never blocks or fails the order).
+        try {
+          const to = profile?.email || firstItem.au.email || "";
+          if (to) {
+            const { sendEmail, orderConfirmationEmail, siteUrlFrom } = await import(
+              "@/lib/email.server"
+            );
+            const tpl = orderConfirmationEmail({
+              name: profile?.full_name || `${firstItem.au.first} ${firstItem.au.last}`,
+              orderId: String(order.id),
+              items: body.items.map((it) => ({
+                name: String((it.snapshot as any).name || it.tradelineId),
+                qty: Number(it.snapshot.qty) || 1,
+                price: Number(it.snapshot.price) || 0,
+              })),
+              subtotal: body.subtotal,
+              fees: body.fees,
+              total: body.total,
+              paymentLabel: isCard
+                ? `Card — ${body.card?.brand} ending ${body.card?.last4}`
+                : `${payCrypto} on ${payNetwork}`,
+              reference: payRef,
+              siteUrl: siteUrlFrom(request),
+            });
+            const sent = await sendEmail({ to, ...tpl });
+            if (sent.sent) {
+              await supabaseAdmin
+                .from("orders")
+                .update({ confirmation_email_sent_at: new Date().toISOString() })
+                .eq("id", order.id);
+            }
+          }
+        } catch (mailErr) {
+          console.error("[orders] confirmation email failed", mailErr);
+        }
+
         return json({
           orderId: order.id,
           status: order.status,
           createdAt: order.created_at,
           message:
-            "Order received. Your payment will be verified on-chain by our team — you'll be notified once it's confirmed.",
+            "Order received. A confirmation email is on its way. Your payment will be verified on-chain by our team — you'll be notified once it's confirmed.",
         });
+
         } catch (e: any) {
           console.error("[orders] unexpected failure", e);
           return json(
