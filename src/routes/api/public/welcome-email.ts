@@ -1,6 +1,6 @@
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
-const FROM_EMAIL = "Tradelines Network <tradelinesnetwork.trade>";
+const FROM_EMAIL = "Tradelines Network (tradelinenetworks@gmail.com)";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
