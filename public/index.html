@@ -307,6 +307,28 @@
   }
   .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
 
+  /* Showcase carousel */
+  .carousel-section { padding-top: 20px; }
+  .carousel { position: relative; max-width: 960px; margin: 0 auto; border-radius: 18px; overflow: hidden; background: var(--panel,#0e1726); box-shadow: 0 24px 60px rgba(2,8,23,0.35); }
+  .carousel-track { display: flex; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .carousel-slide { position: relative; flex: 0 0 100%; margin: 0; }
+  .carousel-slide img { display: block; width: 100%; height: 480px; object-fit: cover; }
+  .carousel-slide figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px 32px 22px; display: flex; flex-direction: column; gap: 4px; background: rgba(2,8,23,0.82) !important; color: #fff; }
+  .carousel-slide figcaption strong { font-size: 20px; letter-spacing: -0.01em; color: #fff !important; }
+  .carousel-slide figcaption span { font-size: 14px; color: rgba(255,255,255,0.82) !important; }
+  .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer; background: rgba(255,255,255,0.92); color: #0e1726; font-size: 16px; line-height: 1; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; z-index: 2; }
+  .carousel-arrow:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+  .carousel-prev { left: 16px; }
+  .carousel-next { right: 16px; }
+  .carousel-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+  .carousel-dot { width: 9px; height: 9px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: rgba(255,255,255,0.45); transition: background .2s, transform .2s; }
+  .carousel-dot.active { background: #fff; transform: scale(1.25); }
+  @media (max-width: 640px) {
+    .carousel-slide img { height: 300px; }
+    .carousel-slide figcaption { padding: 40px 20px 18px; }
+    .carousel-arrow { width: 38px; height: 38px; }
+  }
+
   /* Hero card mockup */
   .hero-visual {
     display: flex;
@@ -835,6 +857,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- Showcase Carousel -->
+<section class="section carousel-section">
+  <div class="section-inner">
+    <div class="section-header" style="text-align:center">
+      <span class="section-tag">Inside Tradelines Network</span>
+      <h2 class="section-title">One platform, end to end</h2>
+      <p class="section-sub" style="margin:0 auto">From browsing the vault to tracking posted tradelines — see the platform in action.</p>
+    </div>
+    <div class="carousel" id="showcase-carousel" aria-roledescription="carousel" aria-label="Platform showcase">
+      <div class="carousel-track">
+        <figure class="carousel-slide">
+          <img src="assets/hero-cards.jpg" alt="Tradeline cards from top U.S. banks" loading="eager">
+          <figcaption><strong>The Vault</strong><span>Hundreds of verified authorized-user tradelines from major banks.</span></figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/images/cart-checkout.jpg" alt="Fast, secure online checkout" loading="lazy">
+          <figcaption><strong>Online Checkout</strong><span>Reserve your tradeline and check out by card or crypto in minutes.</span></figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/images/dashboard-growth.jpg" alt="Dashboard tracking credit growth" loading="lazy">
+          <figcaption><strong>Track Posting</strong><span>Follow every order from purchase to bureau posting in your dashboard.</span></figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/images/cart-analytics.jpg" alt="Order analytics and reporting" loading="lazy">
+          <figcaption><strong>Order Analytics</strong><span>Clear reporting windows, deadlines and posting status at a glance.</span></figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/images/trading-on-the-go.jpg" alt="Manage tradelines on the go" loading="lazy">
+          <figcaption><strong>Anywhere Access</strong><span>Manage orders and support from any device, on the go.</span></figcaption>
+        </figure>
+      </div>
+      <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous slide">&#10094;</button>
+      <button class="carousel-arrow carousel-next" type="button" aria-label="Next slide">&#10095;</button>
+      <div class="carousel-dots" role="tablist" aria-label="Choose slide"></div>
+    </div>
+  </div>
+</section>
 
 <!-- How It Works -->
 <section class="section how-section">
@@ -1169,5 +1228,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <script src="assets/js/social-icons.js" defer></script>
 <script src="assets/js/site-assets.js" defer></script>
+<script>
+(function () {
+  var root = document.getElementById('showcase-carousel');
+  if (!root) return;
+  var track = root.querySelector('.carousel-track');
+  var slides = root.querySelectorAll('.carousel-slide');
+  var dotsWrap = root.querySelector('.carousel-dots');
+  var index = 0, timer = null, DELAY = 5000;
+
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    dot.addEventListener('click', function () { goTo(i); restart(); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = dotsWrap.querySelectorAll('.carousel-dot');
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach(function (d, j) { d.classList.toggle('active', j === index); });
+  }
+  function next() { goTo(index + 1); }
+  function restart() { clearInterval(timer); timer = setInterval(next, DELAY); }
+
+  root.querySelector('.carousel-prev').addEventListener('click', function () { goTo(index - 1); restart(); });
+  root.querySelector('.carousel-next').addEventListener('click', function () { next(); restart(); });
+  root.addEventListener('mouseenter', function () { clearInterval(timer); });
+  root.addEventListener('mouseleave', restart);
+
+  /* Touch swipe support */
+  var startX = 0;
+  root.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; clearInterval(timer); }, { passive: true });
+  root.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : goTo(index - 1); }
+    restart();
+  }, { passive: true });
+
+  goTo(0);
+  restart();
+})();
+</script>
 </body>
 </html>
