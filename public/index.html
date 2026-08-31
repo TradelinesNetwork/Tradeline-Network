@@ -1228,5 +1228,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <script src="assets/js/social-icons.js" defer></script>
 <script src="assets/js/site-assets.js" defer></script>
+<script>
+(function () {
+  var root = document.getElementById('showcase-carousel');
+  if (!root) return;
+  var track = root.querySelector('.carousel-track');
+  var slides = root.querySelectorAll('.carousel-slide');
+  var dotsWrap = root.querySelector('.carousel-dots');
+  var index = 0, timer = null, DELAY = 5000;
+
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    dot.addEventListener('click', function () { goTo(i); restart(); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = dotsWrap.querySelectorAll('.carousel-dot');
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach(function (d, j) { d.classList.toggle('active', j === index); });
+  }
+  function next() { goTo(index + 1); }
+  function restart() { clearInterval(timer); timer = setInterval(next, DELAY); }
+
+  root.querySelector('.carousel-prev').addEventListener('click', function () { goTo(index - 1); restart(); });
+  root.querySelector('.carousel-next').addEventListener('click', function () { next(); restart(); });
+  root.addEventListener('mouseenter', function () { clearInterval(timer); });
+  root.addEventListener('mouseleave', restart);
+
+  /* Touch swipe support */
+  var startX = 0;
+  root.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; clearInterval(timer); }, { passive: true });
+  root.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : goTo(index - 1); }
+    restart();
+  }, { passive: true });
+
+  goTo(0);
+  restart();
+})();
+</script>
 </body>
 </html>
