@@ -722,15 +722,22 @@ async function doRegister(){
     },
   });
   if(error){ alert(error.message || 'Sign up failed.'); return; }
-  window.__pendingLogin = { email: e, password: p };
+  window.__pendingLogin = { email: e, password: p, name: (f+' '+l).trim() };
   document.getElementById('successModal').style.display = 'flex';
 }
 
 window.doRegister = doRegister;
 
-async function sendWelcomeEmail(){
-  // One-time welcome email. Server-side guard makes repeat calls harmless.
-  try { await authedFetch('/api/public/welcome-email', { method:'POST' }); }
+async function sendWelcomeEmail(name){
+  // One-time welcome email. Server-side guard (welcome_email_sent_at on the
+  // profile row) makes repeat calls harmless, so it's safe to just fire this
+  // after every login — it only actually sends once per account.
+  try {
+    await authedFetch('/api/public/welcome-email', {
+      method: 'POST',
+      body: JSON.stringify({ name: name || '' }),
+    });
+  }
   catch(err){ console.warn('welcome email failed', err); }
 }
 
@@ -741,7 +748,7 @@ async function completeLogin(){
   if(creds){
     const { error } = await supabase.auth.signInWithPassword({ email: creds.email, password: creds.password });
     if(error){ switchAuth('login'); return; }
-    await sendWelcomeEmail();
+    await sendWelcomeEmail(creds.name);
   }
   if(postAuthRedirect()) return;
   await refreshSession();
