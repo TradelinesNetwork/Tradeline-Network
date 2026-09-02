@@ -32,6 +32,19 @@ body {
   --radius: 4px;
   --shadow: 0 1px 2px rgba(11, 31, 24, .06);
   --shadow-lg: 0 6px 24px rgba(11, 31, 24, .09);
+
+  /* Re-map the previous TLS theme tokens so every rule keyed to them
+     inherits the financial-services palette. */
+  --tls-navy: #064e3b;
+  --tls-navy-dark: #053f30;
+  --tls-slate: #0d7a5f;
+  --tls-slate-dark: #0a604a;
+  --tls-yellow: #c9a84c;
+  --tls-yellow-dark: #b8963c;
+  --tls-text: #33443d;
+  --tls-head: #064e3b;
+  --tls-line: #dde5e1;
+  --tls-soft: #f7f9f8;
 }
 
 /* ---------- Base ---------- */
@@ -51,7 +64,7 @@ html body h1, html body h2, html body h3, html body h4 {
 }
 
 /* Kill every decorative gradient / glow — the "vibe coded" tells. */
-.hero-glow, .hero-glow2, .hero-grid-bg { display: none !important; }
+html body .hero-glow, html body .hero-glow2, html body .hero-grid-bg { display: none !important; }
 .hero, .cta-band, .trust-bar, .page-hero, .page-hero-overlay,
 .section, .trust-panel, .opp-card, .step-card, .use-card, .value-card,
 .req-card, .sell-step, .contact-channel, .blog-card, .article-card,
@@ -69,7 +82,7 @@ html body .topbar {
   text-transform: uppercase;
   font-weight: 600;
 }
-.topbar a { color: var(--tf-gold) !important; }
+html body .topbar a { color: var(--tf-gold) !important; }
 
 /* ---------- Header ---------- */
 html body header {
@@ -77,14 +90,14 @@ html body header {
   border-bottom: 3px solid var(--tf-gold) !important;
   box-shadow: none !important;
 }
-.logo { color: #fff !important; letter-spacing: -0.01em; }
-.logo span { color: var(--tf-gold) !important; }
+html body .logo { color: #fff !important; letter-spacing: -0.01em; }
+html body .logo span { color: var(--tf-gold) !important; }
 html body .logo-icon {
   background: var(--tf-gold) !important;
   color: var(--tf-deep) !important;
   border-radius: 3px !important;
 }
-.logo-icon svg, .logo-icon path { stroke: var(--tf-deep); }
+html body .logo-icon svg, html body .logo-icon path { stroke: var(--tf-deep); }
 html body .nav-links a {
   color: rgba(255, 255, 255, .78) !important;
   font-size: 12.5px !important;
@@ -103,8 +116,8 @@ html body .nav-cta, html body .nav-links a.nav-cta {
   border-radius: 3px !important;
   font-weight: 700 !important;
 }
-.nav-cta:hover { background: #d9ba63 !important; }
-.mobile-nav { background: var(--tf-deep) !important; }
+html body .nav-cta:hover { background: #d9ba63 !important; }
+html body .mobile-nav { background: var(--tf-deep) !important; }
 
 /* ---------- Buttons ---------- */
 html body .btn-primary, html body .submit-btn, html body .cart-btn, html body .co-btn, html body button.btn-primary {
@@ -130,15 +143,15 @@ html body .btn-ghost {
   box-shadow: none !important;
   font-weight: 600 !important;
 }
-.btn-ghost:hover { border-color: var(--tf-deep) !important; background: #fff !important; }
+html body .btn-ghost:hover { border-color: var(--tf-deep) !important; background: #fff !important; }
 
 /* ---------- Hero ---------- */
 html body .hero {
   background: var(--tf-deep) !important;
   border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
-.hero, .hero h1, .hero-content h1 { color: #fff !important; }
-.hero p, .hero-content p { color: rgba(255, 255, 255, .74) !important; }
+html body .hero, html body .hero h1, html body .hero-content h1 { color: #fff !important; }
+html body .hero p, html body .hero-content p { color: rgba(255, 255, 255, .74) !important; }
 html body .hero-tag, html body .hero-sub-tag, html body .section-tag {
   background: transparent !important;
   color: var(--tf-gold) !important;
@@ -149,23 +162,23 @@ html body .hero-tag, html body .hero-sub-tag, html body .section-tag {
   font-size: 11px !important;
   font-weight: 700 !important;
 }
-.section-tag { color: var(--tf-emerald) !important; border-color: rgba(13, 122, 95, .35) !important; }
-.hero-stat-num { color: var(--tf-gold) !important; font-family: 'Playfair Display', Georgia, serif; }
-.hero-stat-label { color: rgba(255, 255, 255, .6) !important; text-transform: uppercase; letter-spacing: .08em; font-size: 11px !important; }
+html body .section-tag { color: var(--tf-emerald) !important; border-color: rgba(13, 122, 95, .35) !important; }
+html body .hero-stat-num { color: var(--tf-gold) !important; font-family: 'Playfair Display', Georgia, serif; }
+html body .hero-stat-label { color: rgba(255, 255, 255, .6) !important; text-transform: uppercase; letter-spacing: .08em; font-size: 11px !important; }
 
 /* ---------- Page heroes (interior pages) ---------- */
-.page-hero { background: var(--tf-deep) !important; }
-.page-hero-bg { opacity: .14 !important; filter: grayscale(1); }
-.page-hero-overlay { background: rgba(6, 78, 59, .82) !important; }
-.page-hero h1 { color: #fff !important; }
-.page-hero p { color: rgba(255, 255, 255, .74) !important; }
-.breadcrumb, .breadcrumb a { color: rgba(255, 255, 255, .6) !important; }
+html body .page-hero { background: var(--tf-deep) !important; }
+html body .page-hero-bg { opacity: .14 !important; filter: grayscale(1); }
+html body .page-hero-overlay { background: rgba(6, 78, 59, .82) !important; }
+html body .page-hero h1 { color: #fff !important; }
+html body .page-hero p { color: rgba(255, 255, 255, .74) !important; }
+html body .breadcrumb, html body .breadcrumb a { color: rgba(255, 255, 255, .6) !important; }
 
 /* ---------- Sections ---------- */
-.section { background: var(--tf-page) !important; }
-.section:nth-of-type(even) { background: var(--tf-surface) !important; }
-.section-title { position: relative; }
-.section-sub { color: var(--tf-muted) !important; }
+html body .section { background: var(--tf-page) !important; }
+html body .section:nth-of-type(even) { background: var(--tf-surface) !important; }
+html body .section-title { position: relative; }
+html body .section-sub { color: var(--tf-muted) !important; }
 
 /* ---------- Cards / panels ---------- */
 .opp-card, .step-card, .use-card, .value-card, .req-card, .sell-step,
@@ -183,7 +196,7 @@ html body .blog-card:hover, html body .article-card:hover, html body .tradeline-
   box-shadow: 0 4px 18px rgba(11, 31, 24, .07) !important;
   transform: none !important;
 }
-.tradeline-card.featured { border: 1px solid var(--tf-gold) !important; }
+html body .tradeline-card.featured { border: 1px solid var(--tf-gold) !important; }
 html body .card-badge {
   background: var(--tf-cream) !important;
   color: #7a6320 !important;
@@ -207,17 +220,17 @@ html body .use-icon, html body .value-icon, html body .req-icon, html body .sell
   border-radius: 3px !important;
   box-shadow: none !important;
 }
-.step-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
-.ico-svg { stroke-width: 1.6; }
+html body .step-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+html body .ico-svg { stroke-width: 1.6; }
 
 /* ---------- Trust bar / stats ---------- */
-.trust-bar { background: var(--tf-surface) !important; border-block: 1px solid var(--tf-line) !important; }
-.trust-badge { color: var(--tf-muted) !important; font-weight: 600; }
-.trust-bar-fill { background: var(--tf-emerald) !important; }
+html body .trust-bar { background: var(--tf-surface) !important; border-block: 1px solid var(--tf-line) !important; }
+html body .trust-badge { color: var(--tf-muted) !important; font-weight: 600; }
+html body .trust-bar-fill { background: var(--tf-emerald) !important; }
 
 /* ---------- Timeline ---------- */
-.timeline-dot { background: var(--tf-gold) !important; border: 2px solid var(--tf-deep) !important; box-shadow: none !important; }
-.timeline-year { color: var(--tf-emerald) !important; font-weight: 700; letter-spacing: .06em; }
+html body .timeline-dot { background: var(--tf-gold) !important; border: 2px solid var(--tf-deep) !important; box-shadow: none !important; }
+html body .timeline-year { color: var(--tf-emerald) !important; font-weight: 700; letter-spacing: .06em; }
 
 /* ---------- Tabs ---------- */
 html body .res-tab {
@@ -255,21 +268,21 @@ html body .form-input:focus, html body .form-select:focus {
 }
 
 /* ---------- FAQ ---------- */
-.faq-q { color: var(--tf-deep) !important; font-weight: 600 !important; }
-.faq-a { color: var(--tf-muted) !important; }
-.faq-arrow { color: var(--tf-emerald) !important; }
+html body .faq-q { color: var(--tf-deep) !important; font-weight: 600 !important; }
+html body .faq-a { color: var(--tf-muted) !important; }
+html body .faq-arrow { color: var(--tf-emerald) !important; }
 
 /* ---------- Prose ---------- */
-.prose p, .prose li { color: #2a3a34; }
-.prose a { color: var(--tf-emerald); text-decoration: underline; text-underline-offset: 2px; }
+html body .prose p, html body .prose li { color: #2a3a34; }
+html body .prose a { color: var(--tf-emerald); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ---------- CTA band ---------- */
-.cta-band { background: var(--tf-deep) !important; border-top: 3px solid var(--tf-gold) !important; }
-.cta-band h2 { color: #fff !important; }
-.cta-band p { color: rgba(255, 255, 255, .74) !important; }
-.cta-band .btn-primary { background: var(--tf-gold) !important; border-color: var(--tf-gold) !important; color: var(--tf-deep) !important; }
-.cta-band .btn-ghost { color: #fff !important; border-color: rgba(255, 255, 255, .38) !important; }
-.cta-band .btn-ghost:hover { background: rgba(255, 255, 255, .08) !important; }
+html body .cta-band { background: var(--tf-deep) !important; border-top: 3px solid var(--tf-gold) !important; }
+html body .cta-band h2 { color: #fff !important; }
+html body .cta-band p { color: rgba(255, 255, 255, .74) !important; }
+html body .cta-band .btn-primary { background: var(--tf-gold) !important; border-color: var(--tf-gold) !important; color: var(--tf-deep) !important; }
+html body .cta-band .btn-ghost { color: #fff !important; border-color: rgba(255, 255, 255, .38) !important; }
+html body .cta-band .btn-ghost:hover { background: rgba(255, 255, 255, .08) !important; }
 
 /* ---------- Carousel ---------- */
 html body #showcase-carousel .carousel-slide figcaption {
@@ -278,9 +291,9 @@ html body #showcase-carousel .carousel-slide figcaption {
 }
 #showcase-carousel .carousel-slide figcaption strong,
 #showcase-carousel .carousel-slide figcaption span,
-#showcase-carousel .carousel-slide figcaption p { color: #fff !important; }
-#showcase-carousel .carousel-dot { border-radius: 50% !important; width: 8px !important; height: 8px !important; flex: 0 0 8px; background: rgba(6, 78, 59, .25) !important; }
-#showcase-carousel .carousel-dot.active { background: var(--tf-gold) !important; }
+html body #showcase-carousel .carousel-slide figcaption p { color: #fff !important; }
+html body #showcase-carousel .carousel-dot { border-radius: 50% !important; width: 8px !important; height: 8px !important; flex: 0 0 8px; background: rgba(6, 78, 59, .25) !important; }
+html body #showcase-carousel .carousel-dot.active { background: var(--tf-gold) !important; }
 
 /* ---------- Footer ---------- */
 html body footer {
@@ -288,16 +301,16 @@ html body footer {
   color: rgba(255, 255, 255, .68) !important;
   border-top: 3px solid var(--tf-gold) !important;
 }
-footer h4, .footer-col h4 { color: #fff !important; letter-spacing: .06em; text-transform: uppercase; font-size: 12px !important; font-family: 'Inter', sans-serif !important; }
-footer a { color: rgba(255, 255, 255, .68) !important; }
-footer a:hover { color: var(--tf-gold) !important; }
-.footer-bottom { border-top: 1px solid rgba(255, 255, 255, .12) !important; }
+html body footer h4, html body .footer-col h4 { color: #fff !important; letter-spacing: .06em; text-transform: uppercase; font-size: 12px !important; font-family: 'Inter', sans-serif !important; }
+html body footer a { color: rgba(255, 255, 255, .68) !important; }
+html body footer a:hover { color: var(--tf-gold) !important; }
+html body .footer-bottom { border-top: 1px solid rgba(255, 255, 255, .12) !important; }
 
 /* ---------- Floating support buttons ---------- */
-.support-btn { border-radius: 3px !important; box-shadow: 0 4px 16px rgba(11, 31, 24, .22) !important; }
+html body .support-btn { border-radius: 3px !important; box-shadow: 0 4px 16px rgba(11, 31, 24, .22) !important; }
 
 /* ---------- Tables on marketing pages ---------- */
-table { border-collapse: collapse; }
+html body table { border-collapse: collapse; }
 html body table th {
   background: var(--tf-cream) !important;
   color: var(--tf-deep) !important;
@@ -306,4 +319,41 @@ html body table th {
   font-size: 11.5px !important;
   border-bottom: 1px solid var(--tf-line) !important;
 }
-table td { border-bottom: 1px solid var(--tf-line-soft) !important; color: var(--tf-ink) !important; }
+html body table td { border-bottom: 1px solid var(--tf-line-soft) !important; color: var(--tf-ink) !important; }
+
+
+/* ---------- Specificity fixes over the previous theme layer ---------- */
+html body h1, html body h2, html body h3, html body h4 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  text-transform: none !important;
+  letter-spacing: -0.015em !important;
+  color: var(--tf-deep) !important;
+}
+html body .hero-inner h1, html body .page-hero h1, html body .cta-band h2 { color: #fff !important; text-shadow: none !important; }
+html body .hero-inner h1 { font-weight: 700 !important; }
+html body .hero-tag, html body .hero-sub-tag, html body .section-tag,
+html body .card-badge, html body .trust-badge {
+  display: inline-block !important;
+  width: auto !important;
+  max-width: max-content !important;
+  padding: 5px 12px !important;
+}
+html body .hero-sub-tag { border: none !important; color: rgba(255,255,255,.72) !important; text-shadow: none !important; }
+html body .hero-btns .btn-primary, html body .success-btn, html body .add-cart-btn,
+html body .checkout-btn, html body .auth-submit, html body .place-order-btn, html body button.primary {
+  background: var(--tf-emerald) !important;
+  border: 1px solid var(--tf-emerald) !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+}
+html body .hero-btns .btn-ghost {
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,.42) !important;
+  color: #fff !important;
+}
+html body .hero-stat-num { color: var(--tf-gold) !important; }
+html body .hero-stat-label { color: rgba(255,255,255,.65) !important; }
+html body header { background: var(--tf-deep) !important; border-bottom: 3px solid var(--tf-gold) !important; box-shadow: none !important; }
+html body p, html body li, html body td, html body label, html body small { color: var(--tf-ink); }
+html body .hero p, html body .page-hero p, html body .cta-band p, html body footer p,
+html body footer a, html body footer li, html body .nav-links a { color: inherit; }
