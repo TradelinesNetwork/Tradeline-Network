@@ -357,3 +357,24 @@ html body header { background: var(--tf-deep) !important; border-bottom: 3px sol
 html body p, html body li, html body td, html body label, html body small { color: var(--tf-ink); }
 html body .hero p, html body .page-hero p, html body .cta-band p, html body footer p,
 html body footer a, html body footer li, html body .nav-links a { color: inherit; }
+
+/* ---------- Company fact sheet (about / sell / contact / blog) ---------- */
+html body .fact-sheet {
+  background: var(--tf-surface) !important;
+  border: 1px solid var(--tf-line);
+  border-top: 3px solid var(--tf-deep);
+  border-radius: 4px;
+  padding: 32px;
+  color: var(--tf-ink);
+}
+html body .fact-sheet-title {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .12em;
+  font-weight: 700; color: var(--tf-emerald); margin-bottom: 18px;
+}
+html body .fact-row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 12px 0; border-bottom: 1px solid var(--tf-line-soft);
+}
+html body .fact-row:last-child { border-bottom: none; }
+html body .fact-key { font-size: 12.5px; color: var(--tf-muted); text-transform: uppercase; letter-spacing: .06em; margin: 0 !important; }
+html body .fact-val { font-weight: 700; color: var(--tf-deep) !important; text-align: right; }
