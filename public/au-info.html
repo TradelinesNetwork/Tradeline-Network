@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=2">
+<meta name="theme-color" content="#263644">
+<meta name="description" content="Step 2 of 4 — enter the authorized user details for each tradeline spot in your order.">
+<title>Step 2: Authorized User Info | Tradelines Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/checkout-chrome.css?v=1">
+<link rel="stylesheet" href="assets/checkout.css?v=2">
+</head>
+<body class="co-body">
+<div id="coHeader"></div>
+<div id="coProgress"></div>
+
+<div class="co-wrap" id="coWrap">
+  <div>
+    <div class="co-card" id="coGate" style="display:none;text-align:center">
+      <div style="font-size:38px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></div>
+      <div class="co-title" style="justify-content:center">Sign in to continue</div>
+      <div class="co-sub">Create a free account or sign in so we can attach this order to your dashboard.</div>
+      <a class="co-btn" href="account.html?redirect=au-info">Sign In / Create Account</a>
+    </div>
+
+    <div class="co-card" id="coMain" style="display:none">
+      <div class="co-title"><div class="ico" style="background:rgba(10,143,95,.12)"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="2.8" y="5" width="18.4" height="14" rx="2.4"/><circle cx="8.5" cy="11" r="2.2"/><path d="M5 16.3a4 4 0 0 1 7 0M14.5 10h4M14.5 13.5h4"/></svg></div>Step 2 — Authorized User Information</div>
+      <div class="co-sub">Enter the details of the person who will be added as an authorized user on each tradeline. These details are encrypted before they are stored.</div>
+      <div id="coAuForms"></div>
+      <div class="co-err" id="coErr" style="display:none"></div>
+      <div class="co-actions">
+        <a class="co-btn co-btn-ghost" href="cart.html">Back to cart</a>
+        <button class="co-btn" id="coNext">Continue to Payment</button>
+      </div>
+    </div>
+  </div>
+  <div class="co-aside" id="coSummary"></div>
+</div>
+
+<div id="coFooter"></div>
+
+<script type="module">
+import { renderChrome, renderSummary, guardStep, requireAuth, getCart, cartUnits, getCheckout, saveCheckout, cartSignature, escapeHtml, bankEmoji, US_STATES } from "./assets/js/checkout-core.js";
+import { bankLogo } from "./assets/js/bank-logos.js";
+
+renderChrome(2);
+if(guardStep(2)){
+  const user = await requireAuth('au-info');
+  if(user){
+    document.getElementById('coMain').style.display='';
+    renderSummary();
+    renderForms();
+  } else {
+    document.getElementById('coGate').style.display='';
+  }
+}
+
+function renderForms(){
+  const units = cartUnits();
+  const saved = getCheckout();
+  const prev = (saved.cartSig === cartSignature() && Array.isArray(saved.au)) ? saved.au : [];
+  const v = (i,k)=> escapeHtml(prev[i]?.[k] ?? '');
+  document.getElementById('coAuForms').innerHTML = units.map((item,idx)=>`
+    <div class="co-au" data-au="${idx}">
+      <div class="co-au-head"><span class="co-au-logo">${bankLogo(item.bank, 26)}</span><span>${escapeHtml(item.bank)} #${escapeHtml(String(item.id))}</span><span class="co-au-price">$${Number(item.price||0).toLocaleString()}</span></div>
+      <div class="co-note">Authorized user ${idx+1} of ${units.length}</div>
+      <div class="co-row co-row-2">
+        <div class="co-field"><label>First Name *</label><input data-f="first" value="${v(idx,'first')}" autocomplete="off" placeholder="As it appears on ID"></div>
+        <div class="co-field"><label>Last Name *</label><input data-f="last" value="${v(idx,'last')}" autocomplete="off" placeholder="As it appears on ID"></div>
+      </div>
+      <div class="co-row co-row-2">
+        <div class="co-field"><label>Date of Birth *</label><input data-f="dob" type="date" value="${v(idx,'dob')}"></div>
+        <div class="co-field"><label>Last 4 of SSN *</label><input data-f="ssn" inputmode="numeric" maxlength="4" value="${v(idx,'ssn')}" placeholder="1234"></div>
+      </div>
+      <div class="co-row">
+        <div class="co-field"><label>Mailing Address *</label><input data-f="addr" value="${v(idx,'addr')}" placeholder="123 Main St, Apt 4"></div>
+      </div>
+      <div class="co-row co-row-3">
+        <div class="co-field"><label>City *</label><input data-f="city" value="${v(idx,'city')}"></div>
+        <div class="co-field"><label>State *</label><select data-f="state"><option value="">Select…</option>${US_STATES.map(s=>`<option ${prev[idx]?.state===s?'selected':''}>${s}</option>`).join('')}</select></div>
+        <div class="co-field"><label>ZIP *</label><input data-f="zip" value="${v(idx,'zip')}" inputmode="numeric" maxlength="10"></div>
+      </div>
+      <div class="co-row co-row-2">
+        <div class="co-field"><label>Phone</label><input data-f="phone" value="${v(idx,'phone')}" placeholder="(555) 555-5555"></div>
+        <div class="co-field"><label>Email *</label><input data-f="email" type="email" value="${v(idx,'email')}" placeholder="au@example.com"></div>
+      </div>
+      <div class="co-row">
+        <div class="co-field"><label>Confirm Email *</label><input data-f="email2" type="email" value="${v(idx,'email')}" placeholder="Repeat the email"></div>
+      </div>
+    </div>`).join('');
+}
+
+function fail(msg){
+  const el = document.getElementById('coErr');
+  el.style.display=''; el.textContent = '' + msg;
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+document.getElementById('coNext').addEventListener('click',()=>{
+  const units = cartUnits();
+  const out = [];
+  for(let idx=0; idx<units.length; idx++){
+    const card = document.querySelector(`[data-au="${idx}"]`);
+    const get = k => (card.querySelector(`[data-f="${k}"]`)?.value || '').trim();
+    const rec = {first:get('first'),last:get('last'),dob:get('dob'),ssn:get('ssn'),addr:get('addr'),city:get('city'),state:get('state'),zip:get('zip'),phone:get('phone'),email:get('email')};
+    const label = `${units[idx].bank} #${units[idx].id}`;
+    if(!rec.first||!rec.last||!rec.dob||!rec.ssn||!rec.addr||!rec.city||!rec.state||!rec.zip||!rec.email) return fail(`Please complete every required field for ${label}.`);
+    if(!/^\d{4}$/.test(rec.ssn)) return fail(`Enter the last 4 digits of the SSN for ${label}.`);
+    if(rec.email !== get('email2')) return fail(`Email addresses do not match for ${label}.`);
+    if(!/^\S+@\S+\.\S+$/.test(rec.email)) return fail(`Enter a valid email address for ${label}.`);
+    if(rec.state === 'Georgia') return fail("We're unable to process orders for authorized users located in Georgia.");
+    if(!rec.phone) delete rec.phone; // omit rather than send an empty string
+    out.push(rec);
+  }
+  saveCheckout({ au: out, cartSig: cartSignature() });
+  window.location.href = 'payment.html';
+});
+</script>
+</body>
+</html>

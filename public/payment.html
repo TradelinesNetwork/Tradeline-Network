@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=2">
+<meta name="theme-color" content="#263644">
+<meta name="description" content="Step 3 of 4 — pay with USDT, Bitcoin or Litecoin on your preferred network, then paste your transaction hash.">
+<title>Step 3: Payment | Tradelines Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/checkout-chrome.css?v=1">
+<link rel="stylesheet" href="assets/checkout.css?v=2">
+
+<style>
+/* Payment-method tabs: card is intentionally unavailable */
+.co-pay-tab[aria-disabled="true"]{opacity:.55;cursor:not-allowed;background:#f7f8fa}
+.co-pay-tab[aria-disabled="true"]:hover{border-color:var(--co-line)}
+.co-pay-flag{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8a929c;background:#eceff3;border-radius:99px;padding:3px 8px}
+
+/* Network rows (radio list) */
+.co-nets{display:grid;gap:9px;margin-bottom:16px}
+.co-net{width:100%;text-align:left;display:flex;gap:11px;align-items:flex-start;padding:13px 14px;border:1.5px solid var(--co-line);border-radius:11px;background:#fff;cursor:pointer;font:inherit;color:inherit;transition:.15s ease}
+.co-net:hover{border-color:#9db4ee}
+.co-net.active{border-color:var(--co-sky);box-shadow:0 0 0 1px var(--co-sky);background:#f6f8ff}
+.co-radio{width:17px;height:17px;border-radius:50%;border:2px solid #c3cbd6;flex-shrink:0;margin-top:2px;position:relative;background:#fff}
+.co-net.active .co-radio{border-color:var(--co-sky)}
+.co-net.active .co-radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--co-sky)}
+.co-net-body{flex:1;min-width:0}
+.co-net-name{font-weight:700;font-size:13.5px;display:block;margin-bottom:5px;color:var(--co-ink)}
+.co-net-main{display:flex;gap:11px;align-items:flex-start;flex:1;min-width:0}
+.chain-ico svg{width:100%;height:100%;display:block}
+.co-crypto-tab .c-ico svg{width:22px;height:22px;display:block}
+.co-addr-label .chain-ico{vertical-align:-5px;margin-right:6px}
+.co-net-tick{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.05em;background:#eef3ff;color:var(--co-sky);border-radius:5px;padding:2px 6px;margin-right:7px;vertical-align:1px}
+.co-net-address span{color:#7b8492}
+.co-net-address{display:block;font-size:11.5px;line-height:1.5;color:#667085;word-break:break-all;font-family:monospace}
+.co-net.active .co-net-address{color:#42506a}
+.co-net-address span{font-family:'Inter',sans-serif;font-weight:600;color:#8b95a3}
+.co-sec-badges{margin-top:14px;display:grid;gap:7px;font-size:12.5px;color:var(--co-ink-light)}
+</style>
+</head>
+<body class="co-body">
+<div id="coHeader"></div>
+<div id="coProgress"></div>
+
+<div class="co-wrap">
+  <div>
+    <div class="co-card">
+      <div class="co-title"><div class="ico" style="background:rgba(247,147,26,.14)"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg></div>Step 3 — Payment</div>
+      <div class="co-sub">Pay with cryptocurrency. Nothing is submitted yet — you'll review the full order on the final step.</div>
+
+      <div class="co-pay-tabs">
+        <div class="co-pay-tab active" id="tabPayCrypto" role="button" tabindex="0">
+          <span class="co-pay-name">₿ Cryptocurrency</span>
+          <span class="co-pay-sub">USDT · Bitcoin · Litecoin</span>
+        </div>
+        <div class="co-pay-tab" id="tabPayCard" aria-disabled="true">
+          <span class="co-pay-name"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg> Card</span>
+          <span class="co-pay-sub">Visa · Mastercard · Amex · Discover</span>
+          <span class="co-pay-flag">Temporarily unavailable</span>
+        </div>
+      </div>
+
+      <!-- CRYPTO -->
+      <div id="cryptoPay">
+        <div class="co-crypto-tabs">
+          <div class="co-crypto-tab active" data-coin="USDT"><span class="c-ico" data-coin-ico="USDT"></span><span class="c-name">Tether</span><span class="c-tick">USDT</span></div>
+          <div class="co-crypto-tab" data-coin="BTC"><span class="c-ico" data-coin-ico="BTC"></span><span class="c-name">Bitcoin</span><span class="c-tick">BTC</span></div>
+          <div class="co-crypto-tab" data-coin="LTC"><span class="c-ico" data-coin-ico="LTC"></span><span class="c-name">Litecoin</span><span class="c-tick">LTC</span></div>
+        </div>
+
+        <div class="co-amount">
+          <div class="co-amount-l">Amount to send</div>
+          <div class="co-amount-v" id="coAmount">—</div>
+          <div class="co-amount-u" id="coAmountUsd">Calculating…</div>
+        </div>
+
+        <div style="font-size:13px;font-weight:700;margin-bottom:9px">Select network</div>
+        <div class="co-nets" id="coNets"></div>
+
+        <div class="co-addr-box">
+          <div class="co-addr-label" id="coAddrLabel">Wallet Address</div>
+          <div class="co-addr" id="coAddr">—</div>
+          <button class="co-copy" id="coCopy" type="button"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="5.5" y="4" width="13" height="17" rx="2.2"/><path d="M9 4.2h6v2.4H9z"/><path d="M9 11h6M9 15h4"/></svg> Copy Address</button>
+        </div>
+        <div class="co-warn" id="coWarn"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> Send only the selected coin on the selected network. Sending on the wrong network results in permanent loss of funds.</div>
+
+        <div style="margin-top:20px;padding-top:18px;border-top:1px solid #dfe4ea">
+          <label style="display:block;font-size:13.5px;font-weight:700;margin-bottom:7px" for="coHash"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="2.8" y="5" width="18.4" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg> Paste Your Transaction Hash / TXID *</label>
+          <input class="co-hash" id="coHash" autocomplete="off" spellcheck="false" placeholder="e.g. 3a1b9c2d… (64 hex characters)">
+          <div class="co-hash-hint" id="coHashHint">Paste the full transaction ID from your wallet or exchange. Every payment is verified against the blockchain before your order is processed.</div>
+        </div>
+      </div>
+
+      <div class="co-err" id="coErr" style="display:none"></div>
+      <div class="co-actions">
+        <a class="co-btn co-btn-ghost" href="au-info.html">Back to AU info</a>
+        <button class="co-btn" id="coNext">Review Order</button>
+      </div>
+    </div>
+  </div>
+  <div class="co-aside" id="coSummary"></div>
+</div>
+
+<div id="coFooter"></div>
+
+<script type="module">
+import { renderChrome, renderSummary, guardStep, requireAuth, cartTotal, getCheckout, saveCheckout, CRYPTO_RATES, WALLET_ADDRESSES } from "./assets/js/checkout-core.js";
+import { chainIcon, COIN_ICON } from "./assets/js/chain-icons.js";
+
+/* Networks per coin, in display order. Keys must match the server-side list. */
+const NETWORKS = {
+  USDT: [
+    ['TRC-20', 'TRX', 'Tron (TRC20)'],
+    ['BEP-20', 'BSC', 'BNB Smart Chain (BEP20)'],
+    ['Solana', 'SOL', 'Solana'],
+    ['ERC-20', 'ETH', 'Ethereum (ERC20)'],
+  ],
+  BTC: [
+    ['Bitcoin', 'BTC', 'Bitcoin'],
+    ['BEP-20', 'BSC', 'BNB Smart Chain (BEP20)'],
+    ['RENEC', 'RENEC', 'RENEC Network (RENEC)'],
+  ],
+  LTC: [
+    ['Litecoin', 'LTC', 'Litecoin'],
+  ],
+};
+const COIN_NAMES = { USDT: 'Tether', BTC: 'Bitcoin', LTC: 'Litecoin' };
+
+renderChrome(3);
+document.querySelectorAll('[data-coin-ico]').forEach((el) => {
+  el.innerHTML = COIN_ICON[el.dataset.coinIco] || '';
+});
+
+let method = 'crypto';
+let coin = 'USDT';
+const nets = { USDT: 'TRC-20', BTC: 'Bitcoin', LTC: 'Litecoin' };
+const rates = { ...CRYPTO_RATES };
+
+if (guardStep(3)) {
+  const user = await requireAuth('payment');
+  if (user) { init(); refreshRates(); }
+}
+
+function netsFor(c) {
+  return NETWORKS[c].filter(([key]) => !!WALLET_ADDRESSES[c]?.[key]);
+}
+
+function init() {
+  renderSummary('<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> Secure &amp; encrypted checkout<br><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M10 14a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7L11.5 7"/><path d="M14 10a4 4 0 0 0-5.7 0L5.5 12.8a4 4 0 0 0 5.7 5.7L12.5 17"/></svg> Every payment blockchain-verified');
+
+  const saved = getCheckout().payment;
+  if (saved) {
+    if (saved.crypto && NETWORKS[saved.crypto]) coin = saved.crypto;
+    if (saved.crypto && saved.network && WALLET_ADDRESSES[saved.crypto]?.[saved.network]) {
+      nets[saved.crypto] = saved.network;
+    }
+    // Transaction hashes are never restored: every order needs its own fresh TXID.
+  }
+
+  setCoin(coin);
+
+  document.getElementById('tabPayCrypto').addEventListener('click', () => setMethod('crypto'));
+  // Card is intentionally unavailable — the tab is not interactive.
+  document.querySelectorAll('[data-coin]').forEach((el) =>
+    el.addEventListener('click', () => setCoin(el.dataset.coin)),
+  );
+  document.getElementById('coCopy').addEventListener('click', copyAddr);
+  document.getElementById('coHash').addEventListener('input', validateHash);
+  document.getElementById('coNext').addEventListener('click', next);
+}
+
+function setMethod(m) {
+  if (m !== 'crypto') return; // card checkout is disabled
+  method = 'crypto';
+  document.getElementById('tabPayCrypto').classList.add('active');
+  document.getElementById('cryptoPay').style.display = '';
+}
+
+/** Live USD rates with a graceful fallback to the bundled estimates. */
+async function refreshRates() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=tether,bitcoin,litecoin&vs_currencies=usd');
+    if (!res.ok) return;
+    const d = await res.json();
+    if (d.tether?.usd) rates.USDT = d.tether.usd;
+    if (d.bitcoin?.usd) rates.BTC = d.bitcoin.usd;
+    if (d.litecoin?.usd) rates.LTC = d.litecoin.usd;
+    setCoin(coin);
+  } catch { /* offline — keep fallback rates */ }
+}
+
+function setCoin(c) {
+  coin = c;
+  document.querySelectorAll('[data-coin]').forEach((el) =>
+    el.classList.toggle('active', el.dataset.coin === c),
+  );
+
+  const total = cartTotal();
+  const rate = Number(rates[c]) || 1;
+  const amt = (total / rate).toFixed(c === 'USDT' ? 2 : 6);
+  document.getElementById('coAmount').textContent = amt + ' ' + c;
+  document.getElementById('coAmountUsd').textContent =
+    '≈ $' + total.toLocaleString() + ' USD (live rate estimate)';
+
+  const list = netsFor(c);
+  if (!list.some(([key]) => key === nets[c])) nets[c] = list[0][0];
+
+  document.getElementById('coNets').innerHTML = list
+    .map(([key, ticker, label]) => `
+      <button type="button" class="co-net ${key === nets[c] ? 'active' : ''}" data-net="${key}" role="radio" aria-checked="${key === nets[c]}">
+        <span class="co-radio"></span>
+        <span class="co-net-main">
+          ${chainIcon(key, 24)}
+          <span class="co-net-body">
+            <span class="co-net-name"><span class="co-net-tick">${ticker}</span>${label}</span>
+            <span class="co-net-address"><span>Deposit address *</span> ${WALLET_ADDRESSES[c][key]}</span>
+          </span>
+        </span>
+      </button>`)
+    .join('');
+
+  document.querySelectorAll('[data-net]').forEach((b) =>
+    b.addEventListener('click', () => { nets[coin] = b.dataset.net; setCoin(coin); }),
+  );
+
+  const label = (list.find(([k]) => k === nets[c]) || [])[2] || nets[c];
+  document.getElementById('coAddrLabel').innerHTML =
+    `${chainIcon(nets[c], 20)}${COIN_NAMES[c]} (${c}) wallet address · ${label}`;
+  document.getElementById('coAddr').textContent = WALLET_ADDRESSES[c][nets[c]];
+  document.getElementById('coWarn').innerHTML =
+    `<svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><path d="M12 4.5 21 19.5H3Z"/><path d="M12 10v4M12 17h.01"/></svg> Send only <strong>${c}</strong> on the <strong>${label}</strong> network to this address. Sending another coin or using a different network results in permanent loss of funds.`;
+
+  const btn = document.getElementById('coCopy');
+  btn.classList.remove('copied');
+  btn.textContent = 'Copy Address';
+
+  validateHash();
+}
+
+function copyAddr() {
+  const btn = document.getElementById('coCopy');
+  const address = document.getElementById('coAddr').textContent.trim();
+  if (!address || address === '—') return;
+
+  const done = () => {
+    btn.classList.add('copied');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy Address'; }, 2000);
+  };
+
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(address).then(done).catch(() => legacyCopy(address, done));
+  } else {
+    legacyCopy(address, done);
+  }
+}
+
+function legacyCopy(text, done) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    done();
+  } catch {
+    fail('Unable to copy the wallet address. Please copy it manually.');
+  }
+}
+
+/* Format hints only — a non-empty TXID is what the Review Order button needs. */
+function hashPattern(net) {
+  if (net === 'ERC-20' || net === 'BEP-20') return /^0x[a-fA-F0-9]{64}$/;
+  if (net === 'Solana' || net === 'RENEC') return /^[1-9A-HJ-NP-Za-km-z]{40,120}$/;
+  return /^[a-fA-F0-9]{64}$/; // Bitcoin · Litecoin · Tron
+}
+
+function validateHash() {
+  const v = (document.getElementById('coHash').value || '').trim();
+  const hint = document.getElementById('coHashHint');
+  if (!v) {
+    hint.style.color = '';
+    hint.textContent = 'Paste the full transaction ID from your wallet or exchange. Your TXID is saved with the order and verified against the blockchain.';
+    return false;
+  }
+  if (hashPattern(nets[coin]).test(v)) {
+    hint.style.color = '#0a8f5f';
+    hint.textContent = `✓ TXID format looks valid for ${coin} on ${nets[coin]}.`;
+    return true;
+  }
+  hint.style.color = '#b07500';
+  hint.textContent = `Check that this is the full ${coin} transaction ID for ${nets[coin]}.`;
+  return false;
+}
+
+function fail(msg) {
+  const el = document.getElementById('coErr');
+  el.style.display = '';
+  el.textContent = '' + msg;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function next() {
+  document.getElementById('coErr').style.display = 'none';
+
+  const txHash = (document.getElementById('coHash').value || '').trim();
+  if (!txHash) return fail('Paste your transaction hash / TXID to continue.');
+
+  const address = WALLET_ADDRESSES[coin]?.[nets[coin]];
+  if (!address) return fail('Select a valid cryptocurrency network before continuing.');
+
+  saveCheckout({
+    payment: { method: 'crypto', crypto: coin, network: nets[coin], txHash, address },
+  });
+  window.location.href = 'confirm.html';
+}
+</script>
+</body>
+</html>

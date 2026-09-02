@@ -1,0 +1,1080 @@
+/* ============================================================
+   Tradelines Network — Global Enhancement Layer v3 (Final)
+   Navy-dominant palette + amber accent + fully mobile-visible
+   marketplace table + reduced-motion + WCAG contrast
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---------- Design tokens ---------- */
+:root {
+  --navy-950: #f5f7f8;   /* app background (light) */
+  --navy-900: #eef2f5;
+  --navy-800: #263644;
+  --navy-700: #1d2b37;
+  --navy-600: #4d6579;   /* primary accent */
+  --navy-500: #3b5265;
+  --ink-100:  #33414f;   /* body text on light */
+  --ink-300:  #5c6b7a;   /* secondary text */
+  --ink-500:  #7b8794;   /* muted */
+  --amber:    #b07d12;   /* warm accent — CTAs (AA on white) */
+  --amber-strong: #8f6510;
+  --line:     #e2e6ea;
+  --line-strong: #d6dde2;
+  --panel:    #ffffff;
+  --panel-strong: #ffffff;
+
+  /* Legacy tokens the site uses */
+  --sky: var(--navy-600) !important;
+  --sky-pale: #eef2f6 !important;
+  --gold: var(--amber) !important;
+  --gold-light: rgba(176,125,18,0.10) !important;
+  --mint: #2f8a68 !important;
+  --ink: var(--ink-100) !important;
+  --white: #FFFFFF !important;
+  --border: var(--line) !important;
+}
+
+
+/* ---------- Base / overflow guards ---------- */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, iframe, table { max-width: 100%; }
+h1, h2, h3, h4, h5, h6, p, a, span, li { overflow-wrap: anywhere; word-break: break-word; }
+
+/* ---------- Typography ---------- */
+html, body, input, select, textarea, button {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+}
+h1, h2, h3, .logo, .hero-title, [class*="headline"], [class*="Headline"] {
+  font-family: 'Fraunces', 'Georgia', 'Times New Roman', serif !important;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* ---------- Ambient background (standardized on every page) ---------- */
+body {
+  position: relative;
+  background-color: #ffffff !important;
+  color: var(--ink-100) !important;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: var(--page-bg, none);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  filter: saturate(0.9);
+  will-change: transform;
+}
+/* Soft light wash — keeps the photo subtle AND ensures WCAG contrast */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.94);
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+
+/* ---------- Text colors — high contrast on the light layer ---------- */
+body, p, li, span, label, td, th,
+[class*="subtitle"], [class*="description"], .hero p, .hero-btns,
+section p, section li, main p, main li,
+.mkt-count, .filter-group-label {
+  color: var(--ink-100) !important;
+}
+h1, h2, h3, h4, h5, h6,
+.logo, .hero-title, .hero h1,
+strong, .bank-name, .price-cell, .limit-cell,
+[class*="headline"], [class*="Headline"],
+[class*="price"], [class*="amount"], .hero-stat-num {
+  color: #2b3d4f !important;
+  text-shadow: none;
+}
+
+a { color: var(--amber) !important; text-decoration: none; }
+a:hover { color: var(--amber-strong) !important; }
+
+/* ---------- Panels / cards ---------- */
+section, .section, main, .card, [class*="card"],
+.filter-box, .tradeline-table, .modal, .toast-box,
+.lead-banner, .pricing-card, .feature-card, .testimonial-card,
+.faq-item, .step-card, .stat-card, .form-panel,
+.tradeline-card, .calc-inputs, .calc-results,
+[class*="panel"], [class*="box"] {
+  background: var(--panel) !important;
+  border: 1px solid var(--line) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 14px !important;
+}
+
+/* ---------- Header / topbar ---------- */
+.topbar, [class*="topbar"] {
+  background: #ffffff !important;
+  color: var(--ink-100) !important;
+  border-bottom: 1px solid var(--line) !important;
+  backdrop-filter: blur(10px);
+}
+.topbar a, [class*="topbar"] a { color: var(--amber) !important; }
+header, [class*="header"] {
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--line) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ---------- Hero: transparent over photo ---------- */
+.hero, [class*="hero"] { background: transparent !important; }
+.hero-grid-bg, .hero-glow, .hero-glow2,
+[class*="hero-grid"], [class*="hero-glow"] { display: none !important; }
+
+/* ---------- Buttons — navy primary + amber CTA ---------- */
+button, .btn, .btn-primary, .btn-secondary, .btn-ghost,
+.apply-btn, .modal-submit, .show-filters-btn,
+.lead-form button, .shop-btn, .nav-cta,
+.hero-btns a, .hero-btns button,
+[class*="cta-btn"], [class*="cta-"] {
+  background: var(--navy-600) !important;
+  color: #FFFFFF !important;
+  border: 1px solid #eef2f5 !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  text-shadow: none !important;
+  box-shadow: 0 6px 18px rgba(11, 24, 74, 0.35);
+}
+button:hover, .btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-ghost:hover,
+.apply-btn:hover, .modal-submit:hover, .show-filters-btn:hover,
+.lead-form button:hover, .shop-btn:hover, .nav-cta:hover,
+.hero-btns a:hover, .hero-btns button:hover,
+[class*="cta-btn"]:hover, [class*="cta-"]:hover {
+  background: var(--navy-500) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(11, 24, 74, 0.45);
+}
+
+/* Amber CTA: reserved for the highest-intent actions */
+.atc-btn, .cart-checkout-btn, .place-order-btn,
+.toast-cart-btn, [data-primary-cta] {
+  background: var(--amber-strong) !important;
+  color: #1A1200 !important;
+  border: 1px solid rgba(0,0,0,0.10) !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  box-shadow: 0 6px 16px rgba(231,178,74,0.28);
+}
+.atc-btn:hover, .cart-checkout-btn:hover, .place-order-btn:hover,
+.toast-cart-btn:hover, [data-primary-cta]:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+button.added, .atc-btn.added, button[class*="success"], .btn[class*="success"] {
+  background: rgba(107,191,160,0.28) !important;
+  color: #2b3d4f !important;
+  border-color: rgba(107,191,160,0.45) !important;
+}
+
+/* ---------- Inputs ---------- */
+input, select, textarea, .form-input, .sort-select, .lead-form input {
+  background: #f5f7f8 !important;
+  color: var(--ink-100) !important;
+  border-color: var(--line-strong) !important;
+  font-size: 16px !important;
+  max-width: 100%;
+}
+input::placeholder, textarea::placeholder { color: var(--ink-500) !important; }
+input[type="checkbox"], input[type="radio"] {
+  accent-color: var(--amber) !important;
+  width: 16px !important; height: 16px !important;
+}
+input[type="range"] { accent-color: var(--amber) !important; }
+
+/* ---------- Badges / pills ---------- */
+.age-badge, [class*="badge"], [class*="tag"], [class*="pill"],
+.hero-tag, [class*="chip"] {
+  background: #eef2f5 !important;
+  color: var(--ink-100) !important;
+  border: 1px solid var(--line) !important;
+}
+.bank-logo, [class*="bank-logo"] {
+  background: #eef2f5 !important;
+  color: var(--ink-100) !important;
+  border: 1px solid var(--line) !important;
+}
+
+/* ---------- Tables (desktop) ---------- */
+.tradeline-table thead, .tradeline-table th,
+[class*="table"] thead, [class*="table"] th {
+  background: #f5f7f8 !important;
+  color: var(--ink-300) !important;
+}
+.tradeline-table tr:hover, [class*="table"] tr:hover {
+  background: #eaf0f6 !important;
+}
+.tradeline-table th, .tradeline-table td,
+[class*="table"] th, [class*="table"] td {
+  border-bottom-color: var(--line) !important;
+  color: var(--ink-100) !important;
+}
+
+/* ---------- Focus visibility ---------- */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ============================================================
+   MOBILE (≤768px) — full data visibility
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav-cta, .header-cta, header .cta-btn { display: none !important; }
+  a, button, .btn, .hamburger, .mobile-nav a { min-height: 44px; }
+  button, .btn { padding: 12px 18px; }
+  section, .section, main, footer { padding-left: 18px !important; padding-right: 18px !important; }
+  .container, .wrap, .inner { max-width: 100% !important; }
+  h1 { font-size: clamp(28px, 8vw, 44px) !important; line-height: 1.15 !important; }
+  h2 { font-size: clamp(22px, 6vw, 34px) !important; line-height: 1.2 !important; }
+  h3 { font-size: clamp(18px, 5vw, 24px) !important; }
+  p, li { font-size: 15.5px; }
+  [class*="card"] { width: 100% !important; max-width: 100% !important; }
+
+  /* Photo BG: scroll-attached for perf on mobile */
+  body::before { background-attachment: scroll; opacity: 0.5; }
+
+  /* -------- MARKETPLACE TABLE → CARD LAYOUT --------
+     Every column becomes a labeled row so the phone user can
+     see Bank, Credit Limit, Card Age, Buy Deadline, Reports,
+     Stock, Price AND the Add-to-Cart button. */
+  .tradeline-table,
+  .tradeline-table thead,
+  .tradeline-table tbody,
+  .tradeline-table tr,
+  .tradeline-table th,
+  .tradeline-table td {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  .tradeline-table { border: none !important; background: transparent !important; }
+  .tradeline-table thead { display: none !important; }
+  .tradeline-table tbody tr {
+    background: var(--panel-strong) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 14px !important;
+    margin: 0 0 14px 0 !important;
+    padding: 14px 14px 12px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+  }
+  .tradeline-table tbody tr:hover { background: var(--panel-strong) !important; }
+  .tradeline-table td {
+    display: grid !important;
+    grid-template-columns: 42% 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 2px !important;
+    border-bottom: 1px dashed #f5f7f8 !important;
+    text-align: left !important;
+    font-size: 14.5px !important;
+  }
+  .tradeline-table td:last-child { border-bottom: none !important; }
+  .tradeline-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-300) !important;
+  }
+  /* First cell (bank) spans wider */
+  .tradeline-table td:first-child {
+    grid-template-columns: 1fr;
+    padding-bottom: 10px !important;
+  }
+  .tradeline-table td:first-child::before { display: none; }
+  .tradeline-table td:first-child .bank-cell { display: flex; align-items: center; gap: 10px; }
+  /* Add-to-cart cell is full width, no label */
+  .tradeline-table td:last-child { grid-template-columns: 1fr; padding-top: 12px !important; }
+  .tradeline-table td:last-child::before { display: none; }
+  .tradeline-table td:last-child .atc-btn,
+  .tradeline-table td:last-child button {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    min-height: 46px;
+  }
+  /* Reveal any container that was hiding overflow */
+  .table-responsive, [class*="table-responsive"] { overflow: visible !important; }
+}
+
+/* ================= EXTRA SMALL (≤380px) ================= */
+@media (max-width: 380px) {
+  section, .section, main, footer { padding-left: 12px !important; padding-right: 12px !important; }
+  .topbar { font-size: 12px; padding: 8px 12px; }
+  h1 { font-size: 26px !important; }
+  .tradeline-table td { grid-template-columns: 46% 1fr; font-size: 14px !important; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  body::before { background-attachment: scroll !important; }
+}
+
+@media print {
+  header, footer, .topbar, .mobile-nav, .support-widget { display: none !important; }
+  body::before, body::after { display: none; }
+}
+
+/* ============================================================
+   CONTRAST NORMALIZATION
+   Rule: dark panels (default) → light text.  Any element that
+   is genuinely white / near-white → force dark text so nothing
+   ever renders "white text on white bg".
+   ============================================================ */
+
+/* Any explicitly white inline-styled surface → dark ink inside */
+[style*="background:#fff"], [style*="background: #fff"],
+[style*="background:#FFFFFF"], [style*="background: #FFFFFF"],
+[style*="background:var(--white)"], [style*="background: var(--white)"],
+[style*="background:#ffffff"], [style*="background: #ffffff"] {
+  color: #0D0F1A !important;
+}
+[style*="background:#fff"] *, [style*="background: #fff"] *,
+[style*="background:#FFFFFF"] *, [style*="background: #FFFFFF"] *,
+[style*="background:var(--white)"] *, [style*="background: var(--white)"] *,
+[style*="background:#ffffff"] *, [style*="background: #ffffff"] * {
+  color: #0D0F1A !important;
+  text-shadow: none !important;
+}
+
+/* Inputs on any surface: white field, black text */
+.form-input, .tx-hash-input, select.form-input, textarea.form-input,
+input.form-input, .wallet-address {
+  color: #0D0F1A !important;
+  background: #FFFFFF !important;
+}
+.form-input::placeholder { color: #6B7280 !important; }
+
+/* Order/summary tables that live on the dark navy panel — keep light */
+.orders-table, .orders-table td, .orders-table th,
+.summary-card, .summary-card *, .summary-title,
+.summary-total-value, .summary-total-label {
+  color: var(--ink-100) !important;
+  background: transparent !important;
+}
+.orders-table thead { background: #f5f7f8 !important; }
+.orders-table th { color: var(--ink-300) !important; }
+.orders-table tr:hover { background: #eaf0f6 !important; }
+
+/* Recent Orders / dashboard mini-labels that used --ink-light on dark bg */
+[style*="color:var(--ink-light)"], [style*="color: var(--ink-light)"] {
+  color: var(--ink-300) !important;
+}
+
+/* Cart / checkout content sits on dark panels → light text */
+.cart-item, .cart-item *, .cart-item-title, .cart-item-price,
+.step-section, .step-section *, .step-section-title,
+.au-item-card, .au-item-card *, .au-item-header,
+.wallet-address-box, .wallet-address-box *,
+.crypto-amount-box, .crypto-amount-box *,
+.empty-cart, .empty-cart *,
+.order-success, .order-success *, .success-title,
+.auth-card, .auth-card *, .form-label {
+  color: var(--ink-100) !important;
+  text-shadow: none !important;
+}
+.auth-card h1, .auth-card h2, .auth-card h3,
+.summary-title, .step-section-title, .success-title,
+.cart-item-title { color: #2b3d4f !important; }
+.auth-card a, .summary-card a, .step-section a { color: var(--amber) !important; }
+
+/* Hide the sidebar "Confirm Crypto Order" until Step 3 (payment) */
+#placeOrderBtn { display: none !important; }
+body.step-payment #placeOrderBtn { display: flex !important; }
+
+/* Mobile: fixed "Proceed to Checkout" bar visible mid-viewport
+   — user doesn't have to scroll to the bottom of the cart. */
+@media (max-width: 768px) {
+  #proceedRow {
+    position: fixed !important;
+    left: 0; right: 0; bottom: 0;
+    background: #ffffff;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 12px 14px calc(12px + env(safe-area-inset-bottom)) !important;
+    border-top: 1px solid var(--line);
+    z-index: 200;
+    text-align: center !important;
+    margin: 0 !important;
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.4);
+  }
+  #proceedRow .place-order-btn,
+  #proceedRow button, #proceedRow .cart-checkout-btn {
+    width: 100% !important;
+    min-height: 52px !important;
+    font-size: 16px !important;
+  }
+  .checkout-aside { position: static !important; }
+  /* Leave breathing room so fixed bar doesn't cover last item */
+  body:has(#proceedRow) { padding-bottom: 110px !important; }
+
+}
+
+/* ============================================================
+   Support widget — floating pill labels (non-clickable)
+   ============================================================ */
+.support-widget {
+  position: fixed !important;
+  bottom: 22px; right: 22px;
+  display: flex !important;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 5000;
+}
+.support-btn { position: relative; }
+.support-tooltip {
+  position: absolute !important;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  color: #2b3d4f !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  border: 1px solid #eef2f5;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  display: inline-block !important;
+}
+@media (max-width: 480px) {
+  .support-tooltip { font-size: 11.5px; padding: 5px 10px; }
+}
+
+/* Toast for cart item removal */
+.tlm-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 96px;
+  transform: translateX(-50%);
+  background: #0D0F1A;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 9999;
+  font-size: 14px;
+  border: 1px solid #eef2f5;
+}
+.tlm-toast button {
+  background: #E7B24A !important;
+  color: #1A1200 !important;
+  border: none;
+  padding: 6px 14px !important;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 0 !important;
+}
+
+/* ============================================================
+   WHITE-SURFACE CONTRAST FIX
+   Any component rendered on a light/white surface must use dark
+   ink regardless of the global light-on-dark defaults.
+   ============================================================ */
+.cart-drawer, .cart-drawer *,
+.modal, .modal *,
+.toast-box, .toast-box *,
+.cart-item, .cart-item *,
+.cart-empty, .cart-empty *,
+.orders-panel, .orders-panel *,
+[data-surface="light"], [data-surface="light"] * {
+  color: #0D0F1A !important;
+  text-shadow: none !important;
+}
+.cart-drawer, .modal, .toast-box {
+  background: #FFFFFF !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.cart-item {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(13,15,26,0.12) !important;
+}
+.cart-item-meta, .cart-empty { color: #4A5162 !important; }
+.cart-item-price, .cart-total-price, .price-cell,
+.modal-title, .toast-msg, .cart-header h3 {
+  color: #0D0F1A !important;
+  font-family: 'Fraunces', 'Georgia', serif !important;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: -0.01em;
+}
+.cart-item-remove, .cart-close, .modal-close, .toast-close {
+  color: #4A5162 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+/* Marketplace price cell — refined numeric */
+.price-cell {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+}
+/* Force dark ink on any white utility background */
+[class*="bg-white"], [class*="bg-light"],
+[style*="background:#fff"], [style*="background: #fff"],
+[style*="background:#FFFFFF"], [style*="background:#ffffff"],
+[style*="background: white"], [style*="background:white"] {
+  color: #0D0F1A !important;
+}
+[class*="bg-white"] *, [class*="bg-light"] *,
+[style*="background:#fff"] *, [style*="background: #fff"] *,
+[style*="background:#FFFFFF"] *, [style*="background:#ffffff"] *,
+[style*="background: white"] *, [style*="background:white"] * {
+  color: #0D0F1A !important;
+  text-shadow: none !important;
+}
+
+
+
+
+/* ============================================================
+   VISIBILITY OVERHAUL — cards/panels use the dark navy surface
+   so light text is legible across the site. Inputs stay white
+   with dark text. Fixes the white-on-white issue on cart,
+   checkout, account dashboard and auth screens.
+   ============================================================ */
+
+/* Convert previously-white cards to the dark glass panel */
+.step-section,
+.summary-card,
+.auth-card,
+.au-item-card,
+.cart-item,
+.order-success,
+.empty-cart,
+.wallet-address-box,
+.crypto-amount-box,
+.crypto-tab,
+.crypto-note,
+.dash-sidebar,
+.stat-card,
+.orders-table,
+.profile-field,
+.dash-panel > div[style*="background:var(--white)"],
+.dash-panel > div[style*="background: var(--white)"],
+.dash-panel > div[style*="background:#fff"],
+.dash-panel > div[style*="background: #fff"] {
+  background: var(--panel-strong) !important;
+  border: 1px solid var(--line-strong) !important;
+  color: var(--ink-100) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Headings inside those panels must be pure white for punch */
+.step-section-title,
+.summary-title,
+.success-title,
+.cart-item-title,
+.crypto-amount-val,
+.summary-total-value,
+.summary-total-label,
+.dash-panel-title,
+.stat-num,
+.auth-logo-text,
+.au-item-header,
+.wallet-address-label,
+.crypto-tab-name,
+.crypto-tab-ticker,
+.tx-hash-label,
+.form-label,
+.dash-user-name {
+  color: #2b3d4f !important;
+  text-shadow: none;
+}
+
+/* Secondary/meta text on dark cards */
+.cart-item-meta, .cart-item-meta *,
+.crypto-amount-usd,
+.crypto-amount-label,
+.summary-line-label,
+.summary-line-value,
+.dash-panel-sub,
+.dash-user-email,
+.stat-label,
+.tx-hash-hint,
+.security-note,
+.guarantee-item,
+.form-note,
+.profile-field-label,
+.profile-field-value,
+.auth-note,
+.auth-divider,
+.au-item-header,
+.cart-item-au,
+.empty-cart p,
+.success-sub,
+.success-row span:first-child,
+.success-row span:last-child,
+.orders-table td,
+.orders-table th,
+.dash-nav-item {
+  color: var(--ink-100) !important;
+}
+.summary-line-label,
+.crypto-amount-label,
+.profile-field-label,
+.dash-panel-sub,
+.stat-label,
+.dash-user-email,
+.tx-hash-hint,
+.security-note,
+.form-note,
+.cart-item-meta { color: var(--ink-300) !important; }
+
+/* Crypto tabs — dark surface, obvious selection */
+.crypto-tab {
+  color: var(--ink-300) !important;
+}
+.crypto-tab:hover {
+  background: #eaf0f6 !important;
+  border-color: #d6dde2 !important;
+  color: #fff !important;
+}
+.crypto-tab.active {
+  background: #eaf0f6 !important;
+  border-color: var(--navy-500) !important;
+  color: #fff !important;
+}
+.crypto-tab.active.btc { background: rgba(247,147,26,0.18) !important; border-color: #F7931A !important; color: #FFD9A8 !important; }
+.crypto-tab.active.usdt { background: rgba(38,161,123,0.20) !important; border-color: #26A17B !important; color: #A6E9D0 !important; }
+.crypto-tab.active.ltc { background: rgba(52,93,157,0.25) !important; border-color: #6B95D6 !important; color: #C7DBFA !important; }
+
+/* Wallet address box: keep the copyable address white on white,
+   but caption + button dark theme */
+.wallet-address {
+  background: #FFFFFF !important;
+  color: #0D0F1A !important;
+  border: 1px solid #d6dde2 !important;
+}
+.copy-btn { color: #2b3d4f !important; }
+.net-btn {
+  background: #f5f7f8 !important;
+  color: var(--ink-100) !important;
+  border-color: var(--line-strong) !important;
+}
+.net-btn.active {
+  background: var(--navy-600) !important;
+  border-color: var(--navy-500) !important;
+  color: #ffffff !important;
+}
+
+/* Info banner inside payment step */
+#paymentSection > div[style*="linear-gradient"] {
+  color: var(--ink-100) !important;
+  border-color: rgba(247,147,26,0.35) !important;
+}
+#paymentSection > div[style*="linear-gradient"] strong { color: #FFD9A8 !important; }
+
+/* Crypto note (yellow warning boxes) */
+.crypto-note {
+  background: rgba(240,165,0,0.14) !important;
+  border-color: rgba(240,165,0,0.35) !important;
+  color: #FFE7B0 !important;
+}
+.crypto-note strong { color: #FFF3D1 !important; }
+
+/* TX hash input already fixed to white/dark by earlier block — reinforce */
+.tx-hash-input {
+  background: #FFFFFF !important;
+  color: #0D0F1A !important;
+  border: 1px solid #d6dde2 !important;
+}
+.tx-hash-input::placeholder { color: #6B7280 !important; }
+
+/* Auth card: dark themed, inputs white */
+.auth-card { padding: 40px 32px !important; }
+.auth-tabs { background: #f5f7f8 !important; }
+.auth-tab { color: var(--ink-300) !important; }
+.auth-tab.active {
+  background: var(--navy-600) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(43,61,79,0.18);
+}
+.auth-divider { color: var(--ink-300) !important; }
+.auth-divider::before, .auth-divider::after { background: var(--line-strong) !important; }
+.forgot-link { color: var(--amber) !important; }
+
+/* Dashboard nav */
+.dash-nav-item {
+  color: var(--ink-300) !important;
+}
+.dash-nav-item:hover {
+  background: #f5f7f8 !important;
+  color: #2b3d4f !important;
+}
+.dash-nav-item.active {
+  background: #eaf0f6 !important;
+  color: #2b3d4f !important;
+}
+
+/* Recent Orders / Overview inner labels shown via inline styles */
+.dash-panel [style*="text-transform:uppercase"],
+.dash-panel [style*="text-transform: uppercase"] {
+  color: var(--ink-300) !important;
+}
+
+/* Empty state cards ("You haven't placed any orders yet…") */
+.dash-panel div[style*="text-align:center"][style*="padding:40px"],
+.dash-panel div[style*="text-align:center"][style*="padding: 40px"] {
+  color: var(--ink-100) !important;
+}
+
+/* Edit-profile / secondary buttons on dashboard */
+.edit-btn, .logout-btn {
+  background: #f5f7f8 !important;
+  color: var(--ink-100) !important;
+  border: 1px solid var(--line-strong) !important;
+}
+.edit-btn:hover { border-color: var(--amber) !important; color: var(--amber) !important; }
+
+/* Overview promo strip ("Ready for your next tradeline") */
+.dash-panel div[style*="background:var(--sky-pale)"],
+.dash-panel div[style*="background: var(--sky-pale)"] {
+  background: #eaf0f6 !important;
+  border-color: #eaf0f6 !important;
+}
+.dash-panel div[style*="background:var(--sky-pale)"] * ,
+.dash-panel div[style*="background: var(--sky-pale)"] * {
+  color: var(--ink-100) !important;
+}
+
+/* Password/security box */
+.dash-panel div[style*="background:var(--surface)"],
+.dash-panel div[style*="background: var(--surface)"] {
+  background: #f5f7f8 !important;
+  border-color: var(--line-strong) !important;
+  color: var(--ink-100) !important;
+}
+.dash-panel div[style*="background:var(--surface)"] * ,
+.dash-panel div[style*="background: var(--surface)"] * {
+  color: var(--ink-100) !important;
+}
+
+/* Login-gate step-section */
+#loginGate p { color: var(--ink-300) !important; }
+
+/* Sub-copy under "Authorized User Information" (inline style uses --ink-light) */
+#auSection p[style*="color:var(--ink-light)"],
+#auSection p[style*="color: var(--ink-light)"] {
+  color: var(--ink-300) !important;
+}
+
+/* Order-success details rows */
+.success-details { background: #f5f7f8 !important; border-color: var(--line-strong) !important; }
+
+/* ============================================================
+   MOBILE — Account dashboard fully compatible
+   ============================================================ */
+@media (max-width: 900px) {
+  .dash-layout {
+    grid-template-columns: 1fr !important;
+    padding: 20px 14px 40px !important;
+    gap: 16px !important;
+  }
+  .dash-sidebar {
+    position: static !important;
+    padding: 18px !important;
+    border-radius: 14px !important;
+  }
+  /* Bottom tab bar: nav pinned horizontally to bottom of screen */
+  .dash-nav {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 90 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    background: #fff !important;
+    border-top: 1px solid var(--border, #e2e6ef) !important;
+    box-shadow: 0 -2px 12px rgba(15, 23, 42, 0.08) !important;
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .dash-nav-item {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 6px 2px !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    text-align: center !important;
+    white-space: normal !important;
+    line-height: 1.15 !important;
+  }
+  .dash-nav-item .nav-icon { font-size: 18px !important; width: auto !important; }
+  .dash-nav-item.active { background: #eaf0f6 !important; color: #1e3a5f !important; }
+  .dash-nav-item.active .nav-icon { color: #1e3a5f !important; }
+  /* Keep user card + sign out at top; content clears the fixed bar */
+  .dash-sidebar { order: -1 !important; }
+  .dash-main { padding-bottom: 76px !important; }
+  .logout-btn { margin-top: 14px !important; }
+  .stats-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-bottom: 18px !important;
+  }
+  .stat-card { padding: 14px !important; }
+  .stat-num { font-size: 22px !important; }
+  .stat-label { font-size: 11.5px !important; }
+  .profile-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .dash-panel-title { font-size: 20px !important; }
+  .orders-table { font-size: 12.5px !important; }
+  .orders-table th, .orders-table td { padding: 10px 10px !important; }
+}
+
+@media (max-width: 560px) {
+  .stats-row { grid-template-columns: 1fr 1fr !important; }
+  .auth-wrap { padding: 24px 14px !important; }
+  .auth-card { padding: 28px 20px !important; border-radius: 18px !important; }
+  .step-section { padding: 20px 16px !important; border-radius: 14px !important; }
+  .summary-card { padding: 20px 16px !important; }
+  .checkout-wrap { padding: 20px 14px 40px !important; }
+  .success-title { font-size: 26px !important; }
+  .order-success { padding: 40px 18px !important; margin: 24px 12px !important; }
+  .success-btn { width: 100% !important; }
+  .crypto-tabs { grid-template-columns: 1fr !important; }
+  .form-row-2, .form-row-3 { grid-template-columns: 1fr !important; }
+  .wallet-address { font-size: 11.5px !important; padding: 10px !important; }
+}
+
+/* Success screen button — make it navigate cleanly on mobile too */
+.success-btn { min-height: 48px; }
+
+/* ============ v2 Visibility & feature updates ============ */
+
+/* Hero sub-tag under "Largest Authorized User Marketplace" */
+.hero-sub-tag {
+  display: inline-block;
+  margin: 10px 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.02em;
+}
+
+/* Hero visual: 3 featured cards in a clean vertical stack */
+.hero-visual {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-right: 0 !important;
+}
+.hero-visual .tradeline-card {
+  padding: 18px 20px !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px) !important;
+}
+.hero-visual .tradeline-card.featured {
+  border-color: rgba(231, 178, 74, 0.55) !important;
+  background: rgba(231, 178, 74, 0.08) !important;
+}
+.hero-visual .card-bank { width: 48px !important; height: 48px !important; border-radius: 12px !important; }
+.hero-visual .card-bank-name { font-size: 15px !important; }
+.hero-visual .card-price { font-size: 18px !important; }
+@media (max-width: 900px) {
+  .hero-visual { gap: 12px !important; }
+  .hero-visual .tradeline-card { padding: 16px !important; }
+  .hero-visual .card-meta { gap: 12px !important; flex-wrap: wrap !important; }
+}
+
+/* Light-theme surfaces for the previously-dark cards (sell / brokers /
+   marketplace / resources). The old navy-card rules left white text on
+   white panels. */
+.signup-card,
+.sell-form-card,
+.tier-card,
+.earnings-table,
+.earn-calculator,
+.req-card,
+.video-card,
+.faq-item,
+.test-card,
+.step-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e6ea !important;
+  color: #45525e !important;
+  box-shadow: 0 2px 10px rgba(38,54,68,0.06) !important;
+}
+.tier-card.popular {
+  background: #f4f7f9 !important;
+  border-color: #263644 !important;
+}
+.signup-card-title, .sell-form-title, .tier-name, .tier-title,
+.req-title, .video-title, .faq-q,
+.test-name, .step-title {
+  color: #2b3d4f !important;
+}
+.signup-card-sub, .sell-form-sub, .tier-desc, .req-desc,
+.video-desc, .faq-a, .test-quote, .step-desc,
+.earn-row-label, .earn-calc-title {
+  color: #4a5560 !important;
+}
+
+/* Earnings table */
+.earnings-table thead { background: #263644 !important; }
+.earnings-table thead th { color: #ffffff !important; }
+.earnings-table tbody td { color: #45525e !important; border-bottom-color: #e6eaee !important; }
+.earnings-table tbody tr:hover { background: #f7f9fa !important; }
+.earn-row-label { color: #4a5560 !important; }
+.earn-row-value { color: #2b3d4f !important; font-weight: 700; }
+.earn-row-value.highlight { color: #1f6f4f !important; }
+.earn-row { border-bottom: 1px solid #eef1f4; }
+
+/* Form labels */
+.signup-card .form-label,
+.sell-form-card .form-label,
+.form-label { color: #3a4652 !important; font-weight: 600; }
+.consent-row, .consent-row label { color: #4a5560 !important; }
+
+/* Broker perks list */
+.broker-perk, .broker-perk-icon { color: #3a4652 !important; }
+
+/* Cart: AU-spot quantity stepper + line price */
+.cart-item .cart-item-price{color:#2b3d4f !important;font-weight:800;font-size:17px;white-space:nowrap}
+.cart-item .qty-stepper{display:flex !important;align-items:center;gap:8px;color:#4a5560 !important;font-size:12.5px;white-space:nowrap}
+.cart-item .qty-stepper span{color:#3a4652 !important}
+.cart-item .qty-stepper button{width:26px;height:26px;flex:0 0 26px;border-radius:4px;border:1px solid #cfd7dd;background:#f4f7f9;color:#2b3d4f !important;cursor:pointer;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+.cart-item .qty-stepper button:hover{border-color:#263644;background:#e7edf1}
+
+/* Marketplace: card-ID search + AU spots selector */
+.filter-search{background:#fff !important;border:1px solid #cfd7dd !important;color:#2b3d4f !important}
+.filter-search::placeholder{color:#8b96a0}
+.qty-select{background:#fff !important;border:1px solid #cfd7dd !important;color:#2b3d4f !important}
+.qty-select option{background:#fff;color:#2b3d4f}
+
+/* ============================================================
+   MOBILE — Account dashboard: stacked, vertical, readable
+   (authoritative rules; loaded before tls-theme but scoped tight)
+   ============================================================ */
+@media (max-width: 820px) {
+  .table-responsive { overflow: visible !important; }
+  .orders-table { display: block !important; width: 100% !important; border: none !important; background: none !important; box-shadow: none !important; }
+  .orders-table thead { display: none !important; }
+  .orders-table tbody, .orders-table tr, .orders-table td { display: block !important; width: 100% !important; }
+  .orders-table tr {
+    background: #ffffff !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 10px !important;
+    margin-bottom: 12px !important;
+    padding: 4px 0 !important;
+    box-shadow: 0 2px 8px rgba(43,61,79,0.06) !important;
+  }
+  .orders-table td {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+    text-align: left !important;
+    padding: 10px 14px !important;
+    border-bottom: 1px solid var(--line) !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+  .orders-table td:last-child { border-bottom: none !important; }
+  .orders-table td::before {
+    content: attr(data-label);
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-300) !important;
+  }
+  .orders-table td[data-label=""]::before { content: none; }
+  .stats-row { grid-template-columns: 1fr 1fr !important; }
+  .profile-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr !important; }
+}
+
+/* Profile fields — always readable */
+.profile-field { background: #ffffff !important; border: 1px solid var(--line) !important; }
+.profile-field-label { color: #5c6b7a !important; }
+.profile-field-value { color: #1f2b36 !important; font-weight: 600 !important; }
+
+/* ============================================================
+   "Go to cart" confirmation modal (marketplace)
+   ============================================================ */
+.gtc-overlay {
+  position: fixed; inset: 0; z-index: 6000;
+  display: none; align-items: center; justify-content: center; padding: 20px;
+  background: rgba(38,54,68,0.45);
+  backdrop-filter: blur(3px);
+}
+.gtc-overlay.open { display: flex; }
+.gtc-card {
+  background: #ffffff; border: 1px solid var(--line); border-radius: 14px;
+  padding: 30px 26px; width: 100%; max-width: 380px; text-align: center;
+  box-shadow: 0 24px 60px rgba(28,40,51,0.28);
+  animation: gtcIn .18s ease;
+}
+@keyframes gtcIn { from { opacity: 0; transform: translateY(10px) scale(.97);} to {opacity:1;transform:none;} }
+.gtc-check { width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 50%; background: #e8f4ee; color: #1f7a53; display: flex; align-items: center; justify-content: center; }
+.gtc-check svg { width: 28px; height: 28px; }
+.gtc-title { font-size: 19px; font-weight: 800; color: #2b3d4f !important; margin-bottom: 6px; }
+.gtc-sub { font-size: 13.5px; color: #5c6b7a !important; margin-bottom: 20px; }
+.gtc-actions { display: grid; gap: 10px; }
+.gtc-actions a, .gtc-actions button {
+  width: 100%; padding: 12px 16px; border-radius: 4px; font-weight: 700; font-size: 14px;
+  cursor: pointer; text-transform: uppercase; letter-spacing: .05em; border: none;
+}
+.gtc-go { background: #4d6579 !important; color: #fff !important; }
+.gtc-stay { background: #f2f5f7 !important; color: #2b3d4f !important; border: 1px solid var(--line) !important; }
+
+/* Google sign-in button */
+.google-btn {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 12px 16px; border-radius: 8px; border: 1.5px solid #d6dde2 !important;
+  background: #ffffff !important; color: #2b3d4f !important;
+  font-weight: 600 !important; font-size: 14.5px; cursor: pointer; text-transform: none !important;
+  box-shadow: none !important; letter-spacing: 0 !important;
+}
+.google-btn:hover { background: #f5f7f8 !important; border-color: #b9c4cc !important; }
+.google-btn svg { width: 19px; height: 19px; }

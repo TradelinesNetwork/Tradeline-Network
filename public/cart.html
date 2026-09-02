@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=2">
+<meta name="theme-color" content="#263644">
+<meta name="description" content="Step 1 of 4 — review the authorized user tradelines in your cart, adjust AU spots, then continue to authorized user details.">
+<title>Step 1: Your Cart | Tradelines Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/checkout-chrome.css?v=1">
+<link rel="stylesheet" href="assets/checkout.css?v=2">
+</head>
+<body class="co-body">
+<div id="coHeader"></div>
+<div id="coProgress"></div>
+
+<div id="coEmpty" style="display:none">
+  <div class="co-empty">
+    <div style="font-size:44px"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2h11l2-8H6.2"/></svg></div>
+    <h1 style="font-size:24px;margin-top:10px">Your cart is empty</h1>
+    <p>Browse the tradeline vault to find the right authorized user tradeline for your credit goals.</p>
+    <a class="co-btn" href="marketplace.html">Browse Tradelines</a>
+  </div>
+</div>
+
+<div class="co-wrap" id="coWrap" style="display:none">
+  <div>
+    <div class="co-card">
+      <div class="co-title"><div class="ico"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:1em;height:1em;display:inline-block;vertical-align:-0.125em"><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2h11l2-8H6.2"/></svg></div>Step 1 — Review Your Cart</div>
+      <div class="co-sub">Check the tradelines below and choose how many authorized user spots you need on each. You'll enter authorized user details on the next step.</div>
+      <div id="coItems"></div>
+      <div class="co-actions">
+        <a class="co-btn co-btn-ghost" href="marketplace.html">Keep shopping</a>
+        <button class="co-btn" id="coNext">Continue to AU Info</button>
+      </div>
+    </div>
+  </div>
+  <div class="co-aside" id="coSummary"></div>
+</div>
+
+<div id="coFooter"></div>
+
+<script type="module">
+import { renderChrome, renderSummary, getCart, saveCart, cartTotal, escapeHtml, bankEmoji } from "./assets/js/checkout-core.js";
+import { bankLogo } from "./assets/js/bank-logos.js";
+
+renderChrome(1);
+
+function render(){
+  const cart = getCart();
+  if(!cart.length){
+    document.getElementById('coEmpty').style.display='block';
+    document.getElementById('coWrap').style.display='none';
+    document.getElementById('coProgress').style.display='none';
+    return;
+  }
+  document.getElementById('coEmpty').style.display='none';
+  document.getElementById('coWrap').style.display='';
+  document.getElementById('coItems').innerHTML = cart.map(item=>`
+    <div class="co-item">
+      <div class="co-item-ico">${bankLogo(item.bank, 40)}</div>
+      <div class="co-item-info">
+        <div class="co-item-title">${escapeHtml(item.bank)} #${escapeHtml(String(item.id))}</div>
+        <div class="co-item-meta">
+          ${item.isExtension ? `<span>Extension for order <strong>${escapeHtml(item.extension?.orderRef||'')}</strong></span>` :
+            item.pkg ? (item.lines||[]).map(l=>`<span>${escapeHtml(l)}</span>`).join('') :
+            `<span>Limit: <strong>$${Number(item.limit||0).toLocaleString()}</strong></span><span>Age: <strong>${escapeHtml(String(item.age||''))} yrs</strong></span>`}
+          <span>Reports: <strong>${escapeHtml(String(item.reports||'—'))}</strong></span>
+          <span>Deadline: <strong>${escapeHtml(String(item.deadline||'—'))}</strong></span>
+        </div>
+      </div>
+      <div class="co-item-right">
+        <div class="co-price">$${(Number(item.price||0)*(Number(item.qty)||1)).toLocaleString()}</div>
+        <div class="co-stepper">
+          <button type="button" data-qty="-1" data-id="${escapeHtml(String(item.id))}" aria-label="Decrease AU spots">−</button>
+          <span>${Number(item.qty)||1} AU spot${(Number(item.qty)||1)>1?'s':''}</span>
+          <button type="button" data-qty="1" data-id="${escapeHtml(String(item.id))}" aria-label="Increase AU spots">+</button>
+        </div>
+        <button class="co-remove" data-remove="${escapeHtml(String(item.id))}">✕ Remove</button>
+      </div>
+    </div>`).join('');
+
+  document.querySelectorAll('[data-qty]').forEach(b=>b.addEventListener('click',()=>{
+    const cart = getCart();
+    const item = cart.find(i=>String(i.id)===b.dataset.id);
+    if(!item) return;
+    const max = Math.max(1, Math.min(Number(item.stock)||5, 5));
+    item.qty = Math.min(max, Math.max(1,(Number(item.qty)||1)+Number(b.dataset.qty)));
+    saveCart(cart); render();
+  }));
+  document.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{
+    saveCart(getCart().filter(i=>String(i.id)!==b.dataset.remove));
+    render();
+  }));
+  renderSummary();
+}
+render();
+
+document.getElementById('coNext').addEventListener('click',()=>{
+  if(!getCart().length) return;
+  window.location.href = 'au-info.html';
+});
+</script>
+</body>
+</html>
