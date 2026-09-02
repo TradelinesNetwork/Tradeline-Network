@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Tradelines Network — Financial Services Theme  ("Emerald Prestige")
+   Applied to public marketing pages only. Loaded last so it governs the
+   final look: flat colour, thin rules, serif headlines, no gradients.
+   ========================================================================== */
+
+:root,
+body {
+  --tf-ink:        #0b1f18;   /* body copy */
+  --tf-deep:       #064e3b;   /* header / primary */
+  --tf-emerald:    #0d7a5f;   /* action */
+  --tf-emerald-dk: #0a604a;
+  --tf-gold:       #c9a84c;   /* accent rules, emphasis */
+  --tf-cream:      #f5f0e0;
+  --tf-page:       #f7f9f8;
+  --tf-surface:    #ffffff;
+  --tf-line:       #dde5e1;
+  --tf-line-soft:  #eaefec;
+  --tf-muted:      #56675f;
+
+  /* Re-map legacy tokens used across the marketing pages */
+  --ink: var(--tf-ink);
+  --ink-light: var(--tf-muted);
+  --sky: var(--tf-emerald);
+  --sky-pale: #eef5f1;
+  --gold: var(--tf-gold);
+  --gold-light: #faf6ea;
+  --mint: var(--tf-emerald);
+  --surface: var(--tf-page);
+  --white: var(--tf-surface);
+  --border: var(--tf-line);
+  --radius: 4px;
+  --shadow: 0 1px 2px rgba(11, 31, 24, .06);
+  --shadow-lg: 0 6px 24px rgba(11, 31, 24, .09);
+}
+
+/* ---------- Base ---------- */
+body {
+  background: var(--tf-page);
+  color: var(--tf-ink);
+  font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--tf-deep);
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+
+/* Kill every decorative gradient / glow — the "vibe coded" tells. */
+.hero-glow, .hero-glow2, .hero-grid-bg { display: none !important; }
+.hero, .cta-band, .trust-bar, .page-hero, .page-hero-overlay,
+.section, .trust-panel, .opp-card, .step-card, .use-card, .value-card,
+.req-card, .sell-step, .contact-channel, .blog-card, .article-card,
+.tradeline-card, footer, header, .topbar, .mission-stat {
+  background-image: none !important;
+}
+
+/* ---------- Top announcement bar ---------- */
+.topbar {
+  background: var(--tf-deep) !important;
+  color: rgba(255, 255, 255, .82) !important;
+  border-bottom: 1px solid rgba(201, 168, 76, .4);
+  font-size: 12.5px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.topbar a { color: var(--tf-gold) !important; }
+
+/* ---------- Header ---------- */
+header {
+  background: var(--tf-deep) !important;
+  border-bottom: 3px solid var(--tf-gold) !important;
+  box-shadow: none !important;
+}
+.logo { color: #fff !important; letter-spacing: -0.01em; }
+.logo span { color: var(--tf-gold) !important; }
+.logo-icon {
+  background: var(--tf-gold) !important;
+  color: var(--tf-deep) !important;
+  border-radius: 3px !important;
+}
+.logo-icon svg, .logo-icon path { stroke: var(--tf-deep); }
+.nav-links a {
+  color: rgba(255, 255, 255, .78) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: .045em !important;
+  text-transform: uppercase;
+  border-radius: 2px !important;
+}
+.nav-links a:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, .07) !important;
+}
+.nav-cta, .nav-links a.nav-cta {
+  background: var(--tf-gold) !important;
+  color: var(--tf-deep) !important;
+  border-radius: 3px !important;
+  font-weight: 700 !important;
+}
+.nav-cta:hover { background: #d9ba63 !important; }
+.mobile-nav { background: var(--tf-deep) !important; }
+
+/* ---------- Buttons ---------- */
+.btn-primary, .submit-btn, .cart-btn, .co-btn, button.btn-primary {
+  background: var(--tf-emerald) !important;
+  background-image: none !important;
+  color: #fff !important;
+  border: 1px solid var(--tf-emerald) !important;
+  border-radius: 3px !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em;
+  box-shadow: none !important;
+  transition: background .15s ease;
+}
+.btn-primary:hover, .submit-btn:hover, .cart-btn:hover {
+  background: var(--tf-emerald-dk) !important;
+  transform: none !important;
+}
+.btn-ghost {
+  background: transparent !important;
+  color: var(--tf-deep) !important;
+  border: 1px solid var(--tf-line) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+}
+.btn-ghost:hover { border-color: var(--tf-deep) !important; background: #fff !important; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--tf-deep) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+.hero, .hero h1, .hero-content h1 { color: #fff !important; }
+.hero p, .hero-content p { color: rgba(255, 255, 255, .74) !important; }
+.hero-tag, .hero-sub-tag, .section-tag {
+  background: transparent !important;
+  color: var(--tf-gold) !important;
+  border: 1px solid rgba(201, 168, 76, .55) !important;
+  border-radius: 2px !important;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+.section-tag { color: var(--tf-emerald) !important; border-color: rgba(13, 122, 95, .35) !important; }
+.hero-stat-num { color: var(--tf-gold) !important; font-family: 'Playfair Display', Georgia, serif; }
+.hero-stat-label { color: rgba(255, 255, 255, .6) !important; text-transform: uppercase; letter-spacing: .08em; font-size: 11px !important; }
+
+/* ---------- Page heroes (interior pages) ---------- */
+.page-hero { background: var(--tf-deep) !important; }
+.page-hero-bg { opacity: .14 !important; filter: grayscale(1); }
+.page-hero-overlay { background: rgba(6, 78, 59, .82) !important; }
+.page-hero h1 { color: #fff !important; }
+.page-hero p { color: rgba(255, 255, 255, .74) !important; }
+.breadcrumb, .breadcrumb a { color: rgba(255, 255, 255, .6) !important; }
+
+/* ---------- Sections ---------- */
+.section { background: var(--tf-page) !important; }
+.section:nth-of-type(even) { background: var(--tf-surface) !important; }
+.section-title { position: relative; }
+.section-sub { color: var(--tf-muted) !important; }
+
+/* ---------- Cards / panels ---------- */
+.opp-card, .step-card, .use-card, .value-card, .req-card, .sell-step,
+.contact-channel, .blog-card, .article-card, .tradeline-card, .trust-panel,
+.res-panel, .faq-item, .mission-stat, .timeline-content {
+  background: var(--tf-surface) !important;
+  border: 1px solid var(--tf-line) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.opp-card:hover, .use-card:hover, .value-card:hover, .req-card:hover,
+.blog-card:hover, .article-card:hover, .tradeline-card:hover, .contact-channel:hover {
+  border-color: #c3d2cb !important;
+  box-shadow: 0 4px 18px rgba(11, 31, 24, .07) !important;
+  transform: none !important;
+}
+.tradeline-card.featured { border: 1px solid var(--tf-gold) !important; }
+.card-badge {
+  background: var(--tf-cream) !important;
+  color: #7a6320 !important;
+  border: 1px solid rgba(201, 168, 76, .5) !important;
+  border-radius: 2px !important;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-weight: 700 !important;
+}
+.card-price, .earn-row-value, .mission-stat-num, .trust-stat {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--tf-deep) !important;
+}
+
+/* Icon tiles: flat cream squares, never candy-coloured circles */
+.use-icon, .value-icon, .req-icon, .sell-step-icon, .contact-channel-icon, .step-num {
+  background: var(--tf-cream) !important;
+  background-image: none !important;
+  color: var(--tf-deep) !important;
+  border: 1px solid rgba(201, 168, 76, .45) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+.step-num { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+.ico-svg { stroke-width: 1.6; }
+
+/* ---------- Trust bar / stats ---------- */
+.trust-bar { background: var(--tf-surface) !important; border-block: 1px solid var(--tf-line) !important; }
+.trust-badge { color: var(--tf-muted) !important; font-weight: 600; }
+.trust-bar-fill { background: var(--tf-emerald) !important; }
+
+/* ---------- Timeline ---------- */
+.timeline-dot { background: var(--tf-gold) !important; border: 2px solid var(--tf-deep) !important; box-shadow: none !important; }
+.timeline-year { color: var(--tf-emerald) !important; font-weight: 700; letter-spacing: .06em; }
+
+/* ---------- Tabs ---------- */
+.res-tab {
+  border-radius: 2px !important;
+  border: 1px solid var(--tf-line) !important;
+  background: var(--tf-surface) !important;
+  color: var(--tf-muted) !important;
+  font-weight: 600 !important;
+}
+.res-tab.active {
+  background: var(--tf-deep) !important;
+  border-color: var(--tf-deep) !important;
+  color: #fff !important;
+}
+
+/* ---------- Forms ---------- */
+.form-label {
+  color: var(--tf-deep) !important;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+}
+.form-input, .form-select, textarea.form-input {
+  border: 1px solid var(--tf-line) !important;
+  border-radius: 3px !important;
+  background: var(--tf-surface) !important;
+  color: var(--tf-ink) !important;
+  box-shadow: none !important;
+}
+.form-input:focus, .form-select:focus {
+  outline: none !important;
+  border-color: var(--tf-emerald) !important;
+  box-shadow: 0 0 0 3px rgba(13, 122, 95, .12) !important;
+}
+
+/* ---------- FAQ ---------- */
+.faq-q { color: var(--tf-deep) !important; font-weight: 600 !important; }
+.faq-a { color: var(--tf-muted) !important; }
+.faq-arrow { color: var(--tf-emerald) !important; }
+
+/* ---------- Prose ---------- */
+.prose p, .prose li { color: #2a3a34; }
+.prose a { color: var(--tf-emerald); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------- CTA band ---------- */
+.cta-band { background: var(--tf-deep) !important; border-top: 3px solid var(--tf-gold) !important; }
+.cta-band h2 { color: #fff !important; }
+.cta-band p { color: rgba(255, 255, 255, .74) !important; }
+.cta-band .btn-primary { background: var(--tf-gold) !important; border-color: var(--tf-gold) !important; color: var(--tf-deep) !important; }
+.cta-band .btn-ghost { color: #fff !important; border-color: rgba(255, 255, 255, .38) !important; }
+.cta-band .btn-ghost:hover { background: rgba(255, 255, 255, .08) !important; }
+
+/* ---------- Carousel ---------- */
+#showcase-carousel .carousel-slide figcaption {
+  background: rgba(6, 78, 59, .9) !important;
+  border-top: 2px solid var(--tf-gold);
+}
+#showcase-carousel .carousel-slide figcaption strong,
+#showcase-carousel .carousel-slide figcaption span,
+#showcase-carousel .carousel-slide figcaption p { color: #fff !important; }
+#showcase-carousel .carousel-dot { border-radius: 50% !important; width: 8px !important; height: 8px !important; flex: 0 0 8px; background: rgba(6, 78, 59, .25) !important; }
+#showcase-carousel .carousel-dot.active { background: var(--tf-gold) !important; }
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--tf-deep) !important;
+  color: rgba(255, 255, 255, .68) !important;
+  border-top: 3px solid var(--tf-gold) !important;
+}
+footer h4, .footer-col h4 { color: #fff !important; letter-spacing: .06em; text-transform: uppercase; font-size: 12px !important; font-family: 'Inter', sans-serif !important; }
+footer a { color: rgba(255, 255, 255, .68) !important; }
+footer a:hover { color: var(--tf-gold) !important; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, .12) !important; }
+
+/* ---------- Floating support buttons ---------- */
+.support-btn { border-radius: 3px !important; box-shadow: 0 4px 16px rgba(11, 31, 24, .22) !important; }
+
+/* ---------- Tables on marketing pages ---------- */
+table { border-collapse: collapse; }
+table th {
+  background: var(--tf-cream) !important;
+  color: var(--tf-deep) !important;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 11.5px !important;
+  border-bottom: 1px solid var(--tf-line) !important;
+}
+table td { border-bottom: 1px solid var(--tf-line-soft) !important; color: var(--tf-ink) !important; }
