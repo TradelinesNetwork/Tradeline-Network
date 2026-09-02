@@ -378,3 +378,20 @@ html body .fact-row {
 html body .fact-row:last-child { border-bottom: none; }
 html body .fact-key { font-size: 12.5px; color: var(--tf-muted); text-transform: uppercase; letter-spacing: .06em; margin: 0 !important; }
 html body .fact-val { font-weight: 700; color: var(--tf-deep) !important; text-align: right; }
+
+/* ---------- Icon tiles: fixed square, never full-bleed ---------- */
+html body .use-icon, html body .value-icon, html body .req-icon,
+html body .sell-step-icon, html body .contact-channel-icon, html body .step-num {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px;
+  max-width: 46px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px !important;
+}
+html body .use-icon .ico-svg, html body .value-icon .ico-svg, html body .req-icon .ico-svg,
+html body .sell-step-icon .ico-svg, html body .contact-channel-icon .ico-svg {
+  width: 20px !important; height: 20px !important;
+}
