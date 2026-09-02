@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /reset-password.html
-Disallow: /account.html
-Disallow: /admin.html
-Disallow: /order.html
-
-Sitemap: https://tradelinesmarketplace.com/sitemap.xml
