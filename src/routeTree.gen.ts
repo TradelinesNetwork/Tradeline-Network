@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicOrderStatusRouteImport } from './routes/api/public/order-status'
 import { Route as ApiPublicOrdersRouteImport } from './routes/api/public/orders'
 import { Route as ApiPublicVerifyPaymentRouteImport } from './routes/api/public/verify-payment'
+import { Route as ApiPublicWelcomeEmailRouteImport } from './routes/api/public/welcome-email'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const ApiPublicVerifyPaymentRoute = ApiPublicVerifyPaymentRouteImport.update({
   path: '/api/public/verify-payment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicWelcomeEmailRoute = ApiPublicWelcomeEmailRouteImport.update({
+  id: '/api/public/welcome-email',
+  path: '/api/public/welcome-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/public/order-status': typeof ApiPublicOrderStatusRoute
   '/api/public/orders': typeof ApiPublicOrdersRoute
   '/api/public/verify-payment': typeof ApiPublicVerifyPaymentRoute
+  '/api/public/welcome-email': typeof ApiPublicWelcomeEmailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/public/order-status': typeof ApiPublicOrderStatusRoute
   '/api/public/orders': typeof ApiPublicOrdersRoute
   '/api/public/verify-payment': typeof ApiPublicVerifyPaymentRoute
+  '/api/public/welcome-email': typeof ApiPublicWelcomeEmailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,6 +61,7 @@ export interface FileRoutesById {
   '/api/public/order-status': typeof ApiPublicOrderStatusRoute
   '/api/public/orders': typeof ApiPublicOrdersRoute
   '/api/public/verify-payment': typeof ApiPublicVerifyPaymentRoute
+  '/api/public/welcome-email': typeof ApiPublicWelcomeEmailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -61,18 +70,21 @@ export interface FileRouteTypes {
     | '/api/public/order-status'
     | '/api/public/orders'
     | '/api/public/verify-payment'
+    | '/api/public/welcome-email'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/api/public/order-status'
     | '/api/public/orders'
     | '/api/public/verify-payment'
+    | '/api/public/welcome-email'
   id:
     | '__root__'
     | '/'
     | '/api/public/order-status'
     | '/api/public/orders'
     | '/api/public/verify-payment'
+    | '/api/public/welcome-email'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,6 +92,7 @@ export interface RootRouteChildren {
   ApiPublicOrderStatusRoute: typeof ApiPublicOrderStatusRoute
   ApiPublicOrdersRoute: typeof ApiPublicOrdersRoute
   ApiPublicVerifyPaymentRoute: typeof ApiPublicVerifyPaymentRoute
+  ApiPublicWelcomeEmailRoute: typeof ApiPublicWelcomeEmailRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -112,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicVerifyPaymentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/welcome-email': {
+      id: '/api/public/welcome-email'
+      path: '/api/public/welcome-email'
+      fullPath: '/api/public/welcome-email'
+      preLoaderRoute: typeof ApiPublicWelcomeEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -120,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicOrderStatusRoute: ApiPublicOrderStatusRoute,
   ApiPublicOrdersRoute: ApiPublicOrdersRoute,
   ApiPublicVerifyPaymentRoute: ApiPublicVerifyPaymentRoute,
+  ApiPublicWelcomeEmailRoute: ApiPublicWelcomeEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
