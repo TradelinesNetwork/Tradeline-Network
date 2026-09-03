@@ -463,3 +463,9 @@ html body .card .sub { color: var(--tf-muted) !important; }
 html body .card input { background: #fff !important; border: 1px solid var(--tf-line) !important; color: var(--tf-ink) !important; border-radius: 3px !important; }
 html body .card button { background: var(--tf-emerald) !important; border-radius: 3px !important; }
 html body .card .link { color: var(--tf-deep) !important; }
+
+/* Marketplace / app hero bands */
+html body .mk-hero,
+html body .vault-hero,
+html body .co-hero,
+html body section[class*="hero"] { background: var(--tf-deep) !important; }
