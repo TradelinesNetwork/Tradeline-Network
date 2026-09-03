@@ -395,3 +395,77 @@ html body .use-icon .ico-svg, html body .value-icon .ico-svg, html body .req-ico
 html body .sell-step-icon .ico-svg, html body .contact-channel-icon .ico-svg {
   width: 20px !important; height: 20px !important;
 }
+
+/* ==========================================================================
+   Application surfaces — checkout flow, dashboard, admin, auth pages.
+   Same Emerald Prestige language as the marketing pages.
+   ========================================================================== */
+
+/* Checkout token remap (checkout.css :root vars) */
+html body.co-body,
+html body {
+  --co-sky: var(--tf-emerald);
+  --co-gold: var(--tf-gold);
+  --co-mint: var(--tf-emerald);
+  --co-ink: var(--tf-ink);
+  --co-ink-light: var(--tf-muted);
+  --co-line: var(--tf-line);
+  --co-soft: var(--tf-page);
+}
+
+/* Chrome shared by checkout + app pages */
+html body header { background: var(--tf-deep) !important; border-bottom: 3px solid var(--tf-gold) !important; box-shadow: none !important; }
+html body .logo span { color: var(--tf-gold) !important; }
+html body .logo-icon { background: var(--tf-emerald) !important; border-radius: 3px !important; }
+html body .nav-cta { background: var(--tf-gold) !important; color: #21200f !important; border-radius: 3px !important; }
+html body .mobile-nav { background: var(--tf-deep) !important; }
+html body footer { background: var(--tf-deep) !important; }
+
+/* Checkout cards, steps, buttons */
+html body .co-card,
+html body .co-item,
+html body .co-au,
+html body .co-pay-tab,
+html body .co-crypto-tab,
+html body .co-stepper { border-radius: 4px !important; border-color: var(--tf-line) !important; box-shadow: none !important; }
+html body .co-title .ico,
+html body .co-item-ico { background: var(--tf-cream) !important; border-radius: 3px !important; color: var(--tf-deep) !important; }
+html body .co-btn { background: var(--tf-emerald) !important; border: 1px solid var(--tf-emerald) !important; color: #fff !important; border-radius: 3px !important; }
+html body .co-btn:hover { background: var(--tf-emerald-dk) !important; border-color: var(--tf-emerald-dk) !important; }
+html body .co-btn-ghost { background: #fff !important; color: var(--tf-ink) !important; border: 1px solid var(--tf-line) !important; }
+html body .co-price,
+html body .co-au-head .co-au-price { color: var(--tf-deep) !important; }
+html body .co-step.active .co-step-num { background: var(--tf-emerald) !important; }
+html body .co-step.done .co-step-num { background: var(--tf-deep) !important; }
+html body .co-line.done { background: var(--tf-deep) !important; }
+html body .co-pay-tab.active,
+html body .co-crypto-tab.active { border-color: var(--tf-emerald) !important; background: var(--tf-cream) !important; }
+html body .co-field input:focus,
+html body .co-field select:focus { border-color: var(--tf-emerald) !important; }
+
+/* Dashboard / account */
+html body .dash-nav-item.active { background: var(--tf-cream) !important; color: var(--tf-deep) !important; border-radius: 3px !important; }
+html body .dash-nav-item.active .nav-icon { color: var(--tf-deep) !important; }
+html body .dash-panel,
+html body .dash-sidebar { box-shadow: none !important; }
+html body .dash-panel-title { color: var(--tf-deep) !important; }
+
+/* Marketplace cards */
+html body .tl-card,
+html body .filter-card,
+html body .listing-card { border-radius: 4px !important; box-shadow: none !important; border: 1px solid var(--tf-line) !important; }
+html body .add-cart-btn { background: var(--tf-emerald) !important; border-radius: 3px !important; color: #fff !important; }
+
+/* Standalone auth cards (reset password) */
+html body .card { background: var(--tf-surface) !important; border: 1px solid var(--tf-line) !important; border-radius: 4px !important; color: var(--tf-ink) !important; backdrop-filter: none !important; }
+html body .card h1, html body .card label, html body .card .logo { color: var(--tf-deep) !important; }
+html body .card .sub { color: var(--tf-muted) !important; }
+html body .card input { background: #fff !important; border: 1px solid var(--tf-line) !important; color: var(--tf-ink) !important; border-radius: 3px !important; }
+html body .card button { background: var(--tf-emerald) !important; border-radius: 3px !important; }
+html body .card .link { color: var(--tf-deep) !important; }
+
+/* Marketplace / app hero bands */
+html body .mk-hero,
+html body .vault-hero,
+html body .co-hero,
+html body section[class*="hero"] { background: var(--tf-deep) !important; }
