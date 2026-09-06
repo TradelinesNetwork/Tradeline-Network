@@ -629,3 +629,15 @@ html body code:not(#tf), html body pre:not(#tf), html body .mono:not(#tf),
 html body .wallet-address:not(#tf), html body [style*="monospace"]:not(#tf) {
   font-family: 'SFMono-Regular', Menlo, Consolas, monospace !important;
 }
+
+/* Password visibility toggle stays a quiet icon button */
+html body .pw-toggle, html body .pw-toggle:hover {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #5b6b66 !important;
+  padding: 7px !important;
+  min-width: 0 !important;
+  text-transform: none !important;
+}
+html body .pw-toggle:hover { color: var(--tf-deep) !important; }
