@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const FROM_EMAIL = "Tradelines Network <no-reply@tradelinesnetwork.trade>";
+const FROM_EMAIL = "Tradelines Network <team@tradelinesnetwork.trade>";
 
 export const Route = createFileRoute("/api/public/welcome-email")({
   server: {
