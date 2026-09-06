@@ -49,20 +49,31 @@ body {
 }
 
 /* ---------- Base ---------- */
+html body, html body p, html body li, html body span, html body a,
+html body div, html body label, html body input, html body select,
+html body textarea, html body button {
+  font-family: 'Work Sans', 'Inter', system-ui, sans-serif !important;
+}
 body {
   background: var(--tf-page);
   color: var(--tf-ink);
-  font-family: 'Work Sans', 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0;
 }
-
-html body h1, html body h2, html body h3, html body h4 {
-  font-family: 'Instrument Serif', Georgia, serif;
-  color: var(--tf-deep);
-  letter-spacing: 0;
-  font-weight: 400;
+html body [style*="monospace"], html body code, html body pre {
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace !important;
 }
+
+html body h1, html body h2, html body h3, html body h4,
+html body h1 em, html body h2 em, html body h3 em {
+  font-family: 'Instrument Serif', Georgia, serif !important;
+  letter-spacing: 0;
+  font-weight: 400 !important;
+}
+html body h1, html body h2, html body h3, html body h4 {
+  color: var(--tf-deep);
+}
+
 
 /* Kill every decorative gradient / glow — the "vibe coded" tells. */
 html body .hero-glow, html body .hero-glow2, html body .hero-grid-bg { display: none !important; }
@@ -598,3 +609,35 @@ html body .co-guarantee { border-top: 1px solid var(--tf-line); padding-top: 14p
   html body .mk-foot { display: grid; grid-template-columns: 1fr; }
   html body .mk-add { width: 100%; }
 }
+
+/* ---------- Final typography authority (beats legacy tls-theme rules) ---------- */
+html body:not(#tf):not(#tf),
+html body *:not(#tf):not(#tf):not(h1):not(h2):not(h3):not(h4):not(code):not(pre):not(kbd):not(samp):not([style*="monospace"]):not(.mono):not(.wallet-address) {
+  font-family: 'Work Sans', 'Inter', system-ui, sans-serif !important;
+}
+html body h1:not(#tf):not(#tf),
+html body h2:not(#tf):not(#tf),
+html body h3:not(#tf):not(#tf),
+html body h4:not(#tf):not(#tf),
+html body .logo:not(#tf):not(#tf) {
+  font-family: 'Instrument Serif', Georgia, serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+html body code:not(#tf), html body pre:not(#tf), html body .mono:not(#tf),
+html body .wallet-address:not(#tf), html body [style*="monospace"]:not(#tf) {
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace !important;
+}
+
+/* Password visibility toggle stays a quiet icon button */
+html body .pw-toggle, html body .pw-toggle:hover {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #5b6b66 !important;
+  padding: 7px !important;
+  min-width: 0 !important;
+  text-transform: none !important;
+}
+html body .pw-toggle:hover { color: var(--tf-deep) !important; }
