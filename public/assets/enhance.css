@@ -1077,4 +1077,13 @@ body.step-payment #placeOrderBtn { display: flex !important; }
   box-shadow: none !important; letter-spacing: 0 !important;
 }
 .google-btn:hover { background: #f5f7f8 !important; border-color: #b9c4cc !important; }
+.google-btn:disabled,
+.google-btn:disabled:hover {
+  opacity: 1 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  background: #ffffff !important;
+  border-color: #d6dde2 !important;
+  color: #2b3d4f !important;
+}
 .google-btn svg { width: 19px; height: 19px; }
