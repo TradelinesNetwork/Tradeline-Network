@@ -49,20 +49,31 @@ body {
 }
 
 /* ---------- Base ---------- */
+html body, html body p, html body li, html body span, html body a,
+html body div, html body label, html body input, html body select,
+html body textarea, html body button {
+  font-family: 'Work Sans', 'Inter', system-ui, sans-serif !important;
+}
 body {
   background: var(--tf-page);
   color: var(--tf-ink);
-  font-family: 'Work Sans', 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0;
 }
-
-html body h1, html body h2, html body h3, html body h4 {
-  font-family: 'Instrument Serif', Georgia, serif;
-  color: var(--tf-deep);
-  letter-spacing: 0;
-  font-weight: 400;
+html body [style*="monospace"], html body code, html body pre {
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace !important;
 }
+
+html body h1, html body h2, html body h3, html body h4,
+html body h1 em, html body h2 em, html body h3 em {
+  font-family: 'Instrument Serif', Georgia, serif !important;
+  letter-spacing: 0;
+  font-weight: 400 !important;
+}
+html body h1, html body h2, html body h3, html body h4 {
+  color: var(--tf-deep);
+}
+
 
 /* Kill every decorative gradient / glow — the "vibe coded" tells. */
 html body .hero-glow, html body .hero-glow2, html body .hero-grid-bg { display: none !important; }
