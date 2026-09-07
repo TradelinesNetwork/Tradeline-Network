@@ -630,14 +630,37 @@ html body .wallet-address:not(#tf), html body [style*="monospace"]:not(#tf) {
   font-family: 'SFMono-Regular', Menlo, Consolas, monospace !important;
 }
 
-/* Password visibility toggle stays a quiet icon button */
+/* Password visibility toggle — static, no shifting */
+html body .password-field {
+  display: flex !important;
+  align-items: center !important;
+}
 html body .pw-toggle, html body .pw-toggle:hover {
+  position: absolute !important;
+  top: 0 !important;
+  right: 6px !important;
+  bottom: 0 !important;
+  left: auto !important;
+  margin: auto 0 !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   color: #5b6b66 !important;
-  padding: 7px !important;
+  padding: 0 !important;
   min-width: 0 !important;
   text-transform: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+html body .pw-toggle svg, html body .pw-toggle:hover svg {
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
+  flex: none !important;
 }
 html body .pw-toggle:hover { color: var(--tf-deep) !important; }
