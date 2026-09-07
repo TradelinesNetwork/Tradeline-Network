@@ -540,7 +540,11 @@ async function showScreen(force){
     document.getElementById('authScreen').style.display='none';
     document.getElementById('dashScreen').style.display='block';
     // Covers Google sign-ups too; the server only ever sends this once.
-    if(typeof sendWelcomeEmail === 'function') sendWelcomeEmail();
+    if(!window.__welcomeChecked && typeof sendWelcomeEmail === 'function'){
+      window.__welcomeChecked = true;
+      sendWelcomeEmail();
+    }
+
     // Only rebuild the dashboard when the account actually changed (or a
     // caller explicitly asks) — token refreshes must not re-trigger loading.
     if(force || renderedUserId !== user.id){
