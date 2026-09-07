@@ -650,8 +650,11 @@ async function renderOrders(){
   if(!orders.length){
     recentWrap.innerHTML = emptyState("You haven't placed any orders yet.");
     myWrap.innerHTML = emptyState("You haven't placed any orders yet. Once you complete a crypto payment at checkout, your order will show up here.");
+    recentWrap.dataset.loaded = '1';
+    myWrap.dataset.loaded = '1';
     return;
   }
+
 
   const shortId = (id) => escapeHtml(String(id).slice(0,8));
   const money = (n) => '$' + Number(n||0).toLocaleString();
@@ -685,7 +688,10 @@ async function renderOrders(){
       <td data-label="Posting Status">${statusBadge(o.status)}</td>
       <td data-label=""><a href="order.html?id=${encodeURIComponent(o.id)}" style="color:var(--sky);font-weight:600;font-size:12.5px;white-space:nowrap">Track</a></td>
     </tr>`)).join('')}</tbody></table></div>`;
+  recentWrap.dataset.loaded = '1';
+  myWrap.dataset.loaded = '1';
 }
+
 
 function switchAuth(tab){
   document.getElementById('loginForm').style.display = tab==='login'?'block':'none';
