@@ -522,24 +522,40 @@ function checkPwMatch(){
 ['regPass','regPass2'].forEach(id => document.getElementById(id).addEventListener('input', checkPwMatch));
 
 let user = null;
+let renderedUserId = null;
+let dashLoading = false;
 
-async function refreshSession(){
-  user = await currentUser();
-  await showScreen();
+async function refreshSession(force){
+  const fresh = await currentUser();
+  // A transient network/token hiccup can make getUser() return null even though
+  // the person is still signed in. Never tear the dashboard down for that —
+  // only an explicit sign-out clears the session (see doLogout / SIGNED_OUT).
+  if(!fresh && user) return;
+  user = fresh;
+  await showScreen(force);
 }
 
-async function showScreen(){
+async function showScreen(force){
   if(user){
     document.getElementById('authScreen').style.display='none';
     document.getElementById('dashScreen').style.display='block';
     // Covers Google sign-ups too; the server only ever sends this once.
     if(typeof sendWelcomeEmail === 'function') sendWelcomeEmail();
-    await populateDash();
+    // Only rebuild the dashboard when the account actually changed (or a
+    // caller explicitly asks) — token refreshes must not re-trigger loading.
+    if(force || renderedUserId !== user.id){
+      if(dashLoading) return;
+      dashLoading = true;
+      renderedUserId = user.id;
+      try { await populateDash(); } finally { dashLoading = false; }
+    }
   } else {
+    renderedUserId = null;
     document.getElementById('authScreen').style.display='flex';
     document.getElementById('dashScreen').style.display='none';
   }
 }
+
 
 
 async function populateDash(){
