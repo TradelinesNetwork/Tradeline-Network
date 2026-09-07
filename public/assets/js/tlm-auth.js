@@ -3,8 +3,8 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 
 // Publishable key — safe to embed in static HTML.
-const SUPABASE_URL = "https://ezmgwttmjfdxhnlmeprz.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_P13bm6olGI-U0TSThhE8-g_3RNREND7";
+const SUPABASE_URL = "https://zgdmbcsvfixlypbkcyur.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_L3icVp70lPqTgf_Z8tHSPA_9vKaXFuq";
 
 // New-format sb_publishable_* keys are opaque, not JWTs.
 // The Supabase JS client sends them fine; we just make sure to only put them
