@@ -629,8 +629,11 @@ async function renderOrders(){
       <a href="marketplace.html" style="background:var(--sky);color:var(--white);padding:10px 20px;border-radius:9px;font-weight:700;font-size:13.5px;font-family:'Playfair Display', serif">Browse Tradelines</a>
     </div>`;
 
-  recentWrap.textContent = 'Loading…';
-  myWrap.textContent = 'Loading…';
+  // Only show a placeholder on the very first load; refreshes keep the
+  // existing rows on screen so nothing flashes "Loading…" repeatedly.
+  if(!recentWrap.dataset.loaded) recentWrap.textContent = 'Loading…';
+  if(!myWrap.dataset.loaded) myWrap.textContent = 'Loading…';
+
 
   let orders = [];
   try {
@@ -802,7 +805,19 @@ function switchPanel(id, el){
 }
 window.switchPanel = switchPanel;
 
-supabase.auth.onAuthStateChange(() => { refreshSession(); });
+// Ignore TOKEN_REFRESHED (hourly + on tab focus) and INITIAL_SESSION — reacting
+// to those is what caused the repeated loading and surprise sign-outs.
+supabase.auth.onAuthStateChange((event, session) => {
+  if(event === 'SIGNED_OUT'){
+    user = null;
+    showScreen();
+    return;
+  }
+  if(event !== 'SIGNED_IN' && event !== 'USER_UPDATED') return;
+  if(session?.user && user && session.user.id === user.id) return;
+  refreshSession();
+});
+
 
 (async () => {
   await refreshSession();
