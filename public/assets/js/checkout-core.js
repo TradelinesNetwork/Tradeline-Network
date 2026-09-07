@@ -66,6 +66,14 @@ export function cartFees() {
 export function cartTotal(cart = getCart()) {
   return cartSubtotal(cart) + cartFees();
 }
+/** Display helper — shows the exact listing price, cents included when present. */
+export function money(n) {
+  const v = Number(n) || 0;
+  return "$" + v.toLocaleString(undefined, {
+    minimumFractionDigits: Number.isInteger(v) ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+}
 
 /* ── CHECKOUT DRAFT (AU details + payment selection) ──── */
 export function getCheckout() {
