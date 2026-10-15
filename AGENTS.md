@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shared static-page presentation in the final financial theme stylesheet; it is loaded last to consistently override legacy styles without altering purchasing scripts.
+- Keep the root content route as the static homepage bridge with its own metadata; public HTML pages remain the existing user experience.
