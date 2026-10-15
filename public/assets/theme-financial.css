@@ -669,7 +669,7 @@ html body .pw-toggle:hover { color: var(--tf-deep) !important; }
 :root, body {
   --tf-on-dark: oklch(1 0 0);
   --tf-on-dark-muted: oklch(0.88 0.015 160);
-  --tf-photo-scrim: oklch(0.2 0.025 160 / .48);
+  --tf-photo-scrim: oklch(0.2 0.025 160 / .6);
   --tf-photo-base: oklch(0.19 0.025 250);
   --tf-hover: oklch(0.97 0.008 160);
   --tf-shadow-dialog: 0 16px 48px oklch(0.2 0.03 160 / .16);
@@ -715,6 +715,7 @@ html body .hero-inner h1:not(#tf):not(#tf), html body .hero-inner h1 em:not(#tf)
   line-height: 1.04 !important; font-weight: 400 !important; margin: 0 0 22px !important;
   color: var(--tf-on-dark) !important; text-shadow: none !important;
 }
+html body .hero-inner h1 em:not(#tf):not(#tf):not(#tf):not(#tf) { font-family: 'Instrument Serif', Georgia, serif !important; }
 html body .hero-inner > .hero-content > p:not(#tf) { max-width: 475px; margin: 0 0 28px !important; font-size: 15px !important; line-height: 1.8; color: var(--tf-on-dark-muted) !important; text-shadow: none !important; }
 html body .hero-btns:not(#tf) { justify-content: flex-start !important; gap: 12px; }
 html body .hero-btns .btn-primary:not(#tf) { background: var(--tf-on-dark) !important; border-color: var(--tf-on-dark) !important; color: var(--tf-deep) !important; }
@@ -757,6 +758,15 @@ html body .orders-table th:not(#tf) { background: var(--tf-hover) !important; }
 html body .orders-table tbody tr:hover { background: var(--tf-hover) !important; }
 html body .co-step-num { font-variant-numeric: tabular-nums; }
 html body .co-step.upcoming .co-step-num { border: 1px solid var(--tf-line); background: var(--tf-surface); color: var(--tf-muted); }
+html body header .logo-icon:not(#tf) { box-shadow: none !important; }
+html body header .cart-btn svg { display: block !important; width: 18px !important; height: 18px !important; color: var(--tf-deep) !important; }
+html body .auth-card:not(#tf) { border-radius: 4px !important; box-shadow: none !important; }
+html body .auth-logo-text:not(#tf):not(#tf):not(#tf) { font-family: 'Instrument Serif', Georgia, serif !important; font-size: 28px !important; font-weight: 400 !important; color: var(--tf-deep) !important; }
+html body .auth-logo-text span:not(#tf):not(#tf):not(#tf) { font-family: inherit !important; color: inherit !important; }
+html body .auth-logo-icon:not(#tf) { border-radius: 4px !important; background: var(--tf-deep) !important; }
+html body .auth-tabs:not(#tf), html body .auth-tab:not(#tf) { border-radius: 3px !important; box-shadow: none !important; }
+html body .auth-card .btn-primary:not(#tf), html body .auth-submit:not(#tf) { box-shadow: none !important; transform: none !important; }
+html body .auth-card .google-btn:disabled:not(#tf), html body .auth-card .google-btn:disabled:hover:not(#tf) { background: var(--tf-surface) !important; color: var(--tf-ink) !important; border: 1px solid var(--tf-line) !important; border-radius: 3px !important; opacity: 1 !important; box-shadow: none !important; }
 html body .support-btn:not(#tf) { width: 44px; height: 44px; box-shadow: none !important; transform: none !important; }
 html body footer:not(#tf), html body .cta-band:not(#tf) { border-top: 1px solid var(--tf-line) !important; border-radius: 0 !important; }
 
