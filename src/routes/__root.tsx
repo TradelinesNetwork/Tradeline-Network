@@ -94,8 +94,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Tradelines Marketplace | Authorized User Tradelines" },
       { name: "twitter:description", content: "The smartest marketplace for authorized user tradelines. Guaranteed to post. Build credit and shop online in minutes." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/abd01a9a-98e3-426c-bf17-5199488c41d9" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/abd01a9a-98e3-426c-bf17-5199488c41d9" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
