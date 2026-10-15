@@ -563,7 +563,7 @@ html body .gtc-stay { background: var(--tf-surface); color: var(--tf-deep); bord
 /* Account and checkout: flatter hierarchy and denser, trustworthy records. */
 html body .dash-layout { max-width: 1240px; gap: 32px; }
 html body .dash-sidebar { border-radius: 4px !important; border-top: 3px solid var(--tf-deep) !important; }
-html body .dash-panel-title { font-family: 'Libre Baskerville', Georgia, serif !important; font-size: 34px !important; font-weight: 400 !important; }
+html body .dash-panel-title { font-family: 'Libre Baskerville', Georgia, serif !important; font-size: 30px !important; font-weight: 400 !important; }
 html body .stats-row { gap: 12px; }
 html body .stat-card { border-radius: 4px !important; border-top: 2px solid var(--tf-deep) !important; }
 html body .stat-icon { color: var(--tf-emerald-dk); }
@@ -711,7 +711,7 @@ html body .hero-tag:not(#tf) { padding: 0 !important; border: 0 !important; colo
 html body .hero-tag::before { display: none !important; }
 html body .hero-sub-tag:not(#tf) { display: none !important; }
 html body .hero-inner h1:not(#tf):not(#tf), html body .hero-inner h1 em:not(#tf):not(#tf) {
-  font-family: 'Libre Baskerville', Georgia, serif !important; font-size: 68px !important;
+  font-family: 'Libre Baskerville', Georgia, serif !important; font-size: 56px !important;
   line-height: 1.04 !important; font-weight: 400 !important; margin: 0 0 22px !important;
   color: var(--tf-on-dark) !important; text-shadow: none !important;
 }
@@ -786,7 +786,7 @@ html body footer:not(#tf), html body .cta-band:not(#tf) { border-top: 1px solid 
   html body .hero-stats:not(#tf) { gap: 26px; margin-top: 26px !important; padding-top: 18px !important; flex-wrap: nowrap; }
   html body .hero-btns a:not(#tf) { padding: 11px 12px !important; font-size: 12px !important; }
   html body .section:not(#tf) { padding: 48px 22px !important; }
-  html body .section-title:not(#tf):not(#tf) { font-size: 34px !important; }
+  html body .section-title:not(#tf):not(#tf) { font-size: 30px !important; }
   html body .mk-hero h1:not(#tf):not(#tf) { font-size: 40px !important; }
   html body #showcase-carousel .carousel-slide figcaption:not(#tf) { padding: 16px 18px 30px !important; }
   html body .mk-cartbar { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
