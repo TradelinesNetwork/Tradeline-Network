@@ -6,24 +6,24 @@
 
 :root,
 body {
-  --tf-ink:        #0b1f18;   /* body copy */
-  --tf-deep:       #064e3b;   /* header / primary */
-  --tf-emerald:    #0d7a5f;   /* action */
-  --tf-emerald-dk: #0a604a;
-  --tf-gold:       #d8bd70;   /* accessible accent on deep emerald */
-  --tf-gold-ink:   #735d1d;   /* accessible gold-derived text on light */
+  --tf-ink:        #0a1630;   /* body copy */
+  --tf-deep:       #0b2a5b;   /* header / primary */
+  --tf-emerald:    #163f80;   /* action */
+  --tf-emerald-dk: #0f3166;
+  --tf-gold:       #d9b04a;   /* accessible accent on deep emerald */
+  --tf-gold-ink:   #7a5c12;   /* accessible gold-derived text on light */
   --tf-cream:      #f5f0e0;
-  --tf-page:       #f7f9f8;
+  --tf-page:       #f6f8fb;
   --tf-surface:    #ffffff;
-  --tf-line:       #dde5e1;
-  --tf-line-soft:  #eaefec;
-  --tf-muted:      #56675f;
+  --tf-line:       #dde3ec;
+  --tf-line-soft:  #ebeff5;
+  --tf-muted:      #55617a;
 
   /* Re-map legacy tokens used across the marketing pages */
   --ink: var(--tf-ink);
   --ink-light: var(--tf-muted);
   --sky: var(--tf-emerald);
-  --sky-pale: #eef5f1;
+  --sky-pale: #eef2f9;
   --gold: var(--tf-gold);
   --gold-light: #faf6ea;
   --mint: var(--tf-emerald);
@@ -31,21 +31,21 @@ body {
   --white: var(--tf-surface);
   --border: var(--tf-line);
   --radius: 4px;
-  --shadow: 0 1px 2px rgba(11, 31, 24, .06);
-  --shadow-lg: 0 6px 24px rgba(11, 31, 24, .09);
+  --shadow: 0 1px 2px rgba(10,22,48, .06);
+  --shadow-lg: 0 6px 24px rgba(10,22,48, .09);
 
   /* Re-map the previous TLS theme tokens so every rule keyed to them
      inherits the financial-services palette. */
-  --tls-navy: #064e3b;
-  --tls-navy-dark: #053f30;
-  --tls-slate: #0d7a5f;
-  --tls-slate-dark: #0a604a;
-  --tls-yellow: #c9a84c;
-  --tls-yellow-dark: #b8963c;
-  --tls-text: #33443d;
-  --tls-head: #064e3b;
-  --tls-line: #dde5e1;
-  --tls-soft: #f7f9f8;
+  --tls-navy: #0b2a5b;
+  --tls-navy-dark: #081f45;
+  --tls-slate: #163f80;
+  --tls-slate-dark: #0f3166;
+  --tls-yellow: #c99a2e;
+  --tls-yellow-dark: #b0851f;
+  --tls-text: #33405a;
+  --tls-head: #0b2a5b;
+  --tls-line: #dde3ec;
+  --tls-soft: #f6f8fb;
 }
 
 /* ---------- Base ---------- */
@@ -174,14 +174,14 @@ html body .hero-tag, html body .hero-sub-tag, html body .section-tag {
   font-size: 11px !important;
   font-weight: 700 !important;
 }
-html body .section-tag { color: var(--tf-emerald-dk) !important; border-color: rgba(13, 122, 95, .35) !important; }
+html body .section-tag { color: var(--tf-emerald-dk) !important; border-color: rgba(22,63,128, .35) !important; }
 html body .hero-stat-num { color: #fff !important; font-family: 'Libre Baskerville', Georgia, serif; }
 html body .hero-stat-label { color: rgba(255, 255, 255, .6) !important; text-transform: uppercase; letter-spacing: .08em; font-size: 11px !important; }
 
 /* ---------- Page heroes (interior pages) ---------- */
 html body .page-hero { background: var(--tf-deep) !important; }
 html body .page-hero-bg { opacity: .14 !important; filter: grayscale(1); }
-html body .page-hero-overlay { background: rgba(6, 78, 59, .82) !important; }
+html body .page-hero-overlay { background: rgba(11,42,91, .82) !important; }
 html body .page-hero h1 { color: #fff !important; }
 html body .page-hero p { color: rgba(255, 255, 255, .74) !important; }
 html body .breadcrumb, html body .breadcrumb a { color: rgba(255, 255, 255, .6) !important; }
@@ -205,7 +205,7 @@ html body .res-panel, html body .faq-item, html body .mission-stat, html body .t
 .opp-card:hover, .use-card:hover, .value-card:hover, .req-card:hover,
 html body .blog-card:hover, html body .article-card:hover, html body .tradeline-card:hover, html body .contact-channel:hover {
   border-color: #c3d2cb !important;
-  box-shadow: 0 4px 18px rgba(11, 31, 24, .07) !important;
+  box-shadow: 0 4px 18px rgba(10,22,48, .07) !important;
   transform: none !important;
 }
 html body .tradeline-card.featured { border: 1px solid var(--tf-gold) !important; }
@@ -299,13 +299,13 @@ html body .cta-band .btn-ghost:hover { background: rgba(255, 255, 255, .08) !imp
 
 /* ---------- Carousel ---------- */
 html body #showcase-carousel .carousel-slide figcaption {
-  background: rgba(6, 78, 59, .9) !important;
+  background: rgba(11,42,91, .9) !important;
   border-top: 2px solid var(--tf-gold);
 }
 #showcase-carousel .carousel-slide figcaption strong,
 #showcase-carousel .carousel-slide figcaption span,
 html body #showcase-carousel .carousel-slide figcaption p { color: #fff !important; }
-html body #showcase-carousel .carousel-dot { border-radius: 50% !important; width: 8px !important; height: 8px !important; flex: 0 0 8px; background: rgba(6, 78, 59, .25) !important; }
+html body #showcase-carousel .carousel-dot { border-radius: 50% !important; width: 8px !important; height: 8px !important; flex: 0 0 8px; background: rgba(11,42,91, .25) !important; }
 html body #showcase-carousel .carousel-dot.active { background: var(--tf-gold) !important; }
 
 /* ---------- Footer ---------- */
@@ -320,7 +320,7 @@ html body footer a:hover { color: var(--tf-gold) !important; }
 html body .footer-bottom { border-top: 1px solid rgba(255, 255, 255, .12) !important; }
 
 /* ---------- Floating support buttons ---------- */
-html body .support-btn { border-radius: 3px !important; box-shadow: 0 4px 16px rgba(11, 31, 24, .22) !important; }
+html body .support-btn { border-radius: 3px !important; box-shadow: 0 4px 16px rgba(10,22,48, .22) !important; }
 
 /* ---------- Tables on marketing pages ---------- */
 html body table { border-collapse: collapse; }
@@ -549,7 +549,7 @@ html body .mk-add { min-height: 44px; border-radius: 3px; background: var(--tf-e
 html body .mk-add:hover { background: var(--tf-emerald-dk); }
 html body .mk-stock { color: var(--tf-emerald-dk); }
 html body .mk-stock.low { color: #895e00; }
-html body .mk-cartbar { border-top: 2px solid var(--tf-deep); box-shadow: 0 -6px 20px rgba(11,31,24,.08); }
+html body .mk-cartbar { border-top: 2px solid var(--tf-deep); box-shadow: 0 -6px 20px rgba(10,22,48,.08); }
 
 /* Cart confirmation: sober dialog with a clear next action. */
 html body .gtc-overlay { background: rgba(6, 35, 27, .68); }
@@ -800,7 +800,7 @@ html body footer:not(#tf), html body .cta-band:not(#tf) { border-top: 1px solid 
 body{background:#f3f4ec}
 .btn,.nav-cta,.co-btn,button.btn-primary,a.btn-primary{border-radius:999px!important}
 .hero-content,.hero .hero-text,.co-card,.tl-card,.card{border-radius:20px}
-.hero-content{background:rgba(245,246,238,.94);padding:clamp(24px,4vw,40px);box-shadow:0 10px 30px rgba(6,78,59,.10)}
+.hero-content{background:rgba(245,246,238,.94);padding:clamp(24px,4vw,40px);box-shadow:0 10px 30px rgba(11,42,91,.10)}
 html body .hero-btns a:not(#tf),html body .btn-primary:not(#tf),html body .add-cart-btn:not(#tf),html body .btn-ghost:not(#tf),html body .nav-cta:not(#tf),html body .co-btn:not(#tf){border-radius:999px!important}
 html body .btn-primary,html body .btn-secondary,html body .btn-outline,html body .btn,html body .nav-cta,html body .co-btn,html body .carousel-btn,html body .tl-buy,html body .filter-btn{border-radius:999px!important}
 html body .carousel,html body .carousel-track,html body .tl-card,html body .co-card{border-radius:20px!important;overflow:hidden}
@@ -882,3 +882,8 @@ html body.home-decorative .trust-stat + .trust-stat { border-top: 1px solid var(
   html body.home-decorative .carousel-slide figcaption::after { right: 18px; top: 18px; font-size: 26px; }
   html body.home-decorative .how-section .steps-grid { gap: 20px; }
 }
+
+/* ---------- Brand logo mark ---------- */
+html body .logo-icon{background:#fff!important;border-radius:8px!important;padding:3px!important;width:36px!important;height:36px!important;overflow:hidden}
+html body .logo-icon img{width:100%;height:100%;object-fit:contain;display:block}
+html body .logo img.brand-mark{width:30px;height:30px;border-radius:6px;background:#fff;padding:2px;vertical-align:middle}
