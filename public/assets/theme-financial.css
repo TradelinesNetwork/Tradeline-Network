@@ -795,3 +795,12 @@ html body footer:not(#tf), html body .cta-band:not(#tf) { border-top: 1px solid 
   html { scroll-behavior: auto; }
   html body *, html body *::before, html body *::after { animation: none !important; transition: none !important; }
 }
+
+/* Soft, friendly layer inspired by approachable local-service sites */
+body{background:#f3f4ec}
+.btn,.nav-cta,.co-btn,button.btn-primary,a.btn-primary{border-radius:999px!important}
+.hero-content,.hero .hero-text,.co-card,.tl-card,.card{border-radius:20px}
+.hero-content{background:rgba(245,246,238,.94);padding:clamp(24px,4vw,40px);box-shadow:0 10px 30px rgba(6,78,59,.10)}
+html body .hero-btns a:not(#tf),html body .btn-primary:not(#tf),html body .add-cart-btn:not(#tf),html body .btn-ghost:not(#tf),html body .nav-cta:not(#tf),html body .co-btn:not(#tf){border-radius:999px!important}
+html body .btn-primary,html body .btn-secondary,html body .btn-outline,html body .btn,html body .nav-cta,html body .co-btn,html body .carousel-btn,html body .tl-buy,html body .filter-btn{border-radius:999px!important}
+html body .carousel,html body .carousel-track,html body .tl-card,html body .co-card{border-radius:20px!important;overflow:hidden}
