@@ -135,7 +135,7 @@ export function renderChrome(activeStep) {
       <header>
         <nav>
           <a href="index.html" class="logo">
-            <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2L3 5V10C3 13.87 6.13 17.48 10 18C13.87 17.48 17 13.87 17 10V5L10 2Z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 11.5L9.5 8.5L10 10L12.5 7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12.5" cy="7" r="1" fill="white"/></svg></div>
+            <div class="logo-icon"><img src="assets/logo-mark.png" alt="" width="30" height="30"></div>
             Tradelines <span>Network</span>
           </a>
           <ul class="nav-links">${NAV_LINKS.map(([h, l]) => `<li><a href="${h}">${l}</a></li>`).join("")}</ul>
