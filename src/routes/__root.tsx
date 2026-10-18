@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#0D0F1A" },
+      { name: "theme-color", content: "#0b2a5b" },
       { title: "Tradelines Marketplace | Authorized User Tradelines" },
       {
         name: "description",
@@ -98,10 +98,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "icon", type: "image/x-icon", sizes: "16x16", href: "/favicon.ico" },
-      { rel: "icon", type: "image/x-icon", sizes: "32x32", href: "/favicon.ico" },
-      { rel: "icon", type: "image/x-icon", sizes: "48x48", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "48x48", href: "/assets/favicon-48x48.png?v=3" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicon-32x32.png?v=3" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/favicon-16x16.png?v=3" },
       { rel: "apple-touch-icon", sizes: "180x180", href: "/assets/apple-touch-icon.png" },
       { rel: "manifest", href: "/assets/site.webmanifest" },
     ],

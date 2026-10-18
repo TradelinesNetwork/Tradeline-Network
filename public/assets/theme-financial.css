@@ -887,3 +887,44 @@ html body.home-decorative .trust-stat + .trust-stat { border-top: 1px solid var(
 html body .logo-icon{background:#fff!important;border-radius:8px!important;padding:3px!important;width:36px!important;height:36px!important;overflow:hidden}
 html body .logo-icon img{width:100%;height:100%;object-fit:contain;display:block}
 html body .logo img.brand-mark{width:30px;height:30px;border-radius:6px;background:#fff;padding:2px;vertical-align:middle}
+
+/* Balanced ivory and gold brand surfaces; white stays on readable records. */
+:root, body {
+  --tf-page: oklch(0.96 0.032 88);
+  --tf-cream: oklch(0.92 0.07 88);
+  --tf-gold-surface: oklch(0.89 0.085 88);
+  --tf-hover: oklch(0.94 0.052 88);
+  --tf-line: oklch(0.82 0.052 88);
+  --tf-line-soft: oklch(0.91 0.03 88);
+  --tf-ornament-soft: var(--tf-cream);
+  --tls-soft: var(--tf-page);
+}
+html body { background: var(--tf-page) !important; }
+html body header:not(#tf) { background: var(--tf-cream) !important; border-bottom-color: var(--tf-gold) !important; }
+html body .section:not(#tf) { background: var(--tf-surface) !important; }
+html body .section:nth-of-type(even):not(#tf),
+html body .carousel-section:not(#tf),
+html body .mk-hero:not(#tf) { background: var(--tf-cream) !important; }
+html body .trust-bar:not(#tf), html body .auth-tabs:not(#tf),
+html body .co-progress:not(#tf), html body .orders-table th:not(#tf) {
+  background: var(--tf-gold-surface) !important; color: var(--tf-deep) !important;
+}
+html body .trust-bar span, html body .trust-bar strong { color: var(--tf-deep) !important; }
+html body header .cart-btn:not(#tf) {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  gap: 6px; flex: 0 0 auto; width: 64px; height: 44px; padding: 8px;
+  background: var(--tf-gold) !important; border: 1px solid var(--tf-gold-ink) !important;
+  color: var(--tf-deep) !important; border-radius: 6px !important;
+}
+html body header .cart-btn svg { width: 22px !important; height: 22px !important; }
+html body header .cart-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%; font-size: 11px; font-weight: 700;
+  background: var(--tf-surface); color: var(--tf-deep);
+}
+@media (max-width: 480px) {
+  html body header .logo:not(#tf) { font-size: 16px !important; gap: 4px; }
+  html body header .cart-btn:not(#tf) { width: 54px; }
+  html body header .hamburger { margin-left: 0; }
+  html body header nav { gap: 6px; }
+}
