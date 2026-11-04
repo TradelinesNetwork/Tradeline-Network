@@ -725,8 +725,7 @@ function render() {
   const cart = getCart();
   document.getElementById('mkCount').textContent =
     `${rows.length} tradeline${rows.length === 1 ? '' : 's'} available` +
-    (rows.length ? ' · prices include AU placement and posting' : '') +
-    (EXPIRED_COUNT ? ` · ${EXPIRED_COUNT} past-due listing${EXPIRED_COUNT === 1 ? '' : 's'} removed automatically` : '');
+    (rows.length ? ' · prices include AU placement and posting' : '');
   document.getElementById('mkEmpty').style.display = rows.length ? 'none' : '';
 
   const money = n => '$' + Number(n).toLocaleString(undefined, { minimumFractionDigits: Number.isInteger(Number(n)) ? 0 : 2, maximumFractionDigits: 2 });
