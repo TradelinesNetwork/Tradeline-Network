@@ -939,3 +939,4 @@ html body.home-decorative .carousel-slide figcaption::after{position:static!impo
 html body #showcase-carousel .carousel-slide figcaption strong{font-size:18px!important}
 html body #showcase-carousel .carousel-slide figcaption span{font-size:13.5px!important}
 html body.home-decorative .carousel-slide figcaption::after{font-size:26px!important}}
+html body.home-decorative #showcase-carousel .carousel-slide figcaption:not(#tf):not(#x){padding-right:36px!important}
