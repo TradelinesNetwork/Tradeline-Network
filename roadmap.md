@@ -7,3 +7,4 @@
 - [x] Check homepage decoration and navigation at desktop and mobile sizes.
 - [x] Finish the right-hand homepage illustration positioning without covering page content.
 - [x] Verify illustration, navigation, and carousel at desktop and mobile sizes.
+- [x] Add and verify gently moving detail icons around the homepage illustration.
