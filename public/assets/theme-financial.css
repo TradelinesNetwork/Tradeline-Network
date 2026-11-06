@@ -972,13 +972,13 @@ html body.home-decorative .home-float-crest img {
     top: auto;
     right: auto;
     width: 200px;
-    margin: 28px 0 0 auto;
+    margin: 28px auto 0;
     transform: none;
     animation: none;
   }
 }
 @media (max-width: 640px) {
-  html body.home-decorative .home-float-crest { width: 128px; margin-top: 18px; margin-right: 54px; }
+  html body.home-decorative .home-float-crest { width: 148px; margin: 18px auto 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   html body.home-decorative .home-float-crest { animation: none; }
@@ -989,29 +989,28 @@ html body.home-decorative .home-detail-icon {
   position: absolute;
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border: 1px solid var(--tf-gold);
-  border-radius: 8px;
-  background: var(--tf-deep);
+  width: 32px;
+  height: 32px;
   color: var(--tf-gold);
   animation: homepage-detail-drift 5.5s ease-in-out infinite;
 }
-html body.home-decorative .home-detail-icon svg { width: 27px; height: 27px; }
-html body.home-decorative .home-detail-credit { left: 0; top: 15%; }
-html body.home-decorative .home-detail-growth { right: 0; top: 28%; animation-delay: -1.8s; animation-duration: 6.5s; }
-html body.home-decorative .home-detail-shield { left: 12%; bottom: 5%; animation-delay: -3.2s; animation-duration: 7s; }
+html body.home-decorative .home-detail-icon svg { width: 30px; height: 30px; }
+html body.home-decorative .home-detail-credit { left: 0; top: 18%; }
+html body.home-decorative .home-detail-growth { right: 0; top: 18%; animation-delay: -1.8s; animation-duration: 6.5s; }
+html body.home-decorative .home-detail-shield { left: calc(50% - 16px); bottom: 0; animation-delay: -3.2s; animation-duration: 7s; }
 @keyframes homepage-detail-drift {
-  0%, 100% { transform: translate(0, 0) rotate(-3deg); }
-  50% { transform: translate(3px, -10px) rotate(3deg); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 @media (max-width: 1000px) {
-  html body.home-decorative .home-detail-icon { width: 40px; height: 40px; }
-  html body.home-decorative .home-detail-icon svg { width: 23px; height: 23px; }
+  html body.home-decorative .home-detail-icon { width: 26px; height: 26px; }
+  html body.home-decorative .home-detail-icon svg { width: 24px; height: 24px; }
+  html body.home-decorative .home-detail-shield { left: calc(50% - 13px); }
 }
 @media (max-width: 640px) {
-  html body.home-decorative .home-detail-icon { width: 32px; height: 32px; border-radius: 6px; }
-  html body.home-decorative .home-detail-icon svg { width: 19px; height: 19px; }
+  html body.home-decorative .home-detail-icon { width: 22px; height: 22px; }
+  html body.home-decorative .home-detail-icon svg { width: 20px; height: 20px; }
+  html body.home-decorative .home-detail-shield { left: calc(50% - 11px); }
 }
 @media (prefers-reduced-motion: reduce) {
   html body.home-decorative .home-detail-icon { animation: none; }
