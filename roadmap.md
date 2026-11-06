@@ -5,3 +5,5 @@
 - [x] Apply required package security update and confirm preview health.
 - [x] Add homepage-only gold ornament, editorial section accents, and engraved process numbers without changing purchasing.
 - [x] Check homepage decoration and navigation at desktop and mobile sizes.
+- [x] Finish the right-hand homepage illustration positioning without covering page content.
+- [x] Verify illustration, navigation, and carousel at desktop and mobile sizes.
