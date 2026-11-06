@@ -978,7 +978,7 @@ html body.home-decorative .home-float-crest img {
   }
 }
 @media (max-width: 640px) {
-  html body.home-decorative .home-float-crest { width: 144px; margin-top: 18px; }
+  html body.home-decorative .home-float-crest { width: 128px; margin-top: 18px; margin-right: 54px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html body.home-decorative .home-float-crest { animation: none; }
