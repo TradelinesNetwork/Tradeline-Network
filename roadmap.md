@@ -8,4 +8,4 @@
 - [x] Finish the right-hand homepage illustration positioning without covering page content.
 - [x] Verify illustration, navigation, and carousel at desktop and mobile sizes.
 - [x] Add and verify gently moving detail icons around the homepage illustration.
-- [ ] Make detail icons smaller and more realistic, center the gold illustration, and verify desktop and mobile views.
+- [x] Make detail icons smaller and more realistic, center the gold illustration, and verify desktop and mobile views.
