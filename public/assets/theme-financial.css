@@ -940,3 +940,46 @@ html body #showcase-carousel .carousel-slide figcaption strong{font-size:18px!im
 html body #showcase-carousel .carousel-slide figcaption span{font-size:13.5px!important}
 html body.home-decorative .carousel-slide figcaption::after{font-size:26px!important}}
 html body.home-decorative #showcase-carousel .carousel-slide figcaption:not(#tf):not(#x){padding-right:36px!important}
+
+/* Homepage illustration stays within the opening view, clear of navigation. */
+html body.home-decorative .hero-inner:not(#tf) { display: block; }
+html body.home-decorative .hero-visual { display: none !important; }
+html body.home-decorative .hero-content:not(#tf) { width: calc(100% - 380px); }
+html body.home-decorative .home-float-crest {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  width: 320px;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+  animation: homepage-crest-float 7s ease-in-out infinite;
+}
+html body.home-decorative .home-float-crest img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@keyframes homepage-crest-float {
+  0%, 100% { transform: translateY(-50%); }
+  50% { transform: translateY(calc(-50% - 8px)); }
+}
+@media (max-width: 1000px) {
+  html body.home-decorative .hero-content:not(#tf) { width: 100%; }
+  html body.home-decorative .home-float-crest {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 200px;
+    margin: 28px 0 0 auto;
+    transform: none;
+    animation: none;
+  }
+}
+@media (max-width: 640px) {
+  html body.home-decorative .home-float-crest { width: 144px; margin-top: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html body.home-decorative .home-float-crest { animation: none; }
+}
