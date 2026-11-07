@@ -37,6 +37,10 @@
 .mk-bar select,.mk-bar input{width:100%;padding:10px 12px;border:1.5px solid var(--co-line);border-radius:9px;font:inherit;font-size:14px;background:#fff;color:var(--co-ink)}
 .mk-count{font-size:13px;color:var(--co-ink-light);margin:12px 2px 14px}
 .mk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mk-loading{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:72px 20px;color:#0b2a5b}
+.mk-spinner{width:44px;height:44px;border-radius:50%;border:4px solid rgba(11,42,91,0.15);border-top-color:#c9a84c;animation:mkSpin 0.8s linear infinite}
+.mk-loading-text{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(11,42,91,0.65)}
+@keyframes mkSpin{to{transform:rotate(360deg)}}
 .mk-card{background:#fff;border:1px solid var(--co-line);border-radius:14px;padding:18px;display:flex;flex-direction:column}
 .mk-card-top{display:flex;gap:11px;align-items:center;margin-bottom:14px}
 .mk-ico{width:42px;height:42px;border-radius:11px;background:#f4f7ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
@@ -129,7 +133,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </select></div>
   </div>
   <div class="mk-count" id="mkCount"></div>
-  <div class="mk-grid" id="mkGrid"></div>
+  <div class="mk-grid" id="mkGrid"><div class="mk-loading" id="mkLoading"><div class="mk-spinner" role="status" aria-label="Loading tradelines"></div><div class="mk-loading-text">Loading available tradelines</div></div></div>
   <div class="mk-empty" id="mkEmpty" style="display:none">No tradelines match those filters. Try widening your limit or age range.</div>
 </div>
 
@@ -818,7 +822,8 @@ function renderCartBar() {
 ['fBank', 'fLimit', 'fAge', 'fSort'].forEach(id =>
   document.getElementById(id).addEventListener('change', render),
 );
-render();
+// Brief loading state so the spinner is visible while the vault opens.
+setTimeout(render, 650);
 </script>
 <script src="assets/js/site-assets.js?v=2" defer></script>
 </body>
