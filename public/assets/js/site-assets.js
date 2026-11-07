@@ -29,4 +29,42 @@
   window.addEventListener('storage', updateCart);
   window.addEventListener('pageshow', updateCart);
   document.addEventListener('click', () => setTimeout(updateCart, 0));
+
+  /* Show a full-page loading circle the instant someone taps a link to the
+     tradelines vault, so the wait is acknowledged before the page changes. */
+  const loaderCss = document.createElement('style');
+  loaderCss.textContent =
+    '.tl-page-loader{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;' +
+    'align-items:center;justify-content:center;gap:16px;background:rgba(245,240,224,0.96);}' +
+    '.tl-page-loader-ring{width:52px;height:52px;border-radius:50%;border:5px solid rgba(11,42,91,0.15);' +
+    'border-top-color:#c9a84c;animation:tlPageSpin 0.8s linear infinite;}' +
+    '.tl-page-loader-text{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;' +
+    'color:rgba(11,42,91,0.7);font-family:inherit;}' +
+    '@keyframes tlPageSpin{to{transform:rotate(360deg)}}';
+  document.head.appendChild(loaderCss);
+
+  let pageLoader = null;
+  function showPageLoader() {
+    if (pageLoader) return;
+    pageLoader = document.createElement('div');
+    pageLoader.className = 'tl-page-loader';
+    pageLoader.innerHTML =
+      '<div class="tl-page-loader-ring" role="status" aria-label="Loading tradelines"></div>' +
+      '<div class="tl-page-loader-text">Loading available tradelines</div>';
+    document.body.appendChild(pageLoader);
+  }
+  function hidePageLoader() {
+    if (pageLoader) { pageLoader.remove(); pageLoader = null; }
+  }
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    if (a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (/marketplace\.html/.test(href)) showPageLoader();
+  }, true);
+
+  // If the browser restores this page from its back/forward cache, remove the veil.
+  window.addEventListener('pageshow', (e) => { if (e.persisted) hidePageLoader(); });
 })();
