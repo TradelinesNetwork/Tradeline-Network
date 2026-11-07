@@ -569,9 +569,11 @@ html body .stat-card { border-radius: 4px !important; border-top: 2px solid var(
 html body .stat-icon { color: var(--tf-emerald-dk); }
 html body .stat-num { font-family: 'Libre Baskerville', Georgia, serif !important; font-weight: 400 !important; }
 html body .orders-table { border-radius: 4px !important; }
-html body .pf-head { border-top: 3px solid var(--tf-deep); }
-html body .pf-mark { background: var(--tf-deep); }
-html body .pf-section-head { color: var(--tf-deep); }
+html body .pf-head { border-top: 0; }
+html body .pf-head .pf-mark { background: #c9a84c !important; color: #0b2a5b !important; }
+html body .pf-head .pf-head-name { color: #fff !important; }
+html body .pf-head .pf-head-meta { color: rgba(255, 255, 255, .72) !important; }
+html body .pf-section-head { color: #0b2a5b; }
 html body .co-wrap { max-width: 1120px; gap: 28px; padding-top: 38px; }
 html body .co-card, html body .co-summary { border-radius: 4px !important; border-top: 3px solid var(--tf-deep) !important; }
 html body .co-title { font-family: 'Libre Baskerville', Georgia, serif; font-size: 26px; font-weight: 400; }
