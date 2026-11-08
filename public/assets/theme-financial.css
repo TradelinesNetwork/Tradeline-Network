@@ -1,7 +1,7 @@
 /* ==========================================================================
    Tradelines Network — Financial Services Theme  ("Emerald Prestige")
-   Applied to public marketing pages only. Loaded last so it governs the
-   final look: flat colour, thin rules, serif headlines, no gradients.
+   Shared across public and account pages. Loaded last so it governs the
+   final look: composed colour areas, serif headlines, no gradients.
    ========================================================================== */
 
 :root,
@@ -1017,3 +1017,207 @@ html body.home-decorative .home-detail-shield { left: calc(50% - 16px); bottom: 
 @media (prefers-reduced-motion: reduce) {
   html body.home-decorative .home-detail-icon { animation: none; }
 }
+
+/* Bold institutional finish: color defines hierarchy, not fine outlines. */
+:root, body {
+  --tf-page: oklch(0.97 0.015 88);
+  --tf-cream: oklch(0.94 0.044 88);
+  --tf-gold-surface: oklch(0.88 0.083 88);
+  --tf-hover: oklch(0.95 0.028 88);
+  --tf-line: oklch(0.83 0.025 88);
+  --tf-line-soft: oklch(0.94 0.01 88);
+  --tf-shadow-raised: 0 8px 24px oklch(0.25 0.04 255 / .08);
+  --tf-shadow-menu: 0 14px 36px oklch(0.25 0.04 255 / .16);
+  --tf-loading-veil: oklch(0.97 0.015 88 / .98);
+  --tf-on-dark-muted: oklch(0.9 0.012 255);
+}
+html body header:not(#tf):not(#tf) {
+  background: var(--tf-cream) !important;
+  border: 0 !important;
+  box-shadow: var(--tf-shadow-raised) !important;
+}
+html body header .nav-links a:not(#tf) {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--tf-deep) !important;
+}
+html body header .nav-links a.active:not(#tf):not(#tf) {
+  background: var(--tf-deep) !important;
+  color: var(--tf-on-dark) !important;
+  border-radius: 6px !important;
+}
+html body header .nav-links a.active::after { display: none !important; }
+html body .dropdown { background: var(--tf-surface) !important; border: 0 !important; box-shadow: var(--tf-shadow-menu) !important; border-radius: 8px !important; }
+html body .dropdown a { color: var(--tf-deep) !important; }
+html body header .cart-btn:not(#tf):not(#tf) { border: 0 !important; background: var(--tf-gold) !important; }
+html body .hamburger:not(#tf):not(#tf) { border: 0 !important; background: var(--tf-gold-surface) !important; border-radius: 6px !important; }
+html body .mobile-nav { color: var(--tf-on-dark); }
+html body .mobile-nav a { color: var(--tf-on-dark) !important; }
+html body .mobile-nav-close { color: var(--tf-on-dark) !important; }
+
+html body .btn-primary:not(#tf):not(#tf),
+html body .btn-ghost:not(#tf):not(#tf),
+html body .nav-cta:not(#tf):not(#tf),
+html body .co-btn:not(#tf):not(#tf),
+html body .auth-btn:not(#tf), html body .edit-btn:not(#tf),
+html body .gtc-go:not(#tf), html body .gtc-stay:not(#tf) {
+  border-radius: 6px !important;
+  min-height: 44px;
+  font-weight: 700 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+html body .btn-primary:not(#tf):not(#tf), html body .auth-btn:not(#tf) {
+  background: var(--tf-deep) !important;
+  color: var(--tf-on-dark) !important;
+}
+html body .btn-ghost:not(#tf):not(#tf), html body .edit-btn:not(#tf) {
+  background: var(--tf-gold-surface) !important;
+  color: var(--tf-deep) !important;
+  border: 0 !important;
+}
+html body.home-decorative .hero::after,
+html body.home-decorative .section-header::before,
+html body.home-decorative .hero-tag::before { display: none !important; }
+html body.home-decorative .hero:not(#tf) { border: 0 !important; }
+html body.home-decorative .hero-tag:not(#tf) { margin-bottom: 22px; font-weight: 700; }
+html body.home-decorative .hero-btns .btn-primary:not(#tf):not(#tf) {
+  background: var(--tf-gold) !important;
+  color: var(--tf-deep) !important;
+  border-color: var(--tf-gold) !important;
+}
+html body.home-decorative .hero-btns .btn-ghost:not(#tf):not(#tf) {
+  background: var(--tf-on-dark) !important;
+  color: var(--tf-deep) !important;
+}
+html body.home-decorative .hero-stats:not(#tf):not(#tf) {
+  border: 0 !important;
+  gap: 28px;
+  padding: 0 !important;
+}
+html body.home-decorative .hero-stats > div { min-width: 100px; }
+html body .section-tag:not(#tf):not(#tf) {
+  padding: 8px 12px !important;
+  background: var(--tf-gold-surface) !important;
+  color: var(--tf-deep) !important;
+  border-radius: 4px !important;
+}
+html body .step-card:not(#tf):not(#tf), html body .use-card:not(#tf):not(#tf),
+html body .value-card:not(#tf):not(#tf), html body .sell-step:not(#tf):not(#tf),
+html body .opp-card:not(#tf), html body .req-card:not(#tf),
+html body .contact-channel:not(#tf), html body .blog-card:not(#tf),
+html body .article-card:not(#tf) {
+  background: var(--tf-cream) !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  padding: 28px !important;
+  box-shadow: none !important;
+}
+html body .step-title:not(#tf), html body .value-title:not(#tf) { font-weight: 700 !important; }
+html body .use-icon:not(#tf):not(#tf), html body .value-icon:not(#tf),
+html body .req-icon:not(#tf), html body .sell-step-icon:not(#tf),
+html body .contact-channel-icon:not(#tf) {
+  background: var(--tf-deep) !important;
+  color: var(--tf-gold) !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+}
+html body .trust-panel:not(#tf) { border: 0 !important; background: var(--tf-gold-surface) !important; border-radius: 8px !important; }
+html body .trust-panel-title, html body .trust-stat + .trust-stat { border: 0 !important; }
+html body .fact-sheet:not(#tf), html body .mission-stat:not(#tf),
+html body .timeline-content:not(#tf) { border: 0 !important; background: var(--tf-cream) !important; border-radius: 8px !important; }
+html body .fact-row { border: 0 !important; padding: 14px 10px; }
+html body .fact-row:nth-child(even) { background: var(--tf-surface); }
+html body #showcase-carousel:not(#tf):not(#tf) { border: 0 !important; border-radius: 8px !important; }
+html body .faq-item:not(#tf), html body .res-panel:not(#tf) { border: 0 !important; background: var(--tf-cream) !important; }
+html body .faq-item { margin-bottom: 12px; }
+html body .res-tab:not(#tf) { border: 0 !important; background: var(--tf-cream) !important; color: var(--tf-deep) !important; border-radius: 6px !important; min-height: 44px; }
+html body .res-tab.active:not(#tf) { background: var(--tf-deep) !important; color: var(--tf-on-dark) !important; }
+html body footer:not(#tf):not(#tf), html body .cta-band:not(#tf):not(#tf) { border: 0 !important; }
+html body footer a:not(#tf), html body footer p:not(#tf) { color: var(--tf-on-dark-muted) !important; }
+
+/* Inventory: substantial header, pale records, and unmistakable actions. */
+html body .mk-hero:not(#tf):not(#tf) { background: var(--tf-deep) !important; border: 0 !important; }
+html body .mk-hero h1:not(#tf):not(#tf):not(#tf) { color: var(--tf-on-dark) !important; }
+html body .mk-hero p:not(#tf):not(#tf), html body .mk-badges span:not(#tf):not(#tf) { color: var(--tf-on-dark-muted) !important; }
+html body .mk-badges { gap: 10px; justify-content: center; }
+html body .mk-badges span:not(#tf):not(#tf) { border: 0 !important; padding: 6px 12px; }
+html body .mk-bar:not(#tf):not(#tf) { background: var(--tf-gold-surface) !important; padding: 20px !important; border: 0 !important; border-radius: 8px !important; }
+html body .mk-count:not(#tf) { border: 0 !important; padding-block: 20px; font-weight: 600; }
+html body .mk-card:not(#tf):not(#tf) { border: 0 !important; border-radius: 8px !important; padding: 22px; box-shadow: var(--tf-shadow-raised) !important; }
+html body .mk-card-top:not(#tf) { border: 0 !important; padding-bottom: 18px; }
+html body .mk-ico:not(#tf) { border: 0 !important; }
+html body .mk-rows:not(#tf) { background: var(--tf-hover); padding: 10px 12px; border-radius: 6px; }
+html body .mk-row:not(#tf) { border: 0 !important; padding-block: 8px; gap: 12px; }
+html body .mk-row span { color: var(--tf-muted) !important; }
+html body .mk-row strong { color: var(--tf-deep) !important; font-weight: 700; text-align: right; }
+html body .mk-add:not(#tf) { background: var(--tf-deep) !important; color: var(--tf-on-dark) !important; border: 0 !important; border-radius: 6px !important; min-height: 44px; }
+html body .mk-add:hover:not(#tf) { background: var(--tf-emerald) !important; }
+html body .mk-cartbar:not(#tf) { border: 0 !important; background: var(--tf-gold-surface) !important; }
+html body .gtc-card:not(#tf) { border: 0 !important; border-radius: 8px !important; }
+
+/* Account records: strong section headers, readable values, no frame clutter. */
+html body .auth-card:not(#tf):not(#tf) { border: 0 !important; border-radius: 8px !important; box-shadow: var(--tf-shadow-raised) !important; }
+html body .auth-tabs:not(#tf) { padding: 5px; border-radius: 6px !important; }
+html body .auth-tab { min-height: 44px; }
+html body .auth-tab.active { background: var(--tf-deep) !important; color: var(--tf-on-dark) !important; }
+html body .dash-sidebar:not(#tf):not(#tf) { background: var(--tf-cream) !important; border: 0 !important; border-radius: 8px !important; }
+html body .dash-user { border: 0 !important; }
+html body .dash-user-email { overflow-wrap: anywhere; }
+html body .dash-user > div:last-child { min-width: 0; }
+html body .dash-avatar { background: var(--tf-deep) !important; color: var(--tf-gold) !important; flex-shrink: 0; }
+html body .dash-nav-item { min-height: 44px; border-radius: 6px !important; }
+html body .dash-nav-item.active:not(#tf) { background: var(--tf-deep) !important; color: var(--tf-on-dark) !important; }
+html body .dash-nav-item.active .nav-icon:not(#tf) { color: var(--tf-gold) !important; }
+html body .dash-panel-title:not(#tf):not(#tf) { font-size: 30px !important; font-weight: 700 !important; line-height: 1.35; }
+html body .stat-card:not(#tf):not(#tf) { border: 0 !important; border-radius: 8px !important; background: var(--tf-cream) !important; }
+html body .stat-card:first-child { background: var(--tf-deep) !important; }
+html body .stat-card:first-child .stat-num, html body .stat-card:first-child .stat-label { color: var(--tf-on-dark) !important; }
+html body .stat-card:first-child .stat-icon { color: var(--tf-gold) !important; }
+html body .stat-num:not(#tf) { font-weight: 700 !important; font-size: 28px; overflow-wrap: anywhere; }
+html body .orders-table:not(#tf) { border: 0 !important; border-radius: 8px !important; }
+html body table th:not(#tf):not(#tf), html body .orders-table th:not(#tf):not(#tf) { background: var(--tf-deep) !important; color: var(--tf-on-dark) !important; border: 0 !important; }
+html body table td:not(#tf) { border: 0 !important; }
+html body table tbody tr:nth-child(even) { background: var(--tf-hover); }
+html body .pf-head:not(#tf) { box-shadow: none !important; border: 0 !important; padding: 32px; border-radius: 8px !important; }
+html body .pf-head::after { display: none !important; }
+html body .pf-section:not(#tf) { border: 0 !important; box-shadow: none !important; border-radius: 8px !important; }
+html body .pf-section-head:not(#tf) { background: var(--tf-gold-surface) !important; border: 0 !important; color: var(--tf-deep) !important; padding: 18px 22px; font-size: 13px; }
+html body .pf-row:not(#tf) { border: 0 !important; padding: 18px 22px; }
+html body .pf-row:nth-child(even) { background: var(--tf-hover); }
+html body .pf-note:not(#tf) { background: var(--tf-cream) !important; border: 0 !important; }
+html body .empty-orders:not(#tf) { border: 0 !important; background: var(--tf-cream) !important; border-radius: 8px !important; }
+html body .logout-btn { background: var(--tf-gold-surface) !important; border: 0 !important; color: var(--tf-deep) !important; min-height: 44px; }
+
+/* Checkout stays light: gold summary areas replace thin decorative frames. */
+html body .co-progress:not(#tf) { border: 0 !important; background: var(--tf-gold-surface) !important; }
+html body .co-card:not(#tf):not(#tf), html body .co-summary:not(#tf):not(#tf),
+html body .co-empty:not(#tf), html body .co-success:not(#tf) { border: 0 !important; border-radius: 8px !important; background: var(--tf-surface) !important; }
+html body .co-summary:not(#tf):not(#tf) { background: var(--tf-cream) !important; }
+html body .co-item:not(#tf), html body .co-au:not(#tf), html body .co-review-block:not(#tf) { border: 0 !important; border-radius: 6px !important; background: var(--tf-hover) !important; }
+html body .co-stotal:not(#tf) { background: var(--tf-gold-surface); border: 0 !important; padding: 16px 12px; border-radius: 6px; gap: 12px; }
+html body .co-stotal-v { color: var(--tf-deep) !important; }
+html body .co-guarantee, html body .co-actions, html body .co-kv, html body .co-review-row { border: 0 !important; }
+html body .co-pay-tab.active:not(#tf), html body .co-crypto-tab.active:not(#tf) { background: var(--tf-gold-surface) !important; border-color: var(--tf-deep) !important; }
+html body input:not([type="checkbox"]):not([type="radio"]), html body select, html body textarea { border-radius: 6px !important; }
+
+.tl-page-loader { position: fixed; inset: 0; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: var(--tf-loading-veil); }
+.tl-page-loader-ring { width: 52px; height: 52px; border-radius: 50%; border: 5px solid var(--tf-gold-surface); border-top-color: var(--tf-deep); animation: tlPageSpin .8s linear infinite; }
+.tl-page-loader-text { font-size: 15px; font-weight: 600; color: var(--tf-deep); }
+@keyframes tlPageSpin { to { transform: rotate(360deg); } }
+@media (max-width: 640px) {
+  html body.home-decorative .hero-stats:not(#tf):not(#tf) { gap: 18px; }
+  html body.home-decorative .hero-stats > div { min-width: 0; }
+  html body .step-card:not(#tf):not(#tf), html body .use-card:not(#tf):not(#tf), html body .value-card:not(#tf):not(#tf), html body .sell-step:not(#tf):not(#tf) { padding: 24px !important; }
+  html body .mk-badges { display: flex; flex-wrap: wrap; }
+  html body .mk-badges span:not(#tf):not(#tf) { padding: 5px 8px; font-size: 11px; }
+  html body .dash-panel-title:not(#tf):not(#tf) { font-size: 26px !important; }
+  html body .orders-table tr { border: 0 !important; background: var(--tf-surface) !important; padding: 8px 0; }
+  html body .orders-table td:nth-child(even) { background: var(--tf-hover); }
+  html body .pf-head:not(#tf) { padding: 24px 20px; }
+  html body .pf-row:not(#tf) { padding: 16px 20px; }
+  html body .co-step-label { display: block; font-size: 10px; }
+  html body .co-step { flex-direction: column; gap: 5px; }
+  html body .co-line { margin-top: -15px; }
+}
+@media (prefers-reduced-motion: reduce) { .tl-page-loader-ring { animation: none; } }
