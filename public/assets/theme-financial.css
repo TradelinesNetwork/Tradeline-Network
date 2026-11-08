@@ -1220,4 +1220,19 @@ html body input:not([type="checkbox"]):not([type="radio"]), html body select, ht
   html body .co-step { flex-direction: column; gap: 5px; }
   html body .co-line { margin-top: -15px; }
 }
+/* Reading areas are unframed bands; controls retain comfortable separation. */
+html body .res-panel:not(#tf):not(#tf) { background: transparent !important; border-radius: 0 !important; }
+html body .res-tabs { background: var(--tf-page) !important; border: 0 !important; padding-block: 12px; gap: 8px; }
+html body .page-hero:not(#tf) { border-radius: 0 !important; }
+html body .info-box, html body .warning-box, html body .guarantee-card { border: 0 !important; background: var(--tf-cream) !important; border-radius: 8px !important; }
+html body header .cart-btn svg:not(#tf):not(#tf) { stroke: var(--tf-deep) !important; color: var(--tf-deep) !important; }
+@media (max-width: 640px) {
+  html body:has(#authScreen:not([style*="none"])) .support-widget {
+    position: static !important;
+    flex-direction: row !important;
+    justify-content: center;
+    padding: 16px;
+    background: var(--tf-cream);
+  }
+}
 @media (prefers-reduced-motion: reduce) { .tl-page-loader-ring { animation: none; } }
