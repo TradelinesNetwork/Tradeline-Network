@@ -32,17 +32,6 @@
 
   /* Show a full-page loading circle the instant someone taps a link to the
      tradelines vault, so the wait is acknowledged before the page changes. */
-  const loaderCss = document.createElement('style');
-  loaderCss.textContent =
-    '.tl-page-loader{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;' +
-    'align-items:center;justify-content:center;gap:16px;background:rgba(245,240,224,0.96);}' +
-    '.tl-page-loader-ring{width:52px;height:52px;border-radius:50%;border:5px solid rgba(11,42,91,0.15);' +
-    'border-top-color:#c9a84c;animation:tlPageSpin 0.8s linear infinite;}' +
-    '.tl-page-loader-text{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;' +
-    'color:rgba(11,42,91,0.7);font-family:inherit;}' +
-    '@keyframes tlPageSpin{to{transform:rotate(360deg)}}';
-  document.head.appendChild(loaderCss);
-
   let pageLoader = null;
   function showPageLoader() {
     if (pageLoader) return;
@@ -61,10 +50,69 @@
     const a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
     const href = a.getAttribute('href') || '';
-    if (a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    if (/marketplace\.html/.test(href)) showPageLoader();
+    if (e.defaultPrevented || e.button !== 0 || a.hasAttribute('download') ||
+        (a.target && a.target !== '_self') || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const destination = new URL(href, window.location.href);
+    if (destination.origin === window.location.origin && destination.pathname.endsWith('/marketplace.html') &&
+        !window.location.pathname.endsWith('/marketplace.html')) {
+      e.preventDefault();
+      showPageLoader();
+      // Give the browser a paint before replacing the current document.
+      requestAnimationFrame(() => setTimeout(() => window.location.assign(destination.href), 80));
+    }
   }, true);
 
   // If the browser restores this page from its back/forward cache, remove the veil.
   window.addEventListener('pageshow', (e) => { if (e.persisted) hidePageLoader(); });
+
+  /* Make existing menu and dashboard controls usable without a mouse. */
+  const menu = document.getElementById('mobileNav');
+  const trigger = document.getElementById('menuBtn') || document.querySelector('.hamburger');
+  if (menu && trigger) {
+    trigger.setAttribute('role', 'button');
+    trigger.setAttribute('tabindex', '0');
+    trigger.setAttribute('aria-label', 'Open navigation');
+    trigger.setAttribute('aria-controls', 'mobileNav');
+    menu.setAttribute('role', 'dialog');
+    menu.setAttribute('aria-modal', 'true');
+    menu.setAttribute('aria-label', 'Site navigation');
+    const isOpen = () => menu.classList.contains('open');
+    const controls = () => [...menu.querySelectorAll('a[href], button, [tabindex="0"]')].filter(el => el.getClientRects().length);
+    const syncMenu = () => {
+      trigger.setAttribute('aria-expanded', String(isOpen()));
+      if (isOpen()) controls()[0]?.focus();
+    };
+    syncMenu();
+    new MutationObserver(syncMenu).observe(menu, { attributes: true, attributeFilter: ['class'] });
+    trigger.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger.click(); }
+    });
+    document.addEventListener('keydown', e => {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') {
+        menu.querySelector('.mobile-nav-close')?.click();
+        trigger.focus();
+      }
+      if (e.key === 'Tab') {
+        const items = controls();
+        const first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
+    });
+  }
+  document.querySelectorAll('.dash-nav-item[onclick]').forEach(item => {
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    });
+  });
+  document.querySelectorAll('.res-tab[onclick]').forEach(item => {
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    });
+  });
 })();

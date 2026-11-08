@@ -13,3 +13,4 @@
 - Keep the root content route as the static homepage bridge with its own metadata; public HTML pages remain the existing user experience.
 - Scope homepage-only decoration to its body class in the final theme stylesheet so purchasing and account layouts are unaffected.
 - Keep static-header cart navigation in the shared site asset helper, including asynchronously injected checkout headers, so cart access stays consistent without modifying purchasing logic.
+- Keep shared loading and keyboard navigation in the site asset helper, with visual states in the final theme stylesheet, so public and injected headers behave consistently.
