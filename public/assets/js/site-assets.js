@@ -1,5 +1,12 @@
 /* Shared, accessible cart navigation for static and injected headers. */
 (() => {
+  // Load real 3D only where it adds value; checkout and account stay lightweight.
+  if (document.body.classList.contains('home-decorative')) {
+    const sceneScript = document.createElement('script');
+    sceneScript.src = 'assets/js/financial-scene.js?v=1';
+    sceneScript.async = true;
+    document.head.appendChild(sceneScript);
+  }
   const cartSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.4 11.2h11l2-8H6.2"/></svg>';
   function updateCart() {
     const nav = document.querySelector('header nav');

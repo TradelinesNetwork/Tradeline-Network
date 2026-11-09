@@ -1,7 +1,8 @@
 # Premium visual refinement
-- [ ] Replace thin decorative outlines with bolder navy/gold presentation across public and account pages.
-- [ ] Complete immediate browse-loading feedback and improve accessible shared navigation.
-- [ ] Verify key public browsing/cart interactions and desktop/mobile presentation; preserve prices and purchasing rules.
+- [x] Add and verify an interactive branded 3D homepage and restrained depth across public pages without changing purchasing.
+- [x] Replace thin decorative outlines with bolder navy/gold presentation across public and account pages.
+- [x] Complete immediate browse-loading feedback and improve accessible shared navigation.
+- [x] Verify key public browsing/cart interactions and desktop/mobile presentation; preserve prices and purchasing rules.
 - [x] Replace browser/search icon with TN branding, balance white and gold surfaces, and expose cart navigation.
 - [x] Refine homepage and shared financial presentation without changing prices or purchasing behavior.
 - [x] Verify homepage, marketplace-to-cart, and signed-out account presentation at desktop and narrow widths.
