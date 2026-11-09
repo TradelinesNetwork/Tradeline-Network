@@ -1280,8 +1280,19 @@ html body .co-summary:not(#tf):not(#tf):not(#tf) {
   html body.home-decorative .hero-content:not(#tf) { width: 51%; }
 }
 @media (max-width: 1000px) {
-  html body.home-decorative .hero-inner:not(#tf) { padding-bottom: 24px !important; }
-  html body.home-decorative .home-float-crest { width: 230px; height: 230px; margin-top: 18px; }
+  html body.home-decorative .hero-inner:not(#tf) { padding: 30px 28px 16px !important; }
+  html body.home-decorative .hero-inner h1:not(#tf):not(#tf),
+  html body.home-decorative .hero-inner h1 em:not(#tf):not(#tf) { font-size: 44px !important; line-height: 1.12 !important; }
+  html body.home-decorative .home-float-crest { width: 170px; height: 170px; margin-top: 18px; }
+}
+@media (min-width: 641px) and (max-width: 1000px) {
+  html body.home-decorative .hero-btns a:not(#tf) { width: auto !important; flex: 0 1 auto; }
+}
+@media (max-width: 640px) {
+  html body.home-decorative .hero-inner h1:not(#tf):not(#tf),
+  html body.home-decorative .hero-inner h1 em:not(#tf):not(#tf) { font-size: 34px !important; }
+  html body.home-decorative .hero-inner > .hero-content > p:not(#tf) { line-height: 1.65; margin-bottom: 18px !important; }
+  html body.home-decorative .hero-stats:not(#tf) { margin-top: 24px !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   html body .mk-card, html body .use-card, html body .value-card, html body .blog-card { transition: none !important; transform: none !important; }

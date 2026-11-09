@@ -14,4 +14,4 @@
 - Scope homepage-only decoration to its body class in the final theme stylesheet so purchasing and account layouts are unaffected.
 - Keep static-header cart navigation in the shared site asset helper, including asynchronously injected checkout headers, so cart access stays consistent without modifying purchasing logic.
 - Keep shared loading and keyboard navigation in the site asset helper, with visual states in the final theme stylesheet, so public and injected headers behave consistently.
-- Keep the Three.js visual source in src/visuals and its browser-only bundle in public/assets/js; initialize it through the shared helper only on the static homepage, retaining the existing illustration as the no-WebGL fallback.
+- Keep the Three.js visual source in src/visuals and its browser-only bundle in public/assets/js; regenerate it with `bun build src/visuals/financial-scene.js --target browser --format iife --minify --outfile public/assets/js/financial-scene.js` after source edits. Initialize through the shared helper only on the static homepage, retaining the existing illustration as the no-WebGL fallback.
