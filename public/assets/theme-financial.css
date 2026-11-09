@@ -1286,7 +1286,11 @@ html body .co-summary:not(#tf):not(#tf):not(#tf) {
   html body.home-decorative .home-float-crest { width: 170px; height: 170px; margin-top: 18px; }
 }
 @media (min-width: 641px) and (max-width: 1000px) {
-  html body.home-decorative .hero-btns a:not(#tf) { width: auto !important; flex: 0 1 auto; }
+  html body.home-decorative .hero-btns:not(#tf) { display: flex !important; flex-direction: row !important; }
+  html body.home-decorative .hero-btns a:not(#tf):not(#tf) { width: auto !important; flex: 0 1 auto; }
+  html body.home-decorative .hero-inner h1:not(#tf):not(#tf),
+  html body.home-decorative .hero-inner h1 em:not(#tf):not(#tf) { font-size: 38px !important; }
+  html body.home-decorative .hero-stats:not(#tf) { margin-top: 24px !important; }
 }
 @media (max-width: 640px) {
   html body.home-decorative .hero-inner h1:not(#tf):not(#tf),
