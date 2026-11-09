@@ -1243,7 +1243,9 @@ html body header .cart-btn svg:not(#tf):not(#tf) { stroke: var(--tf-deep) !impor
   --tf-depth-shadow-hover: 0 24px 38px oklch(0.25 0.04 255 / .19), 0 3px 0 oklch(0.75 0.06 88 / .5);
 }
 html body.home-decorative .hero { isolation: isolate; }
-.tn-3d-scene { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+html body.home-decorative .hero.tn-3d-ready:not(#tf) { background: var(--tf-deep) !important; }
+html body.home-decorative .hero.tn-3d-ready::before { display: none !important; }
+html body.home-decorative .hero > .tn-3d-scene:not(#tf) { position: absolute !important; inset: 0; width: 100%; height: 100%; z-index: 0 !important; pointer-events: none; overflow: hidden; }
 .tn-3d-scene canvas { display: block; width: 100%; height: 100%; }
 html body.home-decorative .hero-inner:not(#tf) { position: relative; z-index: 1; }
 html body.home-decorative .tn-3d-ready .home-float-crest { visibility: hidden; }

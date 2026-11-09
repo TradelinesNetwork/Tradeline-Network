@@ -124,7 +124,7 @@ function initialize(hero) {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const pointer = new THREE.Vector2();
   let visible = true, disposed = false, frame = 0, time = 0;
-  const clock = new THREE.Clock();
+  let lastTime = performance.now();
   function layout() {
     const width = host.clientWidth, height = host.clientHeight;
     if (!width || !height) return;
@@ -149,7 +149,9 @@ function initialize(hero) {
   function animate() {
     if (disposed) return;
     frame = requestAnimationFrame(animate);
-    const dt = Math.min(clock.getDelta(), 0.05);
+    const now = performance.now();
+    const dt = Math.min((now - lastTime) / 1000, 0.05);
+    lastTime = now;
     if (!visible || document.hidden || reduced.matches) return;
     time += dt;
     sculpture.rotation.y = THREE.MathUtils.damp(sculpture.rotation.y, pointer.x * 0.16 + Math.sin(time * 0.4) * 0.07, 3, dt);
