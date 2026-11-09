@@ -135,8 +135,8 @@ function initialize(hero) {
     const worldHeight = 2 * 12 * Math.tan(THREE.MathUtils.degToRad(17));
     const worldWidth = worldHeight * camera.aspect;
     sculpture.position.x = small ? 0 : worldWidth * 0.26;
-    sculpture.position.y = small ? -worldHeight * 0.3 : 0;
-    const scale = small ? Math.min(worldWidth / 5.5, worldHeight * 0.31 / 4.2) : Math.min(worldWidth * 0.41 / 4.7, worldHeight / 5.5);
+    sculpture.position.y = small ? worldHeight * (-0.5 + 106 / height) : 0;
+    const scale = small ? Math.min(worldWidth / 5.5, worldHeight * (170 / height) / 4.2) : Math.min(worldWidth * 0.41 / 4.7, worldHeight / 5.5);
     sculpture.scale.setScalar(scale);
     draw();
   }
