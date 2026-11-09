@@ -1,4 +1,5 @@
 # Premium visual refinement
+- [ ] Add and verify an interactive branded 3D homepage and restrained depth across public pages without changing purchasing.
 - [ ] Replace thin decorative outlines with bolder navy/gold presentation across public and account pages.
 - [ ] Complete immediate browse-loading feedback and improve accessible shared navigation.
 - [ ] Verify key public browsing/cart interactions and desktop/mobile presentation; preserve prices and purchasing rules.
