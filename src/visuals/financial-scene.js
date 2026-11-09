@@ -55,9 +55,9 @@ function initialize(hero) {
   const face = new THREE.Mesh(new THREE.CircleGeometry(1.57, 80), dark);
   face.position.z = 0.105;
   medallion.add(face);
-  const frame = new THREE.Mesh(new THREE.TorusGeometry(1.61, 0.045, 12, 80), metal);
-  frame.position.z = 0.15;
-  medallion.add(frame);
+  const medallionFrame = new THREE.Mesh(new THREE.TorusGeometry(1.61, 0.045, 12, 80), metal);
+  medallionFrame.position.z = 0.15;
+  medallion.add(medallionFrame);
   const textures = [];
   const loader = new THREE.TextureLoader();
   loader.load('/assets/score-crest.png', texture => {
@@ -96,7 +96,7 @@ function initialize(hero) {
     for (let i = 0; i < 38; i++) {
       ctx.beginPath(); ctx.arc(940, 700, 160 + i * 16, Math.PI, Math.PI * 2); ctx.stroke();
     }
-    ctx.fillStyle = gold; ctx.font = '600 42px Georgia'; ctx.fillText('TR ADELINES'.replace('TR A', 'TRA'), 70, 90);
+    ctx.fillStyle = gold; ctx.font = '600 42px Georgia'; ctx.fillText('TRADELINES', 70, 90);
     ctx.font = '24px sans-serif'; ctx.fillText('NETWORK', 72, 132);
     ctx.fillStyle = gold; ctx.fillRect(76, 235, 112, 83);
     ctx.strokeStyle = navy; ctx.lineWidth = 4;
