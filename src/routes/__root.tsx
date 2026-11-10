@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
+
   createRootRouteWithContext,
   useRouter,
   HeadContent,
@@ -13,7 +13,15 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+// Public pages are static HTML files; short addresses such as /account map to them.
+const STATIC_PAGES = new Set(["about", "account", "admin", "au-info", "blog", "brokers", "calculator", "cart", "confirm", "contact", "extension", "faq", "index", "legal", "marketplace", "order", "payment", "reset-password", "resources", "sell"]);
+
 function NotFoundComponent() {
+  useEffect(() => {
+    const { pathname, search, hash } = window.location;
+    const page = pathname.replace(/^\/+|\/+$/g, "").replace(/\.html$/, "").toLowerCase();
+    if (STATIC_PAGES.has(page)) window.location.replace(`/${page}.html${search}${hash}`);
+  }, []);
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -23,12 +31,15 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
+          <a
+            href="/index.html"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Go home
-          </Link>
+          </a>
+          <a href="/marketplace.html" className="ml-3 inline-flex items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">
+            Browse tradelines
+          </a>
         </div>
       </div>
     </div>
