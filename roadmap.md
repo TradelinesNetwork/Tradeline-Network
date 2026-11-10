@@ -1,4 +1,5 @@
 # Premium visual refinement
+- [ ] Apply and verify a readable navy-and-gold glass interface on dashboard and key panels.
 - [x] Add and verify an interactive branded 3D homepage and restrained depth across public pages without changing purchasing.
 - [x] Replace thin decorative outlines with bolder navy/gold presentation across public and account pages.
 - [x] Complete immediate browse-loading feedback and improve accessible shared navigation.
