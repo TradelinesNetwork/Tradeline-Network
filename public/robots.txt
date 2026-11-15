@@ -5,4 +5,4 @@ Disallow: /account.html
 Disallow: /admin.html
 Disallow: /order.html
 
-Sitemap: https://tradelinesmarketplace.com/sitemap.xml
+Sitemap: https://www.tradelinesnetwork.trade/sitemap.xml
